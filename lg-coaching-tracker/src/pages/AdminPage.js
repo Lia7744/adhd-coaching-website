@@ -5,10 +5,12 @@ export default function AdminPage() {
   const [clients, setClients] = useState([]);
   const [newName, setNewName] = useState('');
   const [newSlug, setNewSlug] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passcode, setPasscode] = useState('');
 
   useEffect(() => {
-    loadClients();
-  }, []);
+    if (isAuthenticated) loadClients();
+  }, [isAuthenticated]);
 
   const loadClients = async () => {
     const { data } = await supabase
@@ -40,6 +42,32 @@ export default function AdminPage() {
 
   const baseUrl = window.location.origin;
 
+  if (!isAuthenticated) {
+    return (
+      <div style={{
+        minHeight: '100vh', background: '#F5F1EB', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans', sans-serif"
+      }}>
+        <div style={{ background: 'white', padding: 40, borderRadius: 16, border: '1px solid #E8E4DF', textAlign: 'center' }}>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", margin: '0 0 20px', color: '#3D3529' }}>Admin Access</h2>
+          <input 
+            type="password" 
+            placeholder="Admin Password"
+            value={passcode}
+            onChange={e => setPasscode(e.target.value)}
+            style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #E8E4DF', marginBottom: 16, width: '100%', boxSizing: 'border-box' }}
+          />
+          <button 
+            onClick={() => { if (passcode === 'LianaCoach2026') setIsAuthenticated(true); else alert('Incorrect Password'); }}
+            style={{ padding: '10px 24px', borderRadius: 8, background: '#4A7C6F', color: 'white', border: 'none', cursor: 'pointer', width: '100%' }}
+          >
+            Log in
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{
       minHeight: '100vh', background: '#F5F1EB',
@@ -58,7 +86,7 @@ export default function AdminPage() {
         <h3 style={{ margin: '0 0 16px', color: '#3D3529' }}>Add New Client</h3>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <input
-            placeholder="Client name (e.g. Sydney R.)"
+            placeholder="Client name"
             value={newName}
             onChange={(e) => {
               setNewName(e.target.value);
@@ -70,7 +98,7 @@ export default function AdminPage() {
             }}
           />
           <input
-            placeholder="URL slug (e.g. sydney-r)"
+            placeholder="URL slug / Access Code"
             value={newSlug}
             onChange={(e) => setNewSlug(e.target.value)}
             style={{
