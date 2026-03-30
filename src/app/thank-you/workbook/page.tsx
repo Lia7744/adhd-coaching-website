@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Download, Calendar, ArrowRight } from "lucide-react";
+import { CheckCircle2, Download, Calendar, ArrowRight, Lock } from "lucide-react";
 import Image from "next/image";
 
 export default function WorkbookThankYouPage() {
@@ -12,7 +12,7 @@ export default function WorkbookThankYouPage() {
           <div className="flex justify-between h-16 items-center">
             <a href="/" className="flex items-center gap-3">
               <Image src="/logo-transparent.png" alt="LG ADHD Coaching" width={80} height={80} />
-              <span className="text-lg font-bold text-brand-charcoal tracking-tight">
+              <span className="text-xl sm:text-2xl font-serif font-black text-brand-charcoal tracking-tight">
                 Liana Groombridge <span className="text-brand-warm-gray font-normal hidden sm:inline">| ADHD Coaching</span>
               </span>
             </a>
@@ -21,7 +21,7 @@ export default function WorkbookThankYouPage() {
               <a href="/" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Home</a>
               <a href="/services" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Services</a>
               <a href="/shop" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Shop</a>
-              <a href="https://whop.com/login" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors">Login</a>
+              <a href="/tracker" className="flex items-center gap-2 text-brand-sage font-bold text-sm bg-brand-sage/10 px-3 py-1.5 rounded-full"><Lock className="w-3.5 h-3.5" /> Client Portal</a>
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, CheckCircle2, Sparkles, BookOpen, Brain, Clock, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, BookOpen, Brain, Clock, ShieldCheck, Download, Coffee, Zap, ListChecks, Hourglass, Target, RotateCcw, Flame, ShieldAlert } from "lucide-react";
 import Image from "next/image";
+import { Lock } from "lucide-react";
 
 export default function ShopPage() {
   const [isCanada, setIsCanada] = useState(false);
@@ -35,7 +36,7 @@ export default function ShopPage() {
           <div className="flex justify-between h-16 items-center">
             <a href="/" className="flex items-center gap-3">
               <Image src="/logo-transparent.png" alt="LG ADHD Coaching" width={80} height={80} />
-              <span className="text-lg font-bold text-brand-charcoal tracking-tight">
+              <span className="text-xl sm:text-2xl font-serif font-black text-brand-charcoal tracking-tight">
                 Liana Groombridge <span className="text-brand-warm-gray font-normal hidden sm:inline">| ADHD Coaching</span>
               </span>
             </a>
@@ -44,7 +45,7 @@ export default function ShopPage() {
               <a href="/" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Home</a>
               <a href="/services" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Services</a>
               <a href="/shop" className="text-sm font-bold text-brand-charcoal transition-colors">Shop</a>
-              <a href="https://whop.com/login" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors">Login</a>
+              <a href="/tracker" className="flex items-center gap-2 text-brand-sage font-bold text-sm bg-brand-sage/10 px-3 py-1.5 rounded-full"><Lock className="w-3.5 h-3.5" /> Client Portal</a>
             </div>
           </div>
         </div>
@@ -82,20 +83,22 @@ export default function ShopPage() {
               </div>
               
               <h1 className="text-4xl sm:text-5xl font-serif font-black text-brand-charcoal leading-tight">
-                An exact toolkit for every single ADHD blocker.
+                Because willpower is a scam and your brain needs a better offer.
               </h1>
               
-              <p className="text-xl text-brand-charcoal/80 leading-relaxed font-medium">
-                Standard productivity advice assumes you already have a neurotypical brain. <span className="font-bold text-brand-charcoal">This workbook assumes you don't.</span> 
+              <p className="text-xl text-brand-charcoal/80 leading-relaxed font-bold">
+                9 chapters of manipulating your ADHD brain into doing the stuff it knows it needs to do but physically will not start.
               </p>
-              <p className="text-lg text-brand-warm-gray leading-relaxed">
-                From battling the 'Frozen Starter' paralysis to escaping the 'Shame Spiral', this is an actionable, 9-chapter toolkit designed to help you work with your ADHD brain instead of against it. Stop buying generic planners that end up in the graveyard. Start learning how to legally manipulate your own brain into getting unstuck.
-              </p>
+              <div className="text-lg text-brand-warm-gray leading-relaxed space-y-4">
+                <p>You know what you need to do. You have the time. You might even have a plan. And your body just... won't cooperate.</p>
+                <p>So you sit there. Staring at it. For 45 minutes. While the task takes 5. And the whole time, a voice in your head is narrating: &quot;I should start. I'm going to start. OK, after I refill my water. OK, after this episode. OK, it's 10pm now, I'll do it tomorrow.&quot; You won't do it tomorrow.</p>
+                <p className="font-bold text-brand-sage">This workbook is the other option.</p>
+              </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <a 
                   href={checkoutUrl}
-                  className="w-full sm:w-auto bg-brand-charcoal hover:bg-black text-brand-white h-16 px-10 rounded-full text-xl font-bold shadow-lg flex items-center justify-center gap-2 transition-all transform hover:scale-105"
+                  className="w-full sm:w-auto bg-brand-sage hover:brightness-90 text-brand-white h-16 px-10 rounded-full text-xl font-bold shadow-xl shadow-brand-sage/40 flex items-center justify-center gap-2 transition-all transform hover:scale-105"
                 >
                   {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
                   <ArrowRight className="w-5 h-5 ml-1" />
@@ -111,6 +114,9 @@ export default function ShopPage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm font-bold text-brand-charcoal">
                   <Brain className="w-5 h-5 text-brand-sage" /> Made by an ADHD brain
+                </div>
+                <div className="flex items-center gap-2 text-sm font-bold text-brand-charcoal">
+                  <Download className="w-5 h-5 text-brand-sage" /> Instant Download
                 </div>
               </div>
 
@@ -134,36 +140,117 @@ export default function ShopPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-8 hover:border-brand-sage transition-colors group">
-              <div className="w-12 h-12 bg-brand-sage/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Brain className="w-6 h-6 text-brand-sage" />
+          <div className="grid md:grid-cols-2 gap-6">
+            
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-[#D25D48]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Coffee className="w-6 h-6 text-[#D25D48]" />
               </div>
-              <h3 className="text-xl font-bold text-brand-charcoal mb-3">5 Strategy Sheets</h3>
-              <p className="text-brand-warm-gray text-sm leading-relaxed">
-                Specific, step-by-step game plans for the Frozen Starter, Boredom Blackout, Overthinking Looper, Shame Spiraler, and System Hopper.
-              </p>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">The Bribe Menu</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  A personalized cheat sheet of the exact things that trick <b>your</b> brain into showing up.
+                </p>
+              </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-8 hover:border-brand-gold transition-colors group">
-              <div className="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Clock className="w-6 h-6 text-brand-gold" />
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-brand-gold/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Zap className="w-6 h-6 text-[#B8923E]" />
               </div>
-              <h3 className="text-xl font-bold text-brand-charcoal mb-3">System Graveyard</h3>
-              <p className="text-brand-warm-gray text-sm leading-relaxed">
-                An exercise that turns all your abandoned planners and failed productivity apps into actual, useful data so you stop repeating mistakes.
-              </p>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">Interest vs. Importance</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  Why your brain runs on interest, novelty, and urgency instead of importance—and how to actively utilize that.
+                </p>
+              </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-8 hover:border-brand-charcoal transition-colors group">
-              <div className="w-12 h-12 bg-brand-charcoal/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <CheckCircle2 className="w-6 h-6 text-brand-charcoal" />
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-brand-sage/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <ListChecks className="w-6 h-6 text-brand-sage" />
               </div>
-              <h3 className="text-xl font-bold text-brand-charcoal mb-3">Shame Spiral Map</h3>
-              <p className="text-brand-warm-gray text-sm leading-relaxed">
-                Identify precisely where your shame spirals trigger and build a "Getting Back Up" plan while your head is still clear.
-              </p>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">7 Commandments of Systems</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  A framework for building something your brain can't reject after two weeks. Including the one question that tells you whether to fix your current system or scrap it entirely.
+                </p>
+              </div>
             </div>
+
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-brand-charcoal/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Hourglass className="w-6 h-6 text-brand-charcoal" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">The Agony Hour Blueprint</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  A specific worksheet for the tasks that will never not suck. We're containing them instead of pretending otherwise.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-brand-sage/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Target className="w-6 h-6 text-brand-sage" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">Trapping Your Future Self</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  Exactly how to set unavoidable traps for your future self so things actually get done whether your brain cooperates in the moment or not.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-[#D25D48]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <RotateCcw className="w-6 h-6 text-[#D25D48]" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">Shame Spiral Map</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  What to do when the guilt of not starting becomes bigger than the task itself. Identify exactly where your loop starts and interrupt it before it takes you out for two days.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-brand-gold/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <BookOpen className="w-6 h-6 text-[#B8923E]" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">20+ Workbook Exercises</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  Brain dumps, cheat sheets, battle plans, pattern finders — all designed to help you learn more about YOUR unique brain. Fill them in once, come back to them every time you're stuck.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
+              <div className="w-14 h-14 shrink-0 bg-brand-charcoal/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <ShieldAlert className="w-6 h-6 text-brand-charcoal" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">The Emergency Kit</h3>
+                <p className="text-brand-warm-gray text-sm leading-relaxed">
+                  For the days when absolutely nothing is working and your brain has just decided to... not. Ten steps. No lessons. No pep talks. Just &quot;do this right now.&quot;
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Book Summary Card */}
+          <div className="mt-16 max-w-4xl mx-auto bg-brand-cream border-2 border-brand-sage/20 rounded-[2.5rem] p-8 sm:p-14 text-center space-y-8 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+            <h3 className="text-3xl font-serif font-black text-brand-charcoal relative z-10">Why "manipulating"?</h3>
+            <p className="text-brand-charcoal/80 text-lg sm:text-xl leading-relaxed relative z-10 max-w-2xl mx-auto">
+              Because your brain doesn't respond to &quot;just try harder.&quot; It responds to being outsmarted. Every strategy in this book is a way of rigging the game so your brain cooperates—not because it wants to, but because you gave it no good reason not to.
+            </p>
+            <div className="w-16 h-1 bg-[#D25D48]/30 mx-auto rounded-full relative z-10"></div>
+            <p className="text-brand-warm-gray italic relative z-10 max-w-xl mx-auto">
+              Written by an ICF-certified ADHD coach who also has ADHD, has been in every one of these spirals, and got tired of generic advice that starts with &quot;just.&quot;
+            </p>
           </div>
         </div>
       </section>
@@ -172,15 +259,15 @@ export default function ShopPage() {
       <section className="py-24 bg-brand-charcoal text-center px-6">
         <div className="max-w-2xl mx-auto space-y-8">
           <h2 className="text-4xl sm:text-5xl font-serif font-black italic text-brand-cream leading-tight">
-            Stop trying to be neurotypical.<br/>
-            Start manipulating yourself.
+            Your brain won't do the thing?<br/>
+            Time to outsmart it.
           </h2>
           <p className="text-lg text-brand-cream/70">
-            Instant digital download. You can start reading exactly 30 seconds from right now.
+            Instant digital download. Start reading in 30 seconds.
           </p>
           <a
             href={checkoutUrl}
-            className="inline-flex bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-16 px-12 rounded-full text-xl font-bold shadow-[0_0_40px_-5px_var(--color-brand-gold)] items-center justify-center gap-2 transition-all transform hover:scale-105"
+            className="inline-flex bg-brand-sage hover:brightness-90 text-brand-white h-16 px-12 rounded-full text-xl font-bold shadow-[0_0_40px_-5px_var(--color-brand-gold)] items-center justify-center gap-2 transition-all transform hover:scale-105"
           >
             {isLoading ? "Loading..." : `Download Now for ${price}`}
           </a>

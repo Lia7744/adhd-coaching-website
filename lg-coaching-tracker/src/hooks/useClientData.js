@@ -7,13 +7,12 @@ export function useClientData(clientSlug) {
   const [error, setError] = useState(null);
   const saveTimer = useRef(null);
   const dataRef = useRef(null);
-  const skipNextReload = useRef(false);
+  const isSaving = useRef(false);
 
   const loadClient = useCallback(async (fromRealtime = false) => {
     try {
       if (fromRealtime) {
-        if (skipNextReload.current) {
-          skipNextReload.current = false;
+        if (saveTimer.current !== null || isSaving.current) {
           return;
         }
       } else {
@@ -113,13 +112,20 @@ export function useClientData(clientSlug) {
     setData(newData);
     dataRef.current = newData;
     if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(() => saveAll(newData), 1500);
+    saveTimer.current = setTimeout(async () => {
+      isSaving.current = true;
+      try {
+        await saveAll(newData);
+      } finally {
+        isSaving.current = false;
+        saveTimer.current = null;
+      }
+    }, 1500);
   }, []);
 
   const saveAll = async (currentData) => {
     if (!currentData || !currentData.clientId) return;
 
-    skipNextReload.current = true;
     try {
       await supabase.from('clients').update({
         client_name: currentData.clientName,
@@ -221,7 +227,6 @@ export function useClientData(clientSlug) {
         );
       }
     } catch (err) {
-      skipNextReload.current = false;
       console.error('Save error:', err);
     }
   };

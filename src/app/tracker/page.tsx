@@ -12,7 +12,7 @@ export default function TrackerPage() {
           <div className="flex justify-between h-16 items-center">
             <a href="/" className="flex items-center gap-3">
               <Image src="/logo-transparent.png" alt="LG ADHD Coaching" width={80} height={80} />
-              <span className="text-lg font-bold text-brand-charcoal tracking-tight">
+              <span className="text-xl sm:text-2xl font-serif font-black text-brand-charcoal tracking-tight">
                 Liana Groombridge <span className="text-brand-warm-gray font-normal hidden sm:inline">| ADHD Coaching</span>
               </span>
             </a>
