@@ -97,7 +97,7 @@ export default function TrackerPage() {
                 </p>
                 <div className="mt-auto pt-4 border-t border-brand-cream">
                   <a 
-                    href="https://whop.com/hub/" 
+                    href="https://whop.com/login/" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full bg-[#1A1A1A] hover:bg-black text-white rounded-xl py-3 font-bold flex items-center justify-center gap-2 transition-all"
