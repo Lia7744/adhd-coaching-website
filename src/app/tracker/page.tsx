@@ -122,7 +122,7 @@ export default function TrackerPage() {
             </div>
             {/* We use an iframe to secretly load the live Vercel app while hiding the original URL from the user */}
             <iframe 
-              src={`https://lg-coaching-tracker-pkrf.vercel.app/client/${activeSlug}`} 
+              src={`https://lg-coaching-tracker.vercel.app/client/${activeSlug}?token=${typeof window !== 'undefined' ? window.btoa(activeSlug) : ''}`} 
               className="flex-1 w-full h-[calc(100vh-8rem)] border-none bg-brand-cream rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)]"
               title="LG Coaching Client Portal"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
