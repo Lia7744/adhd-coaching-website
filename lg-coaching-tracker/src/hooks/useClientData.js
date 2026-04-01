@@ -10,6 +10,8 @@ export function useClientData(clientSlug) {
   const isSaving = useRef(false);
 
   const loadClient = useCallback(async (fromRealtime = false) => {
+    if (!clientSlug) return;
+    
     try {
       if (fromRealtime) {
         if (saveTimer.current !== null || isSaving.current) {
@@ -17,6 +19,7 @@ export function useClientData(clientSlug) {
         }
       } else {
         setLoading(true);
+        setError(null);
       }
 
       const { data: client, error: clientErr } = await supabase
