@@ -4,7 +4,7 @@ import { supabase } from '../supabaseClient';
 export default function AdminPage() {
   const [clients, setClients] = useState([]);
   const [newName, setNewName] = useState('');
-  const [newSlug, setNewSlug] = useState('');
+  const [newEmail, setNewEmail] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState('');
 
@@ -21,16 +21,20 @@ export default function AdminPage() {
   };
 
   const createClient = async () => {
-    if (!newName || !newSlug) return;
-    const slug = newSlug.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+    if (!newName || !newEmail) return;
+    
+    // Automatically generate a hidden slug if needed, but the primary tie is now the email!
+    const slug = newName.toLowerCase().replace(/[^a-z0-9-]/g, '-') + '-' + Math.floor(Math.random() * 1000);
     const initial = newName.charAt(0).toUpperCase();
+
     await supabase.from('clients').insert({
       slug,
+      email: newEmail.toLowerCase().trim(),
       client_name: newName,
       client_initial: initial,
     });
     setNewName('');
-    setNewSlug('');
+    setNewEmail('');
     loadClients();
   };
 
@@ -88,21 +92,19 @@ export default function AdminPage() {
           <input
             placeholder="Client name"
             value={newName}
-            onChange={(e) => {
-              setNewName(e.target.value);
-              setNewSlug(e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-'));
-            }}
+            onChange={(e) => setNewName(e.target.value)}
             style={{
               flex: 1, minWidth: 180, padding: '10px 14px', borderRadius: 10,
               border: '1px solid #E8E4DF', fontSize: 14, fontFamily: "'DM Sans', sans-serif",
             }}
           />
           <input
-            placeholder="URL slug / Access Code"
-            value={newSlug}
-            onChange={(e) => setNewSlug(e.target.value)}
+            placeholder="Client Email Address"
+            type="email"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
             style={{
-              flex: 1, minWidth: 150, padding: '10px 14px', borderRadius: 10,
+              flex: 1, minWidth: 200, padding: '10px 14px', borderRadius: 10,
               border: '1px solid #E8E4DF', fontSize: 14, fontFamily: "'DM Sans', sans-serif",
             }}
           />

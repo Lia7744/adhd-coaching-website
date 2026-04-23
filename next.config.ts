@@ -43,6 +43,24 @@ const nextConfig: NextConfig = {
           }
         ],
       },
+      {
+        source: '/assets-xq9s2m/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
+      {
+        source: '/thank-you/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
     ];
   },
 };

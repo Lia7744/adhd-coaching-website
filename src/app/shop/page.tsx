@@ -61,11 +61,11 @@ export default function ShopPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
             {/* Left: Product Image */}
-            <div className="relative group perspective-1000 max-w-sm mx-auto w-full">
+            <div className="relative group perspective-1000 max-w-[520px] mx-auto w-full">
               <div className="absolute -inset-4 bg-gradient-to-tr from-brand-gold/40 to-brand-sage/40 rounded-[3rem] blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative transform transition-transform duration-700 group-hover:rotate-y-12">
                 <Image 
-                  src="/workbook-cover.png" 
+                  src="/workbook-cover-final.png"
                   alt="Manipulating Myself to Do Stuff Workbook Cover" 
                   width={600} 
                   height={800} 
