@@ -103,5 +103,5 @@ export async function verifyOtpCode(email: string, token: string) {
 export async function logoutClientPortal() {
   const cookieStore = await cookies();
   cookieStore.delete("client_portal_session");
-  return { success: true };
 }
+
