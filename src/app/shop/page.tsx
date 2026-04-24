@@ -11,7 +11,7 @@ export default function ShopPage() {
 
   // Check currency/location
   useEffect(() => {
-    fetch("https://get.geojs.io/v1/ip/country.json")
+    fetch("/api/geo")
       .then((res) => res.json())
       .then((data) => {
         setIsCanada(data.country === "CA");

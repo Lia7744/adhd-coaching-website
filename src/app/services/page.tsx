@@ -45,7 +45,7 @@ export default function ServicesPage() {
   const [currencyLoaded, setCurrencyLoaded] = useState(false);
 
   useEffect(() => {
-    fetch("https://get.geojs.io/v1/ip/country.json")
+    fetch("/api/geo")
       .then((r) => r.json())
       .then((data) => { setCurrency(data?.country === "CA" ? "CAD" : "USD"); })
       .catch(() => setCurrency("USD"))
