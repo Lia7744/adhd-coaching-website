@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ArrowRight, Camera, CheckCircle2, ChevronDown, Coffee, ExternalLink, Link2, Mail, MessageCircle, Sparkles, X, Lock } from "lucide-react";
+import { ArrowRight, Camera, CheckCircle2, ChevronDown, Coffee, ExternalLink, Link2, Mail, MessageCircle, Sparkles, X, Lock, Menu } from "lucide-react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Quiz from "@/components/Quiz";
 
@@ -56,6 +56,7 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function Home() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Check if URL has ?quiz=true parameter 
@@ -99,8 +100,36 @@ export default function Home() {
               <a href="/shop" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Shop</a>
               <a href="/tracker" className="flex items-center gap-2 text-brand-sage font-bold text-sm bg-brand-sage/10 px-3 py-1.5 rounded-full"><Lock className="w-3.5 h-3.5" /> Client Portal</a>
             </div>
+            
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2 text-brand-charcoal"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+        
+        {/* Mobile Menu Dropdown */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="md:hidden border-t border-brand-border bg-brand-cream/95 backdrop-blur-md overflow-hidden"
+            >
+              <div className="flex flex-col p-6 gap-4">
+                <a href="/" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+                <a href="/services" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
+                <a href="/shop" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Shop</a>
+                <a href="/tracker" className="text-base font-medium text-brand-sage py-2 border-b border-brand-border/50 flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}><Lock className="w-4 h-4" /> Client Portal</a>
+                <button onClick={() => { setIsQuizOpen(true); setIsMobileMenuOpen(false); }} className="mt-2 w-full py-3 rounded-full text-sm font-black uppercase tracking-widest bg-brand-gold text-brand-cream text-center">Take the Quiz</button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       <main>
@@ -113,12 +142,11 @@ export default function Home() {
           <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 text-center space-y-10">
             <Reveal>
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-sage-light text-brand-sage text-xs font-bold tracking-widest uppercase border border-brand-sage/20"
+                initial={{ rotate: -2, opacity: 0 }}
+                animate={{ rotate: -2, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="inline-block text-brand-sage text-3xl sm:text-4xl font-handwriting opacity-80"
               >
-                <Sparkles className="w-3.5 h-3.5" />
                 Different brain wiring requires different strategies.
               </motion.div>
             </Reveal>
