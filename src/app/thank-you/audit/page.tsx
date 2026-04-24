@@ -10,9 +10,9 @@ export default function AuditThankYouPage() {
   const [currencyLoaded, setCurrencyLoaded] = useState(false);
 
   useEffect(() => {
-    fetch("https://ipapi.co/json/")
+    fetch("https://get.geojs.io/v1/ip/country.json")
       .then((r) => r.json())
-      .then((data) => { setCurrency(data?.country_code === "CA" ? "CAD" : "USD"); })
+      .then((data) => { setCurrency(data?.country === "CA" ? "CAD" : "USD"); })
       .catch(() => setCurrency("USD"))
       .finally(() => setCurrencyLoaded(true));
   }, []);

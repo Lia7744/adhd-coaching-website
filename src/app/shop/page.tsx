@@ -11,10 +11,10 @@ export default function ShopPage() {
 
   // Check currency/location
   useEffect(() => {
-    fetch("https://ipapi.co/json/")
+    fetch("https://get.geojs.io/v1/ip/country.json")
       .then((res) => res.json())
       .then((data) => {
-        setIsCanada(data.country_code === "CA");
+        setIsCanada(data.country === "CA");
         setIsLoading(false);
       })
       .catch((error) => {
