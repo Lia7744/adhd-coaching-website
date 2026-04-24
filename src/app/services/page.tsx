@@ -163,7 +163,7 @@ export default function ServicesPage() {
 
                 <div className="bg-brand-gold/10 border border-brand-gold/30 rounded-2xl p-4">
                   <p className="text-xs font-black uppercase tracking-widest text-brand-gold mb-1">⭐ Bonus</p>
-                  <p className="text-sm text-brand-charcoal leading-relaxed">Sign up for the Weekly Momentum Plan within 7 days of your session, and I&apos;ll credit the full cost of this session toward your first month of coaching.</p>
+                  <p className="text-sm text-brand-charcoal leading-relaxed">Sign up for the Weekly Momentum Plan within 7 days of your session, and you&apos;ll be credited the full cost of this session toward your first month of coaching.</p>
                 </div>
 
                 <a
