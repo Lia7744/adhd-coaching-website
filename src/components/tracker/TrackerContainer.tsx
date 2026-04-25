@@ -1,10 +1,51 @@
 "use client";
 
-import { useClientData } from "@/hooks/useClientData";
+import { useState, useRef, useEffect } from "react";
+import { loadClientData, saveClientData } from "@/app/tracker/actions";
 import TrackerApp from "./TrackerApp";
 
 export default function TrackerContainer({ slug }: { slug: string }) {
-  const { data, loading, error, updateData } = useClientData(slug);
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isSaving = useRef(false);
+
+  // Load data once on mount via secure server action
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+
+    loadClientData(slug).then((result) => {
+      if (cancelled) return;
+      if (result.success && result.data) {
+        setData(result.data);
+      } else {
+        setError(result.error || "Failed to load client data.");
+      }
+      setLoading(false);
+    });
+
+    return () => { cancelled = true; };
+  }, [slug]);
+
+  // Called by TrackerApp on every change — updates UI instantly, debounces the save
+  const handleUpdate = (newData: any) => {
+    setData(newData);
+
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(async () => {
+      if (isSaving.current) return;
+      isSaving.current = true;
+      try {
+        await saveClientData(slug, newData);
+      } finally {
+        isSaving.current = false;
+        saveTimer.current = null;
+      }
+    }, 1500);
+  };
 
   if (loading) {
     return (
@@ -26,7 +67,7 @@ export default function TrackerContainer({ slug }: { slug: string }) {
 
   return (
     <div className="w-full h-full bg-[#FAF9F6] border-none rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
-      <TrackerApp data={data} onUpdate={updateData} />
+      <TrackerApp data={data} onUpdate={handleUpdate} />
     </div>
   );
 }
