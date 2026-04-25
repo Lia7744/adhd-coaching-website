@@ -540,7 +540,6 @@ export default function CoachingTracker({ data, onUpdate }) {
 
   return (
     <div style={{ minHeight: "100vh", background: "#FAF9F6", fontFamily: "'DM Sans', sans-serif" }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
 
       {/* Header */}
       <div style={{

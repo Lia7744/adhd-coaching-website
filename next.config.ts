@@ -7,7 +7,7 @@ const cspHeader = `
     img-src 'self' blob: data: https://*.supabase.co;
     font-src 'self' https://fonts.gstatic.com;
     frame-src 'self' https://lg-coaching-tracker.vercel.app https://whop.com;
-    connect-src 'self' https://*.supabase.co https://vitals.vercel-insights.com;
+    connect-src 'self' https://*.supabase.co wss://*.supabase.co https://vitals.vercel-insights.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self' https://whop.com;
