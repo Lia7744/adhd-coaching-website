@@ -3,8 +3,8 @@
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ljenmhtlabxktxpirjqt.supabase.co";
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "sb_publishable_oDgsVGPTjt0OXgvDSYggkQ_lZfrDItW";
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const COACH_EMAIL = process.env.COACH_EMAIL || "hello@lianagroombridge.com";
 
 export async function sendCoachMagicLink(email: string) {
