@@ -64,6 +64,11 @@ export async function logoutCoach() {
 }
 
 export async function getAllClients() {
+  const cookieStore = await cookies();
+  if (cookieStore.get("coach_portal_session")?.value !== "verified") {
+    return { success: false, error: "Unauthorized", clients: [] };
+  }
+
   const supabase = createClient(supabaseUrl, supabaseKey);
   const { data, error } = await supabase
     .from("clients")
@@ -75,6 +80,11 @@ export async function getAllClients() {
 }
 
 export async function addClientAction(name: string, email: string) {
+  const cookieStore = await cookies();
+  if (cookieStore.get("coach_portal_session")?.value !== "verified") {
+    return { success: false, error: "Unauthorized" };
+  }
+
   if (!name || !email) return { success: false, error: "Name and email are required." };
 
   const supabase = createClient(supabaseUrl, supabaseKey);
@@ -95,6 +105,11 @@ export async function addClientAction(name: string, email: string) {
 }
 
 export async function updateClientAction(id: string, name: string, email: string) {
+  const cookieStore = await cookies();
+  if (cookieStore.get("coach_portal_session")?.value !== "verified") {
+    return { success: false, error: "Unauthorized" };
+  }
+
   if (!name || !email) return { success: false, error: "Name and email are required." };
 
   const supabase = createClient(supabaseUrl, supabaseKey);
@@ -112,6 +127,11 @@ export async function updateClientAction(id: string, name: string, email: string
 }
 
 export async function deleteClientAction(id: string) {
+  const cookieStore = await cookies();
+  if (cookieStore.get("coach_portal_session")?.value !== "verified") {
+    return { success: false, error: "Unauthorized" };
+  }
+
   const supabase = createClient(supabaseUrl, supabaseKey);
   const { error } = await supabase.from("clients").delete().eq("id", id);
   if (error) return { success: false, error: error.message };
