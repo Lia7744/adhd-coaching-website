@@ -71,7 +71,13 @@ export async function verifyOtpCode(email: string, token: string) {
 
     if (!authError && authData.session) {
       // Verified! Now find the client record to get their slug
-      const { data: client, error: clientErr } = await supabase
+      // CRITICAL: verifyOtp modifies the current 'supabase' client to use the user's JWT. 
+      // We must create a fresh admin client to bypass RLS and read the clients table.
+      const adminSupabase = createClient(supabaseUrl, supabaseKey, {
+        auth: { persistSession: false, autoRefreshToken: false }
+      });
+
+      const { data: client, error: clientErr } = await adminSupabase
         .from("clients")
         .select("slug")
         .eq("email", cleanEmail)
