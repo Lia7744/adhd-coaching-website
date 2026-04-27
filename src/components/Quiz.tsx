@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, HelpCircle, Mail, X } from "lucide-react";
+import { sendGAEvent } from "@next/third-parties/google";
 import { cn } from "@/lib/utils";
 
 type BlockerType = "Frozen Starter" | "Boredom Blackout" | "Overthinking Looper" | "Shame Spiraler" | "System Hopper";
@@ -100,9 +101,12 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
     const nextAnswers = [...answers, type];
     setAnswers(nextAnswers);
 
+    sendGAEvent("event", "quiz_step_complete", { step: currentQuestion + 1 });
+
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
+      sendGAEvent("event", "quiz_finished");
       setStep("email");
     }
   };
@@ -120,6 +124,8 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
   const handleSubmitEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     setStep("loading");
+    
+    sendGAEvent("event", "lead_captured", { source: "quiz" });
     
     const result = calculateResult();
 
@@ -173,7 +179,10 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
               </p>
             </div>
             <button
-              onClick={() => setStep("questions")}
+              onClick={() => {
+                sendGAEvent("event", "quiz_start");
+                setStep("questions");
+              }}
               className="w-full bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-14 rounded-full text-lg font-bold shadow-md flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
             >
               Start the Quiz <ArrowRight className="w-5 h-5" />

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check, Zap, Repeat2, GraduationCap, Lock } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const BOOKING_URL = "https://calendar.app.google/Nwa6i4WGsMysUzvu8";
 
@@ -168,6 +169,7 @@ export default function ServicesPage() {
 
                 <a
                   href={currencyLoaded ? PRICING.audit[c].href : BOOKING_URL}
+                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Audit Session", currency: c, value: c === "CAD" ? 189 : 139 })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-auto inline-flex items-center justify-center gap-2 h-14 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal"
@@ -224,6 +226,7 @@ export default function ServicesPage() {
 
                 <a
                   href={currencyLoaded ? PRICING.weekly[c].href : BOOKING_URL}
+                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Weekly Momentum Plan", currency: c, value: c === "CAD" ? 679 : 499 })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-auto inline-flex items-center justify-center gap-2 h-14 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
@@ -301,6 +304,7 @@ export default function ServicesPage() {
 
                     <a
                       href={currencyLoaded ? PRICING.student[c].href : BOOKING_URL}
+                      onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Semester Survival Plan", currency: c, value: c === "CAD" ? 339 : 249 })}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 h-14 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
@@ -329,6 +333,7 @@ export default function ServicesPage() {
                 </p>
                 <a
                   href={BOOKING_URL}
+                  onClick={() => sendGAEvent("event", "click_book_consultation")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-sage to-brand-sage-hover text-white h-14 px-10 rounded-full text-lg font-bold shadow-xl transition-all hover:scale-105 active:scale-95"
