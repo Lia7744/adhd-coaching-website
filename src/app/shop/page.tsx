@@ -106,6 +106,9 @@ export default function ShopPage() {
                   <ArrowRight className="w-5 h-5 ml-1" />
                 </a>
               </div>
+              <p className="text-sm text-brand-warm-gray italic">
+                Due to the digital nature of this product, all sales are final.
+              </p>
 
               <div className="pt-8 border-t-2 border-brand-border flex flex-wrap gap-4 sm:gap-8 justify-center sm:justify-start">
                 <div className="flex items-center gap-2 text-sm font-bold text-brand-charcoal">
@@ -274,6 +277,9 @@ export default function ShopPage() {
           >
             {isLoading ? "Loading..." : `Download Now for ${price}`}
           </a>
+          <p className="text-sm text-brand-cream/60 italic pt-4">
+            Due to the digital nature of this product, all sales are final.
+          </p>
         </div>
       </section>
 
