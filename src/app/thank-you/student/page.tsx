@@ -86,7 +86,7 @@ export default function StudentThankYouPage() {
               </p>
 
               <div className="bg-[#D25D48]/10 text-[#D25D48] p-3 rounded-xl border border-[#D25D48]/20 text-sm my-4">
-                <strong>⚠️ Please note:</strong> Your intake form and coaching agreement (Step 1) must be submitted to officially secure your booking. I cannot hold our sessions without it on file!
+                <strong>⚠️ Please note:</strong> Your intake form and coaching agreement (Step 1) must be submitted to officially secure your booking. Sessions without an agreement on file 24 hours prior will be automatically cancelled (but don't worry, you can always easily reschedule!).
               </div>
 
               <a 
