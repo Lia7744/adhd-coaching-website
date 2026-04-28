@@ -82,7 +82,7 @@ export default function AuditThankYouPage() {
                 <CalendarPlus className="w-5 h-5 text-brand-sage" /> Step 2: Book Your Session
               </h2>
               <p className="text-sm text-brand-warm-gray">
-                Pick a time that works for you using the calendar link below.
+                Pick a time that works for you. Don't see a time that fits your schedule? Please reach out to your coach at <a href="mailto:hello@lianagroombridge.com" className="underline hover:text-brand-charcoal transition-colors">hello@lianagroombridge.com</a>
               </p>
 
               <div className="bg-[#D25D48]/10 text-[#D25D48] p-3 rounded-xl border border-[#D25D48]/20 text-sm my-4">
