@@ -84,6 +84,11 @@ export default function StudentThankYouPage() {
               <p className="text-sm text-brand-warm-gray">
                 Pick a time that works for you. You can book out your sessions for the entire month in advance.
               </p>
+
+              <div className="bg-[#D25D48]/10 text-[#D25D48] p-3 rounded-xl border border-[#D25D48]/20 text-sm my-4">
+                <strong>⚠️ Please note:</strong> Your intake form and coaching agreement (Step 1) must be submitted to officially secure your booking. I cannot hold our sessions without it on file!
+              </div>
+
               <a 
                 href={calendarLink} 
                 target="_blank" 
