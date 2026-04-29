@@ -226,7 +226,7 @@ export default function WorkbookOfferPage() {
             />
             <FaqItem 
               q="I've tried planners and other ADHD books before. How is this different?" 
-              a="Most advice focuses on willpower and doing the 'hard thing first.' This workbook is built on the reality of the interest-based nervous system—which means the ADHD brain doesn't run on 'importance' or consequences, it runs on interest, novelty, challenge, and urgency. Instead of fighting that, we focus on outsmarting your brain using bribes, trap-setting, and pattern interruption, rather than relying on discipline." 
+              a="Most advice focuses on willpower and doing the 'hard thing first.' This workbook is built on the reality that the ADHD brain operates off an interest-based nervous system. We don't activate just because something is important; we activate when things are interesting. We focus on outsmarting your brain using bribes, trap-setting, and pattern interruption, rather than relying on discipline." 
             />
           </div>
         </div>
