@@ -1,9 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, CheckCircle2, ShieldCheck, Download, BookOpen, Sparkles, Brain, Lock } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck, Download, BookOpen, Sparkles, Brain, Lock, Plus, Minus } from "lucide-react";
 import Image from "next/image";
 import { sendGAEvent } from "@next/third-parties/google";
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <button
+      onClick={() => setOpen(!open)}
+      className="w-full text-left p-6 rounded-2xl bg-white border-2 border-brand-border hover:border-brand-sage transition-all duration-300 group"
+    >
+      <div className="flex items-center justify-between gap-4">
+        <h4 className="font-bold text-lg text-brand-charcoal group-hover:text-brand-sage transition-colors">{q}</h4>
+        {open ? <Minus className="w-5 h-5 text-brand-sage shrink-0" /> : <Plus className="w-5 h-5 text-brand-warm-gray shrink-0 group-hover:text-brand-sage transition-colors" />}
+      </div>
+      {open && (
+        <div className="mt-4 text-brand-warm-gray leading-relaxed pr-8">
+          {a}
+        </div>
+      )}
+    </button>
+  );
+}
 
 export default function WorkbookOfferPage() {
   const [isCanada, setIsCanada] = useState(false);
@@ -68,23 +88,39 @@ export default function WorkbookOfferPage() {
       </section>
 
       {/* ═══ AGITATION & EMPATHY ═══ */}
-      <section className="pb-16 px-6">
-        <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 sm:p-12 shadow-xl border-t-[8px] border-brand-sage">
-          <p className="text-lg text-brand-charcoal leading-relaxed mb-6 font-bold">
-            Here's what nobody tells you about ADHD:
-          </p>
-          <p className="text-lg text-brand-warm-gray leading-relaxed mb-6">
-            Your brain doesn't run on "importance." It doesn't care that the email needs to be sent, or the laundry needs to be folded, or the deadline is tomorrow. 
-          </p>
-          <p className="text-lg text-brand-warm-gray leading-relaxed mb-6">
-            If a task isn't interesting, novel, challenging, or urgently on fire... your brain literally will not produce the dopamine required to engage with it. 
-          </p>
-          <div className="p-6 bg-brand-cream rounded-2xl border border-brand-border italic text-brand-charcoal font-serif text-xl text-center mb-6">
-            "You aren't lazy. You're trying to start a car with the wrong kind of fuel."
+      <section className="pb-20 px-6">
+        <div className="max-w-4xl mx-auto bg-brand-charcoal rounded-[2.5rem] p-8 sm:p-16 shadow-2xl relative overflow-hidden">
+          {/* Decorative Background Elements */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-sage/20 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
+          
+          <div className="relative z-10 space-y-8">
+            <h2 className="text-3xl sm:text-4xl font-serif font-black text-brand-cream leading-tight">
+              Here's what nobody tells you about ADHD:
+            </h2>
+            
+            <p className="text-xl text-brand-cream/80 leading-relaxed">
+              Your brain doesn't run on "importance." It doesn't care that the email needs to be sent, or the laundry needs to be folded, or the deadline is tomorrow. 
+            </p>
+            
+            <p className="text-xl text-brand-cream/80 leading-relaxed">
+              If a task isn't interesting, novel, challenging, or urgently on fire... your brain literally will not produce the dopamine required to engage with it. 
+            </p>
+            
+            <div className="my-10 p-8 bg-white/5 backdrop-blur-sm rounded-2xl border-l-4 border-brand-gold relative">
+              <Sparkles className="absolute -top-4 -left-4 w-8 h-8 text-brand-gold bg-brand-charcoal rounded-full p-1" />
+              <p className="italic text-brand-cream font-serif text-2xl leading-snug">
+                "You aren't lazy. You're trying to start a car with the wrong kind of fuel."
+              </p>
+            </div>
+            
+            <p className="text-xl text-brand-cream/80 leading-relaxed font-bold">
+              The solution isn't another daily planner. The solution is learning how to outsmart your own neurology.
+            </p>
+            <p className="text-xl text-brand-cream/80 leading-relaxed">
+              You have to rig the game so your brain cooperates—not because it wants to, but because you gave it no good reason not to.
+            </p>
           </div>
-          <p className="text-lg text-brand-warm-gray leading-relaxed">
-            The solution isn't another daily planner. The solution is learning how to outsmart your own neurology. You have to rig the game so your brain cooperates—not because it wants to, but because you gave it no good reason not to.
-          </p>
         </div>
       </section>
 
@@ -163,6 +199,35 @@ export default function WorkbookOfferPage() {
             <p className="text-brand-warm-gray leading-relaxed">
               I built this workbook because I was sick of neurotypical productivity advice that doesn't work for us. No "eat the frog." No "just set an alarm." This is the exact system I use with my private clients to stop fighting their brains and start getting things done.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ FAQ ═══ */}
+      <section className="py-20 px-6 relative">
+        <div className="max-w-3xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl sm:text-4xl font-serif font-black text-brand-charcoal">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <div className="space-y-4">
+            <FaqItem 
+              q="Is this a physical book or a digital download?" 
+              a="This is a 100% digital download (PDF format). You'll get instant access right after checkout, so you can start reading immediately on your phone, tablet, or computer. You can also print it out if you prefer paper!" 
+            />
+            <FaqItem 
+              q="Do I need an official ADHD diagnosis for this to work?" 
+              a="Not at all. Whether you have an official diagnosis, suspect you have ADHD, or just deeply struggle with executive dysfunction and getting started on tasks, these strategies are designed for any brain that doesn't respond to neurotypical productivity advice." 
+            />
+            <FaqItem 
+              q="Is this a recurring subscription?" 
+              a="Nope! It's a one-time purchase. Once you buy it, you have lifetime access to the workbook and all its exercises." 
+            />
+            <FaqItem 
+              q="I've tried planners and other ADHD books before. How is this different?" 
+              a="Most advice focuses on willpower and doing the 'hard thing first.' This workbook is built on the reality of the interest-based nervous system. We focus on outsmarting your brain using bribes, trap-setting, and pattern interruption, rather than relying on discipline." 
+            />
           </div>
         </div>
       </section>
