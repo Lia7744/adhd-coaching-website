@@ -100,8 +100,11 @@ function ResultsContent() {
                   "Built by an ADHD coach with ADHD who was done with relying on last-minute panic as a productivity system. No 'just try harder.' Just stuff that actually works."
                 </p>
               </div>
-              <button className="bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-16 px-10 rounded-full text-xl font-bold shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto transition-all transform hover:scale-105">
-                Get the Workbook — $19.99
+              <button 
+                onClick={() => window.location.href = "/shop"}
+                className="bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-16 px-10 rounded-full text-xl font-bold shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto transition-all transform hover:scale-105"
+              >
+                Get the Workbook — $24.99
               </button>
             </div>
           </div>
