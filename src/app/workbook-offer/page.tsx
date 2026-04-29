@@ -81,7 +81,7 @@ export default function WorkbookOfferPage() {
           </h1>
 
           <p className="text-xl sm:text-2xl text-brand-warm-gray leading-relaxed font-medium">
-            You have the time. You know what to do. So why are you staring at the wall while the guilt eats you alive?
+            You have the time. You know what you need to do. But for some reason, your brain just won't cooperate. Let's fix that.
           </p>
 
         </div>
