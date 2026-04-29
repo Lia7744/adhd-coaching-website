@@ -214,7 +214,7 @@ export default function WorkbookOfferPage() {
           <div className="space-y-4">
             <FaqItem 
               q="Is this a physical book or a digital download?" 
-              a="This is a 100% digital download. Right after checkout, you'll get instant access to two different versions: an interactive PDF that you can easily fill out directly on your phone, tablet, or computer, and a printer-friendly version if you prefer to put pen to paper. Both are included with your purchase!" 
+              a="This is a 100% digital download. Right after checkout, you'll get instant, unlimited access to two different versions: an interactive PDF that you can easily fill out directly on your phone, tablet, or computer, and a printer-friendly version if you prefer to put pen to paper. You don't have to choose between them—you get full access to both with your purchase!" 
             />
             <FaqItem 
               q="Do I need an official ADHD diagnosis for this to work?" 
