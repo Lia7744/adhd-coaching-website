@@ -214,7 +214,7 @@ export default function WorkbookOfferPage() {
           <div className="space-y-4">
             <FaqItem 
               q="Is this a physical book or a digital download?" 
-              a="This is a 100% digital download (PDF format). You'll get instant access right after checkout, so you can start reading immediately on your phone, tablet, or computer. You can also print it out if you prefer paper!" 
+              a="This is a 100% digital download. Right after checkout, you'll get instant access to two different versions: an interactive PDF that you can easily fill out directly on your phone, tablet, or computer, and a printer-friendly version if you prefer to put pen to paper. Both are included with your purchase!" 
             />
             <FaqItem 
               q="Do I need an official ADHD diagnosis for this to work?" 
@@ -226,7 +226,7 @@ export default function WorkbookOfferPage() {
             />
             <FaqItem 
               q="I've tried planners and other ADHD books before. How is this different?" 
-              a="Most advice focuses on willpower and doing the 'hard thing first.' This workbook is built on the reality of the interest-based nervous system. We focus on outsmarting your brain using bribes, trap-setting, and pattern interruption, rather than relying on discipline." 
+              a="Most advice focuses on willpower and doing the 'hard thing first.' This workbook is built on the reality of the interest-based nervous system—which means the ADHD brain doesn't run on 'importance' or consequences, it runs on interest, novelty, challenge, and urgency. Instead of fighting that, we focus on outsmarting your brain using bribes, trap-setting, and pattern interruption, rather than relying on discipline." 
             />
           </div>
         </div>
