@@ -52,9 +52,8 @@ export default function WorkbookOfferPage() {
         <div className="absolute top-0 right-10 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl -z-10" />
         <div className="max-w-3xl mx-auto text-center space-y-8">
           
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/20 text-brand-charcoal font-black text-xs uppercase tracking-widest border border-brand-gold/40">
-            <Sparkles className="w-4 h-4 text-[#B8923E]" />
-            Your Brain's New Operating System
+          <div className="inline-block text-brand-sage text-3xl sm:text-4xl font-handwriting opacity-80 transform -rotate-2">
+            Your brain's new operating system
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-serif font-black text-brand-charcoal leading-tight">
