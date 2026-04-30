@@ -99,7 +99,7 @@ export default function ShopPage() {
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <a 
                   href={checkoutUrl}
-                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
+                  onClick={() => sendGAEvent({ event: "begin_checkout", item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
                   className="w-full sm:w-auto bg-brand-sage hover:brightness-90 text-brand-white h-16 px-10 rounded-full text-xl font-bold shadow-xl shadow-brand-sage/40 flex items-center justify-center gap-2 transition-all transform hover:scale-105"
                 >
                   {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
@@ -272,7 +272,7 @@ export default function ShopPage() {
           </p>
           <a
             href={checkoutUrl}
-            onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
+            onClick={() => sendGAEvent({ event: "begin_checkout", item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
             className="inline-flex bg-brand-sage hover:brightness-90 text-brand-white h-16 px-12 rounded-full text-xl font-bold shadow-[0_0_40px_-5px_var(--color-brand-gold)] items-center justify-center gap-2 transition-all transform hover:scale-105"
           >
             {isLoading ? "Loading..." : `Download Now for ${price}`}
