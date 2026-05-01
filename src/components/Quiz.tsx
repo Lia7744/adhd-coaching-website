@@ -130,7 +130,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
     const result = calculateResult();
 
     try {
-      await fetch('/api/mailerlite', {
+      await fetch('/api/brevo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, name, resultType: result })
