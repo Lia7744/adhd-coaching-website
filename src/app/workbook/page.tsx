@@ -291,14 +291,14 @@ export default function WorkbookPage() {
           <div className="space-y-4 max-w-2xl mx-auto w-full">
             {[
               { num: 1, title: 'Why Am I Like This?', page: 4 },
-              { num: 2, title: 'The Art of Bribing Yourself', page: 11 },
-              { num: 3, title: 'Making Future Me Do It', page: 15 },
-              { num: 4, title: 'Tricking Myself Into Starting', page: 20 },
-              { num: 5, title: 'Doing the Boring Stuff Without Dying', page: 26 },
-              { num: 6, title: 'When My Brain Won\'t Shut Up', page: 32 },
-              { num: 7, title: 'The Shame Spiral (and How to Climb Out)', page: 40 },
-              { num: 8, title: 'Building Systems That Actually Stick', page: 46 },
-              { num: 9, title: 'When You Can\'t Even Manipulate Yourself', page: 51 },
+              { num: 2, title: 'The Art of Bribing Yourself', page: 14 },
+              { num: 3, title: 'Making Future Me Do It', page: 22 },
+              { num: 4, title: 'Tricking Myself Into Starting', page: 33 },
+              { num: 5, title: 'Doing the Boring Stuff Without Dying', page: 43 },
+              { num: 6, title: 'When My Brain Won\'t Shut Up', page: 53 },
+              { num: 7, title: 'The Shame Spiral (and How to Climb Out)', page: 63 },
+              { num: 8, title: 'Building Systems That Actually Stick', page: 73 },
+              { num: 9, title: 'When You Can\'t Even Manipulate Yourself', page: 82 },
             ].map((chapter) => (
               <div key={chapter.num} className="flex items-center group">
                 <div className={`${caveat.className} text-[32px] w-16 text-center shadow-sm rounded-full h-16 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 border-[2px]`} style={{ backgroundColor: C.cream, color: C.sage, borderColor: C.sageLight }}>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { ArrowRight, BookOpen, CheckCircle2, Download, RefreshCcw, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -50,6 +50,24 @@ function ResultsContent() {
   const typeParam = searchParams.get("type");
   const type = (typeParam && typeParam in resultData ? (typeParam as BlockerType) : "Frozen Starter");
   const result = resultData[type];
+
+  const [isCanada, setIsCanada] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/geo")
+      .then((res) => res.json())
+      .then((data) => {
+        setIsCanada(data.country === "CA");
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Location lookup failed:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const price = isCanada ? "$34.99 CAD" : "$24.99 USD";
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-cream">
@@ -101,10 +119,10 @@ function ResultsContent() {
                 </p>
               </div>
               <button 
-                onClick={() => window.location.href = "/shop"}
+                onClick={() => window.location.href = "/workbook-offer"}
                 className="bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-16 px-10 rounded-full text-xl font-bold shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto transition-all transform hover:scale-105"
               >
-                Get the Workbook — $24.99
+                {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
               </button>
             </div>
           </div>
