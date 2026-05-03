@@ -56,10 +56,8 @@ export default function WorkbookPage() {
           .front-matter-page {
             page-break-before: always !important;
             page-break-after: always !important;
-            page-break-inside: avoid !important;
-            display: flex !important;
-            flex-direction: column !important;
-            min-height: 100vh !important;
+            page-break-inside: auto !important;
+            display: block !important;
           }
 
           /* ============================================================
@@ -94,7 +92,7 @@ export default function WorkbookPage() {
           ============================================================ */
           .worksheet-page {
             page-break-before: always !important;
-            page-break-inside: avoid !important;
+            page-break-inside: auto !important;
             display: block !important;
             padding-top: 2rem !important;
             padding-bottom: 2rem !important;
@@ -106,8 +104,6 @@ export default function WorkbookPage() {
           .worksheet-page .rounded-3xl,
           .worksheet-page .rounded-2xl,
           .worksheet-page .rounded-xl,
-          .worksheet-page .shadow-sm,
-          .worksheet-page .shadow-md,
           .worksheet-page .grid > div,
           .worksheet-prompt-box,
           .worksheet-fill-in-group,
@@ -129,9 +125,7 @@ export default function WorkbookPage() {
              This catches every callout box, quote box, tip box, instruction box, etc. */
           .content-section .rounded-3xl,
           .content-section .rounded-2xl,
-          .content-section .rounded-xl,
-          .content-section .shadow-sm,
-          .content-section .shadow-md {
+          .content-section .rounded-xl {
             page-break-inside: avoid !important;
             break-inside: avoid !important;
           }
@@ -154,18 +148,29 @@ export default function WorkbookPage() {
             page-break-after: avoid !important;
             break-after: avoid !important;
           }
+
+          /* Fix Chrome Print Bug: Shadows and filters on rounded elements render as solid grey/black squares */
+          * {
+            box-shadow: none !important;
+            text-shadow: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background-clip: padding-box !important;
+          }
         }
       `}} />
 
       {/* 🛠️ Non-printable Header Controls */}
-      <div className="print:hidden fixed top-0 w-full bg-white shadow-md p-6 z-50 flex justify-between items-center px-8 border-b-4" style={{ borderColor: C.sage }}>
+      <div className="print:hidden fixed top-0 w-full bg-white p-6 z-50 flex justify-between items-center px-8 border-b-4" style={{ borderColor: C.sage }}>
         <div>
           <h1 className="font-bold text-xl" style={{ color: C.charcoal }}>Your ADHD Workbook Prototype</h1>
           <p className="text-sm text-gray-500">The "Blah Is Gone" Edition! High-end Editorial Layout.</p>
         </div>
         <button 
           onClick={handlePrint}
-          className="px-6 py-6 rounded-lg font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-95 flex items-center gap-2"
+          className="px-6 py-6 rounded-lg font-bold text-white transition-all hover:opacity-90 active:scale-95 flex items-center gap-2"
           style={{ backgroundColor: C.sage }}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4" /></svg>
@@ -253,13 +258,13 @@ export default function WorkbookPage() {
           </h1>
           
           <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="bg-white p-6 rounded-3xl shadow-md border-t-[8px]" style={{ borderColor: C.sage }}>
+            <div className="bg-white p-6 rounded-3xl border-t-[8px]" style={{ borderColor: C.sage }}>
 
               <h3 className="font-bold text-xl mb-2">No Rules Apply</h3>
               <p className="text-[17px] text-gray-700 leading-snug">Write in pen, pencil, crayon, or whatever’s closest. Doesn’t matter. Just write. If you abandon this for 3 months and come back to it, that’s not failure, that’s just how this goes.</p>
             </div>
             
-            <div className="bg-white p-6 rounded-3xl shadow-md border-t-[8px]" style={{ borderColor: C.gold }}>
+            <div className="bg-white p-6 rounded-3xl border-t-[8px]" style={{ borderColor: C.gold }}>
 
               <h3 className="font-bold text-xl mb-2">Skip Around</h3>
               <p className="text-[17px] text-gray-700 leading-snug">This workbook doesn’t require you to start at Chapter 1. Flip to whatever chapter matches today’s crisis. Welcome back.</p>
@@ -284,7 +289,7 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 3: TABLE OF CONTENTS --- */}
         <section className="front-matter-page relative px-20 pt-20 px-20 pt-20 flex flex-col pb-32" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[56px] mb-10 text-center decoration-wavy underline-offset-8 drop-shadow-sm`} style={{ color: C.gold }}>
+          <h1 className={`${caveat.className} text-[56px] mb-10 text-center decoration-wavy underline-offset-8 drop-`} style={{ color: C.gold }}>
             Table of Contents
           </h1>
           
@@ -301,7 +306,7 @@ export default function WorkbookPage() {
               { num: 9, title: 'When You Can\'t Even Manipulate Yourself', page: 82 },
             ].map((chapter) => (
               <div key={chapter.num} className="flex items-center group">
-                <div className={`${caveat.className} text-[32px] w-16 text-center shadow-sm rounded-full h-16 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 border-[2px]`} style={{ backgroundColor: C.cream, color: C.sage, borderColor: C.sageLight }}>
+                <div className={`${caveat.className} text-[32px] w-16 text-center rounded-full h-16 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 border-[2px]`} style={{ backgroundColor: C.cream, color: C.sage, borderColor: C.sageLight }}>
                   {chapter.num}
                 </div>
                 <div className="ml-6 flex-grow border-b-[2px] border-dotted pb-2 flex justify-between items-baseline" style={{ borderColor: C.sageLight }}>
@@ -321,10 +326,10 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 4: CHAPTER 1 TITLE --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 1
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             Why Am I Like This?
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -343,7 +348,7 @@ export default function WorkbookPage() {
             <p>Maybe it was a TikTok. Maybe it was a BuzzFeed quiz you took “as a joke.” Maybe it was sitting across from a therapist who said the letters A-D-H-D and your brain went, “Hmm. Well. That explains the last 30 years.”</p>
             <p>For me, it wasn’t a doctor’s appointment or a dramatic breakdown. It was a Tuesday night, working on a school project with a friend who has ADHD. She’d say something like “sorry, this is my ADHD, I have to —” and then do something I did every single day of my life. She’d laugh about her chaotic notes. I’d look down at mine. Same chaos. She’d mention how many tabs she had open. I’d quietly count mine. She’d talk about how she couldn’t start things until the pressure hit. I was sitting right next to her, having also not started this project until the day it was due. We crushed that project, by the way. But I left that night with a very inconvenient question I couldn’t stop thinking about.</p>
 
-            <div className="my-10 p-6 rounded-3xl text-center shadow-md border-t-[8px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-10 p-6 rounded-3xl text-center border-t-[8px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className={`${caveat.className} text-[36px] leading-snug`} style={{ color: C.charcoal }}>
                 "Because here’s the thing nobody warns you about: once you see it, you can’t unsee it."
               </p>
@@ -352,7 +357,7 @@ export default function WorkbookPage() {
             <p>Every “quirky” thing you do — the mountain of half-finished projects chilling in your garage and closets, the time blindness that has you showing up 20 minutes late to everything including things you were excited about, the way you can memorize the entire discography of a band you discovered yesterday but cannot remember to buy toilet paper, suddenly has an explanation.</p>
             <p>And it’s not “you’re lazy.” It’s not “you don’t care enough.” And it’s DEFINITELY not “you just need to try harder.” It’s that your brain is running on a fundamentally different operating system.</p>
             <p>It works differently. Not wrong. Just differently. In a way that makes certain things that seem simple for other people feel like you’re trying to sprint through wet concrete. And that’s what this chapter is about.</p>
-            <p className="font-bold px-6 py-8 rounded-xl shadow-sm" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
+            <p className="font-bold px-6 py-8 rounded-xl" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
               Not fixing you. Understanding you. Because you can’t manipulate yourself into doing stuff if you don’t understand what you’re working with. Consider this the “getting to know each other” chapter between you and your own brain, which, let’s be honest, you’ve likely been in a complicated relationship with your entire life.
             </p>
 
@@ -369,7 +374,7 @@ export default function WorkbookPage() {
             <p>If you've ever wondered why focus-based ADHD advice never quite works for you, there's a reason. ADHD is often described as an attention disorder, but attention is really just the most visible symptom. Underneath it is something bigger — and once you see it, a lot of things start to make sense.</p>
             <p>Dr. Russell Barkley, whose research has shaped much of how we understand ADHD today, argues that ADHD isn't really about attention at all — it's a developmental problem of self-regulation: the ability to manage your own behavior, plan ahead, and follow through <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Barkley, 1997)</span>.</p>
             <p>In his book, Taking Charge of Adult ADHD, he identifies seven executive functions — basically, the mental abilities your brain uses to manage itself. Things like working memory (holding information in your head long enough to use it), inhibition (hitting the brakes before you act), emotion regulation, self-motivation, and planning. These are the behind-the-scenes tools that let you start things, stick with things, manage your feelings about said things, and actually follow through <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Barkley & Benton, 2022, pp. 69–70)</span>.</p>
-            <div className="my-8 p-6 rounded-3xl text-center shadow-md border-t-[8px]" style={{ backgroundColor: C.sageLight, borderColor: C.sage }}>
+            <div className="my-8 p-6 rounded-3xl text-center border-t-[8px]" style={{ backgroundColor: C.sageLight, borderColor: C.sage }}>
               <p className={`${caveat.className} text-[36px] leading-snug`} style={{ color: C.charcoal }}>
                 "When those tools aren't firing reliably, it looks a lot like 'not trying hard enough.'"
               </p>
@@ -377,7 +382,7 @@ export default function WorkbookPage() {
             <p>But it's not. It's more like trying to build furniture with half the tools missing — you can see exactly what needs to happen, but you can't make your hands do it. If you've ever walked into a room and forgotten why you're there, retained approximately one-third of one step from a three-step instruction, or felt a small criticism land like a gut punch, that's not a character flaw. That's executive function doing its thing. Or rather, not doing its thing.</p>
             <p>This matters because it changes the entire conversation. You're not failing at being a functional adult because you're not trying hard enough. You're working with a brain that is wired differently — and that's not a metaphor.</p>
             
-            <div className="p-6 rounded-2xl shadow-sm border-l-[6px] my-6" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
+            <div className="p-6 rounded-2xl border-l-[6px] my-6" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
               <p className="font-bold text-[20px] leading-snug" style={{ color: C.charcoal }}>
                 Research on the neurobiology of ADHD has shown that the prefrontal cortex, the part of your brain responsible for all those executive functions we just talked about, needs the right balance of two chemicals called dopamine and norepinephrine to do its job. In ADHD brains, that balance is off <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Arnsten, 2009)</span>.
               </p>
@@ -398,7 +403,7 @@ export default function WorkbookPage() {
             <p className="font-bold text-2xl">The first manipulation is the least sexy one: you have to actually understand what you’re dealing with.</p>
             <p>I know. I can feel your eyes glazing over. “I didn’t buy a workbook for a neuroscience lecture.” Fair. And to be quite honest with you, although I love to quote a good research article, I’m not a neuroscientist. But here’s why this matters:</p>
             <p>Every strategy in this book — every bribe (more on this in chap. 2), every hack, every emergency checklist — works better when you understand why it works. When you know that your brain struggles with working memory, you stop trying to “just remember” things and start writing everything down without feeling like that makes you less capable. When you know that your motivation system runs on interest and urgency instead of importance, you stop beating yourself up for not caring about your taxes and start finding ways to make your taxes feel urgent or interesting (or at least pair them with something that is).</p>
-            <div className="p-6 rounded-3xl mt-10 shadow-sm border-[3px]" style={{ backgroundColor: C.cream, borderColor: C.sageLight }}>
+            <div className="p-6 rounded-3xl mt-10 border-[3px]" style={{ backgroundColor: C.cream, borderColor: C.sageLight }}>
               <p className="font-bold text-xl mb-10" style={{ color: C.sage }}>Self-knowledge isn’t a warm fuzzy motivational concept here. It’s tactical information.</p>
               <p>You’re gathering intel on how your specific brain operates so you can build systems that work WITH it instead of against it.</p>
             </div>
@@ -419,16 +424,16 @@ export default function WorkbookPage() {
 
         {/* --- WORKSHEET: MY ADHD GREATEST HITS --- */}
         <section className="worksheet-page relative px-20 pt-20 px-20 pt-20 pb-32" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[60px] text-center mb-4 leading-tight mt-10 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[60px] text-center mb-4 leading-tight mt-10 drop-`} style={{ color: C.charcoal }}>
             My ADHD Greatest Hits
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-10" style={{ color: C.sage }}>Brain Dump Exercise</p>
 
-          <div className="mb-5 p-4 rounded-3xl text-[15px] shadow-sm border-[3px]" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-5 p-4 rounded-3xl text-[15px] border-[3px]" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions:</span> List your top recurring ADHD moments — the patterns, the near-disasters, the “oh no, not again” situations. These aren’t failures. They’re data. The more honest you are here, the more useful the rest of this workbook becomes.</p>
           </div>
 
-          <div className="mb-8 py-4 px-6 rounded-3xl text-center shadow-sm border-[3px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight }}>
+          <div className="mb-8 py-4 px-6 rounded-3xl text-center border-[3px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight }}>
             <p className={`${radley.className} font-bold text-[22px] leading-snug`} style={{ color: C.charcoal }}>
               What are the situations, mistakes, or patterns that keep showing up in my life?
             </p>
@@ -445,7 +450,7 @@ export default function WorkbookPage() {
               "The thing I procrastinate on most is...",
               "Other:"
             ].map((text, i) => (
-              <div key={i} className="bg-white rounded-2xl h-[52px] border-2 shadow-sm relative overflow-hidden px-5 pt-3" style={{ borderColor: '#e2dec9' }}>
+              <div key={i} className="bg-white rounded-2xl h-[52px] border-2 relative overflow-hidden px-5 pt-3" style={{ borderColor: '#e2dec9' }}>
                  <p className="opacity-60 italic text-[13px] font-bold text-[#6B6B6B]">{text}</p>
                  <div className="absolute bottom-3 left-5 right-5 border-b-[2px] border-dotted" style={{ borderColor: '#e2dec9' }}></div>
               </div>
@@ -457,16 +462,16 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 7B: WORKSHEET 2 --- */}
         <section className="worksheet-page relative px-20 pt-10 pb-8" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[48px] text-center mb-2 leading-tight mt-2 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[48px] text-center mb-2 leading-tight mt-2 drop-`} style={{ color: C.charcoal }}>
             My Brain’s Resume
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-[12px] mb-3" style={{ color: C.sage }}>Reflection Prompt</p>
 
-          <div className="mb-3 p-3 rounded-2xl text-[14px] shadow-sm border-[3px]" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-3 p-3 rounded-2xl text-[14px] border-[3px]" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-[12px] uppercase tracking-widest" style={{ color: C.sage }}>Instructions:</span> We spend a lot of time cataloguing what ADHD makes harder. This page is about what your brain is actually good at. Not in a “look on the bright side!” toxic positivity way. In a “this is real information about how your brain works and you should use it” way.</p>
           </div>
 
-          <div className="mb-4 py-3 px-5 rounded-2xl text-center shadow-sm border-[3px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight }}>
+          <div className="mb-4 py-3 px-5 rounded-2xl text-center border-[3px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight }}>
             <p className={`${radley.className} font-bold text-[19px] leading-snug`} style={{ color: C.charcoal }}>
               If my brain were applying for a job, what would its qualifications be?
             </p>
@@ -481,7 +486,7 @@ export default function WorkbookPage() {
               { label: "Situations where I perform well", sub: "(crises? new challenges?)" },
               { label: "Skills that come naturally to me:", sub: null },
             ] as { label: string; sub: string | null }[]).map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl p-4 border-2 shadow-sm flex flex-col" style={{ borderColor: '#e2dec9' }}>
+              <div key={i} className="bg-white rounded-2xl p-4 border-2 flex flex-col" style={{ borderColor: '#e2dec9' }}>
                 <p className={`${radley.className} font-bold text-[15px] uppercase tracking-wide leading-snug min-h-[38px]`} style={{ color: C.sage }}>
                   {item.label}
                   {item.sub && <span className="text-[12px] normal-case tracking-normal font-normal ml-1 opacity-70"> {item.sub}</span>}
@@ -496,7 +501,7 @@ export default function WorkbookPage() {
           </div>
 
           <div className="mt-5 grid grid-cols-1 gap-5 relative z-10 pb-4">
-            <div className="bg-white rounded-2xl p-5 border-2 shadow-sm flex flex-col gap-4" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-2xl p-5 border-2 flex flex-col gap-4" style={{ borderColor: '#e2dec9' }}>
               <p className={`${radley.className} font-bold text-[15px] uppercase tracking-wide`} style={{ color: C.sage }}>A moment where my brain impressed even me:</p>
               <div className="space-y-4 px-2 mt-2">
                 <div className="border-b-[2px] border-dotted w-full" style={{ borderColor: '#e2dec9' }}></div>
@@ -504,7 +509,7 @@ export default function WorkbookPage() {
                 <div className="border-b-[2px] border-dotted w-full" style={{ borderColor: '#e2dec9' }}></div>
               </div>
             </div>
-            <div className="bg-white rounded-2xl p-4 border-[3px] shadow-sm flex flex-col pt-4 text-center" style={{ borderColor: C.goldLight }}>
+            <div className="bg-white rounded-2xl p-4 border-[3px] flex flex-col pt-4 text-center" style={{ borderColor: C.goldLight }}>
               <p className={`${caveat.className} font-bold text-[28px] mb-3 leading-tight`} style={{ color: C.charcoal }}>If I could bottle one thing about how my brain operates and sell it, it would be...</p>
               <div className="space-y-4 mb-3 px-4">
                 <div className="w-full border-b-[3px] border-dotted" style={{ borderColor: C.sageLight }}></div>
@@ -516,12 +521,12 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 7C: WORKSHEET 3 --- */}
         <section className="worksheet-page relative px-20 pt-10 pb-8" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-4 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-4 drop-`} style={{ color: C.charcoal }}>
             My ADHD Origin Story
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-4" style={{ color: C.sage }}>Reflection Prompt</p>
 
-          <div className="mb-3 p-4 rounded-3xl text-[14px] shadow-sm border-[3px]" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-3 p-4 rounded-3xl text-[14px] border-[3px]" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions:</span> This one’s more personal. You don’t have to write a novel — a few sentences is fine. But there’s something powerful about putting your story on paper. When you name the moment everything clicked (or started to), it stops being this vague background noise and becomes something you can actually look at.</p>
           </div>
           
@@ -536,8 +541,8 @@ export default function WorkbookPage() {
               "What’s the thing I most wish people understood about my experience?",
               "What do I want to get out of this workbook?"
             ].map((text, i) => (
-              <div key={i} className="bg-white rounded-xl p-5 border-2 shadow-sm relative pt-[24px]" style={{ borderColor: '#e2dec9' }}>
-                <p className="absolute -top-5 bg-white px-3 py-1 border-2 font-bold text-[12px] uppercase rounded-full shadow-sm" style={{ color: C.charcoal, borderColor: '#e2dec9' }}>Prompt {i+1}</p>
+              <div key={i} className="bg-white rounded-xl p-5 border-2 relative pt-[24px]" style={{ borderColor: '#e2dec9' }}>
+                <p className="absolute -top-5 bg-white px-3 py-1 border-2 font-bold text-[12px] uppercase rounded-full" style={{ color: C.charcoal, borderColor: '#e2dec9' }}>Prompt {i+1}</p>
                 <p className="font-bold text-[15px] mb-4" style={{ color: C.sage }}>{text}</p>
                 <div className="w-full border-b-2 border-dotted mb-6" style={{ borderColor: '#e2dec9' }}></div>
                 <div className="w-full border-b-2 border-dotted" style={{ borderColor: '#e2dec9' }}></div>
@@ -548,10 +553,10 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 8: CHAPTER 2 TITLE --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 2
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             The Art of Bribing Yourself
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -565,7 +570,7 @@ export default function WorkbookPage() {
             <h2 className={`${radley.className} text-[35px] mb-10 border-b-4 inline-block font-bold`} style={{ color: C.sage, borderColor: C.sage }}>THE BIT</h2>
             <p>If I have a good audiobook or podcast I can almost guarantee I will complete ALL the laundry, including my husband’s (lucky him, I know), and clean my entire house spotless. In fact, as I write this, I have this exciting urge to pop in my headphones and get cleaning. Wild, I know.</p>
             
-            <div className="my-8 p-6 rounded-3xl text-center shadow-md border-t-[8px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-8 p-6 rounded-3xl text-center border-t-[8px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className={`${caveat.className} text-[36px] leading-snug`} style={{ color: C.charcoal }}>
                 I don’t clean because the house needs cleaning. I clean because I found something interesting enough to pair with it.
               </p>
@@ -573,7 +578,7 @@ export default function WorkbookPage() {
             
             <p>My brain suddenly decided to cooperate. Not because the task mattered — because the bribe did. If you’ve ever done something you’d been avoiding for weeks simply because you found the right podcast, the right playlist, or the right snack to go with it, you already know how this works.</p>
 
-            <p className="font-bold px-6 py-8 rounded-xl shadow-sm" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
+            <p className="font-bold px-6 py-8 rounded-xl" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
               Your brain doesn’t respond to “you should do this because it’s important.” It responds to “oh, this is kind of enjoyable now.”
             </p>
             <p>That’s not a willpower failure. That’s your brain being very honest about what it needs. And this chapter is all about learning what that is.</p>
@@ -585,7 +590,7 @@ export default function WorkbookPage() {
           <div className="space-y-4 text-[17px] leading-[1.6]">
             <h2 className={`${radley.className} text-[35px] mb-10 border-b-4 inline-block font-bold`} style={{ color: C.sage, borderColor: C.sage }}>THE REAL TALK</h2>
             <p>Dr. William Dodson, a board-certified psychiatrist who has specialized in ADHD for over 25 years, has a question he asks almost every client: “If you could get engaged and stay engaged, has there ever been anything you couldn’t do?” Almost universally, the answer is no. The issue was never ability. It was engagement.</p>
-            <div className="my-8 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
               <p className="font-bold text-[24px] leading-snug" style={{ color: C.charcoal }}>
                 Dodson coined the term “interest-based nervous system” to explain how the ADHD brain motivates itself.
               </p>
@@ -593,7 +598,7 @@ export default function WorkbookPage() {
             
             <p>Most people operate on what he calls an “importance-based nervous system”. They can motivate themselves to do things because they’re important, because there’s a reward later, or because there are consequences if they don’t. The ADHD nervous system doesn’t work that way. It runs on what Dodson identifies as:</p>
 
-            <div className="my-6 p-5 rounded-3xl shadow-sm border-[3px] bg-white relative overflow-hidden" style={{ borderColor: C.goldLight }}>
+            <div className="my-6 p-5 rounded-3xl border-[3px] bg-white relative overflow-hidden" style={{ borderColor: C.goldLight }}>
                <p className={`${radley.className} text-[24px] font-bold mb-4 tracking-widest border-b-2 pb-2 inline-block`} style={{ color: C.sage, borderColor: C.gold }}>I.N.C.U.P.</p>
                
                <div className="space-y-3 relative z-10">
@@ -605,7 +610,7 @@ export default function WorkbookPage() {
                    { letter: 'P', text: 'Passion' }
                  ].map((item, i) => (
                    <div key={i} className="flex items-center gap-4">
-                     <div className="flex items-center justify-center w-8 h-8 rounded-full font-black text-base shadow-sm border-2" style={{ backgroundColor: C.goldLight, color: C.charcoal, borderColor: C.gold }}>
+                     <div className="flex items-center justify-center w-8 h-8 rounded-full font-black text-base border-2" style={{ backgroundColor: C.goldLight, color: C.charcoal, borderColor: C.gold }}>
                        {item.letter}
                      </div>
                      <p className="font-bold text-[16px] tracking-wide" style={{ color: C.charcoal }}>{item.text}</p>
@@ -636,7 +641,7 @@ export default function WorkbookPage() {
               
               <p>One more thing — and I mean this: a reward is also allowing yourself to stop and say...</p>
               
-              <div className="my-10 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
+              <div className="my-10 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
                 <p className={`${caveat.className} font-bold text-[33px] text-center`} style={{ color: C.charcoal }}>
                   “f*ck yeah, I just SMASHED that task”
                 </p>
@@ -666,16 +671,16 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 11: WORKSHEET 1 --- */}
         <section className="worksheet-page relative px-20 pt-10 flex flex-col pb-8" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-4 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-4 drop-`} style={{ color: C.charcoal }}>
             What Actually Motivates Me?
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-4" style={{ color: C.sage }}>Reflection Prompt</p>
 
-          <div className="mb-4 p-4 rounded-3xl text-[15px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-4 p-4 rounded-3xl text-[15px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions:</span> Think about the last few times you got something done without a fight. What was present? Check the ones that apply and add your own.</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-3" style={{ color: C.charcoal }}>I’m most likely to do something when... <span className="font-normal text-[12px] text-gray-400">(check all that apply)</span></p>
             <div className="grid grid-cols-2 gap-y-2 gap-x-6">
               {[
@@ -705,7 +710,7 @@ export default function WorkbookPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4 flex-shrink-0" style={{ borderColor: C.goldLight }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4 flex-shrink-0" style={{ borderColor: C.goldLight }}>
             <p className="font-bold text-[15px] mb-3" style={{ color: C.sage }}>My top 3 motivators (the ones I should build into my life on purpose):</p>
             <div className="space-y-3">
               {[1, 2, 3].map((i) => (
@@ -717,7 +722,7 @@ export default function WorkbookPage() {
             </div>
           </div>
           
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm flex-shrink-0" style={{ borderColor: C.sageLight }}>
+          <div className="bg-white rounded-2xl p-4 border-2 flex-shrink-0" style={{ borderColor: C.sageLight }}>
             <p className="font-bold text-[15px] mb-3" style={{ color: C.charcoal }}>One task I’ve been avoiding + a motivator I could attach to it:</p>
             <div className="flex flex-col gap-4 mt-3 mb-1">
               <div className="flex items-end gap-3 w-full">
@@ -734,12 +739,12 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 12: WORKSHEET 2 --- */}
         <section className="worksheet-page relative px-20 pt-10 flex flex-col pb-10" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-4 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-4 drop-`} style={{ color: C.charcoal }}>
             My Bribe Menu
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-6" style={{ color: C.sage }}>Action Planning Template</p>
 
-          <div className="mb-4 p-3 rounded-2xl text-[14px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-4 p-3 rounded-2xl text-[14px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions:</span> Now that you know what motivates you, build your personal bribe list around it. Most of these should be things you can add DURING or BEFORE the task — not after.</p>
           </div>
 
@@ -751,7 +756,7 @@ export default function WorkbookPage() {
               { title: "THE PAUSE & CELEBRATE", subtext: "Ways to acknowledge you did the thing. (Say it out loud, text someone, take a breath)" },
               { title: "AFTER-TASK REWARDS", badge: "(optional bonus)", subtext: "A little note: these are fun to have, but rarely strong enough to carry you alone. Add an extra incentive here as a bonus on top of the bribes above, or skip entirely." },
             ].map((section, idx) => (
-              <div key={idx} className="bg-white rounded-2xl p-5 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+              <div key={idx} className="bg-white rounded-2xl p-5 border-2" style={{ borderColor: '#e2dec9' }}>
                 <p className="font-bold text-[15px] mb-1 flex items-baseline gap-2" style={{ color: C.sage }}>
                   {section.title}
                   {section.badge && <span className="font-sans text-[12px] normal-case tracking-normal opacity-70 italic font-medium" style={{ color: C.charcoal }}>{section.badge}</span>}
@@ -768,10 +773,10 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 15: CHAPTER 3 TITLE --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 3
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             Making Future Me Do It
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -783,11 +788,11 @@ export default function WorkbookPage() {
         <section className="content-section relative px-20 pt-20 px-20 pt-20 bg-white pb-32">
           <div className="space-y-4 text-[17px] leading-[1.6]">
             <h2 className={`${radley.className} text-[35px] mb-10 border-b-4 inline-block font-bold`} style={{ color: C.sage, borderColor: C.sage }}>THE BIT</h2>
-            <div className="my-8 p-6 rounded-2xl border-l-[6px] shadow-sm" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
               <p className="font-bold text-[24px]" style={{ color: C.charcoal }}>
                 Here's the most underrated ADHD skill:
               </p>
-              <p className={`${caveat.className} text-[30px] leading-none drop-shadow-sm`} style={{ color: C.gold }}>
+              <p className={`${caveat.className} text-[30px] leading-none drop-`} style={{ color: C.gold }}>
                 being kind to future-you.
               </p>
             </div>
@@ -796,7 +801,7 @@ export default function WorkbookPage() {
             <p>Think of it like this: if you had a coworker who was brilliant and creative but couldn't be trusted to remember a message, find their own keys, or pick an outfit before 9am, you wouldn't keep leaving all of that up to that coworker and getting mad when it fell apart. You'd set things up for them. You'd put the message in their inbox. You'd hang their keys by the door. You'd lay their clothes out the night before. Not because something's wrong with that coworker, but because you know how their brain works so you design around it.</p>
             <p>That coworker is future-you. And this chapter is about becoming the person who sets things up for future-you — so the right thing happens whether future-you is firing on all cylinders or barely holding it together.</p>
             
-            <div className="my-8 p-6 rounded-3xl text-center shadow-sm border-2 font-bold text-[24px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight, color: C.charcoal }}>
+            <div className="my-8 p-6 rounded-3xl text-center border-2 font-bold text-[24px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight, color: C.charcoal }}>
               <p>It's not a workaround because something's wrong with you. It's a workaround because ADHD brains are some of the most creative, resourceful problem-solvers out there, and this is just you applying that same creativity to yourself.</p>
             </div>
           </div>
@@ -809,7 +814,7 @@ export default function WorkbookPage() {
             <p>So why does designing around your brain actually work better than trying harder? The short answer: because the parts of your brain you'd normally rely on to remember, plan, and follow through aren't firing consistently, and the research backs that up.</p>
             <p>Dr. Russell Barkley's research points to working memory as one of the core executive functions that ADHD messes with. Working memory is your brain's ability to hold onto information long enough to actually act on it, and in ADHD, it's a tad bit unreliable.</p>
             
-            <div className="my-8 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
               <p className="font-bold text-[24px] leading-snug" style={{ color: C.charcoal }}>
                 This is why "I'll remember to do that later" is basically a promise your brain makes with full confidence and absolutely zero follow-through.
               </p>
@@ -819,7 +824,7 @@ export default function WorkbookPage() {
             </div>
             
             <p>But here's the part that really matters for this chapter: Barkley also points out that ADHD makes it hard to use internal cues to guide behavior. In other words, leaning on your own memory, your own motivation, or your own "I should really do that" feeling is setting yourself up to fail. Not because you're careless, but because those internal signals just don't fire consistently in an ADHD brain.</p>
-            <div className="my-8 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.sage }}>
               <p className="font-bold text-[24px] leading-snug" style={{ color: C.charcoal }}>
                 Barkley's fix is pretty clear: when internal self-regulation isn't pulling its weight, you compensate by changing the environment around you.
               </p>
@@ -843,7 +848,7 @@ export default function WorkbookPage() {
             
             <p>There's a concept called the Spoon Theory, originally created by Christine Miserandino to explain life with chronic illness. The idea is simple: you start each day with a limited number of "spoons," and every task costs you some. Once they're gone, they're gone <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Miserandino, 2003)</span>. For people with ADHD, this maps perfectly onto executive function.</p>
             
-            <div className="my-8 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[25px] leading-snug" style={{ color: C.charcoal }}>
                 Every decision you make, every task you initiate, every time you have to remember something, it costs you a spoon.
               </p>
@@ -872,7 +877,7 @@ export default function WorkbookPage() {
               </div>
             </div>
             
-            <div className="mt-10 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: C.cream, borderColor: C.gold }}>
+            <div className="mt-10 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: C.cream, borderColor: C.gold }}>
               <p className={`${radley.className} font-bold text-[21px] text-center`} style={{ color: C.charcoal }}>
                 Every one of these saves you a spoon. And those saved spoons add up. That's the difference between running out of mental energy by 2pm and actually having something left for the evening.
               </p>
@@ -894,12 +899,12 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 18: WORKSHEET 1 --- */}
         <section className="worksheet-page relative px-20 pt-10 flex flex-col pb-10" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-4 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-4 drop-`} style={{ color: C.charcoal }}>
             Decisions I Can Delete
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-6" style={{ color: C.sage }}>Checklist + Action Plan</p>
 
-          <div className="mb-4 p-4 rounded-xl text-[15px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.sageLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-4 p-4 rounded-xl text-[15px] border-[3px] flex-shrink-0" style={{ borderColor: C.sageLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions:</span> Below are some common areas where decisions pile up, with a few examples to get you thinking. But your drains might be completely different. Fill in the ones that apply to YOUR day. For each one, write one way you could automate, pre-decide, or remove that decision entirely.</p>
           </div>
           
@@ -915,7 +920,7 @@ export default function WorkbookPage() {
               { title: "EVENING / END OF DAY:", subtext: "Common ones: when to stop working, what to do with free time, when to go to bed" },
               { title: "ANYTHING ELSE THAT COSTS YOU SPOONS:", subtext: "" },
             ].map((section, idx) => (
-              <div key={idx} className="bg-white rounded-2xl p-4 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+              <div key={idx} className="bg-white rounded-2xl p-4 border-2" style={{ borderColor: '#e2dec9' }}>
                 <p className="font-bold text-[14px] mb-1 uppercase tracking-widest" style={{ color: C.sage }}>{section.title}</p>
                 {section.subtext && <p className="text-[#6B6B6B] text-[12px] italic mb-3">{section.subtext}</p>}
                 
@@ -951,16 +956,16 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 19: WORKSHEET 2 --- */}
         <section className="worksheet-page relative px-20 pt-20 px-20 pt-12 flex flex-col pb-32" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-10 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-10 drop-`} style={{ color: C.charcoal }}>
             The Future Me Setup
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-10" style={{ color: C.sage }}>Action Planning Template</p>
 
-          <div className="mb-10 p-6 rounded-3xl text-[17px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.sageLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-10 p-6 rounded-3xl text-[17px] border-[3px] flex-shrink-0" style={{ borderColor: C.sageLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions:</span> For each day this week, write one specific thing you can set up TODAY that makes TOMORROW easier. These should be physical, concrete actions, not intentions. Not “I’ll try to be more organized.” More like “I’ll put my gym bag by the front door and set an alarm for 6:45.”</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm flex-shrink-0 mb-8" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-5 border-2 flex-shrink-0 mb-8" style={{ borderColor: '#e2dec9' }}>
             <table className="w-full text-left border-collapse table-fixed mt-2">
               <thead>
                 <tr>
@@ -987,7 +992,7 @@ export default function WorkbookPage() {
             </table>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm flex-shrink-0 mb-6" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-5 border-2 flex-shrink-0 mb-6" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-2" style={{ color: C.sage }}>My “I’ll remember” graveyard:</p>
             <p className="text-[13px] italic text-gray-400 mb-6">List 3 things you've said &quot;I'll remember&quot; about recently and absolutely did not remember. Then write where that information should actually live:</p>
             
@@ -1027,10 +1032,10 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 20: CHAPTER 4 TITLE --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 4
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             Tricking Myself Into Starting
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1046,7 +1051,7 @@ export default function WorkbookPage() {
             
             <p>It’s the world’s most ridiculous standoff.</p>
             
-            <div className="my-4 p-4 rounded-2xl shadow-sm border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-4 p-4 rounded-2xl border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[20px] leading-snug" style={{ color: C.charcoal }}>
                 I call this one the Frozen Starter
               </p>
@@ -1056,7 +1061,7 @@ export default function WorkbookPage() {
             
             <p>And the whole time, there’s a running narration in my head that goes something like: "I should start that. I'm going to start that. I'll start that in a minute. Okay, after this episode. Okay, after I refill my water. Okay, after I check one thing on my phone." And then it's 10pm and the task is still sitting there and now it's too late, which honestly feels like a relief, because at least I don't have to think about starting it anymore. I can just feel guilty about it instead.</p>
 
-            <div className="my-3 p-4 rounded-3xl text-center shadow-md border-[3px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight }}>
+            <div className="my-3 p-4 rounded-3xl text-center border-[3px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight }}>
               <p className={`${radley.className} font-bold text-[26px] leading-relaxed`} style={{ color: C.charcoal }}>
                 If someone told me to "just do it," I would simply explode. "Just do it" is not advice. It's a Nike slogan.
               </p>
@@ -1074,7 +1079,7 @@ export default function WorkbookPage() {
 
             <p>The research backs this up.</p>
 
-            <div className="my-6 p-6 rounded-2xl shadow-sm border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-6 p-6 rounded-2xl border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[22px] leading-snug" style={{ color: C.charcoal }}>
                 Barkley's work shows that ADHD is fundamentally a disorder of self-regulation, not just attention.
               </p>
@@ -1084,7 +1089,7 @@ export default function WorkbookPage() {
 
             <p>In chemistry (don't worry, this is NOT turning into a chemistry book) there's a concept called activation energy: the minimum amount of energy required to start a chemical reaction. Once the reaction starts, it sustains itself with way less energy. Psychologist Shawn Achor uses this same metaphor in his book, The Happiness Advantage to explain why starting is the hardest part of any behavior change. He wanted to build a habit of playing guitar every day, and kept failing. When he looked at why, he realized the guitar was in his closet, and those 20 seconds of effort it took to walk over and pull it out were enough to stop him every time. So he bought a cheap guitar stand and put it in the middle of his living room. He played for 21 days straight.</p>
 
-            <div className="my-8 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
               <p className="font-bold text-[22px] leading-snug text-gray-800">
                 His 20-Second Rule argues that reducing the effort to begin by even a tiny amount can be the difference between doing something and not doing it <span className="uppercase text-[12px] opacity-60 tracking-wider font-bold">(Achor, 2010)</span>.
               </p>
@@ -1104,7 +1109,7 @@ export default function WorkbookPage() {
             
             <p>For example, that thing that's due in three weeks that you cannot make yourself start even though you know you'll panic about it later? The outcome is too far away and some part of you isn't convinced you can do it well anyway. So your brain just... doesn't.</p>
 
-            <p className="font-bold px-6 py-6 rounded-xl shadow-sm my-8" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
+            <p className="font-bold px-6 py-6 rounded-xl my-8" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
               So no. You are not lazy, or whatever else you've been calling yourself. Your brain requires more activation energy to start, and it's getting less fuel than it needs. The manipulation is about making the start so small, so easy, and so low-cost that your brain just shrugs and goes, "can't argue with that."
             </p>
 
@@ -1112,7 +1117,7 @@ export default function WorkbookPage() {
             
             <p>The most important thing I can tell you about starting is this: you do not need to feel ready. You do not need to wait for motivation to show up on its own. But you do need to give your brain something it can work with. If you read Chapter 2, you already know your brain runs on interest, novelty, challenge, passion and urgency, not on "I should." So the trick isn't forcing yourself to start with nothing. It's making the first action so small, or the environment around it appealing enough, that your brain has just enough buy-in to take that first step.</p>
 
-            <div className="my-8 p-6 rounded-2xl shadow-sm border-[3px]" style={{ borderColor: C.sageLight, backgroundColor: '#ffffff' }}>
+            <div className="my-8 p-6 rounded-2xl border-[3px]" style={{ borderColor: C.sageLight, backgroundColor: '#ffffff' }}>
                <p className={`${radley.className} text-[22px] font-bold tracking-wide leading-relaxed text-center`} style={{ color: C.charcoal }}>
                  Not "clean the kitchen." Put one plate in the sink.<br/>
                  Not "write the report." Open the document.<br/>
@@ -1131,7 +1136,7 @@ export default function WorkbookPage() {
             
             <p>If even the smallest step feels impossible, check your environment. Are you trying to start from the couch? Move to the room where the task lives. Are you trying to start in silence? Put something on in the background. Sometimes the issue isn't the task at all. It's that you're trying to initiate from a location or a state your brain associates with rest, and the transition cost is too high. Changing your physical position can be the 20 seconds that makes the difference.</p>
 
-            <div className="my-6 p-6 rounded-3xl shadow-sm border-[3px]" style={{ backgroundColor: '#ffffff', borderColor: C.sageLight }}>
+            <div className="my-6 p-6 rounded-3xl border-[3px]" style={{ backgroundColor: '#ffffff', borderColor: C.sageLight }}>
               <p className="font-bold text-[18px] mb-3 uppercase tracking-widest text-center" style={{ color: C.sage }}>A brief note on body doubling:</p>
               <p className="text-[19px] leading-relaxed text-gray-800 text-center font-medium">
                 If you can get someone, anyone, in the same room (or on a video call, or even a "Study With Me" livestream on YouTube), that presence alone can lower the activation energy enough to start. You don't need them to help. You don't need them to care. You just need them to exist near you.
@@ -1156,16 +1161,16 @@ export default function WorkbookPage() {
 
         {/* --- CHAPTER 4 WORKBOOK PAGE 1: Why I'm Stuck --- */}
         <section className="worksheet-page relative px-20 pt-16 flex flex-col pb-10" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-6 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-6 drop-`} style={{ color: C.charcoal }}>
             Why I&apos;m Stuck (and What Might Unstick Me)
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-8" style={{ color: C.sage }}>Blended Reflection + Cheat Sheet</p>
 
-          <div className="mb-6 p-5 rounded-3xl text-[16px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-6 p-5 rounded-3xl text-[16px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>This exercise has two parts. First, figure out what&apos;s actually blocking you. Then, match it to a strategy that targets that specific blocker. Not every strategy works for every block. The goal is to build YOUR personalized cheat sheet.</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm mb-8" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-5 border-2 mb-8" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[16px] mb-1" style={{ color: C.charcoal }}>Part 1: My Initiation Blockers</p>
             <p className="text-[14px] mb-4 text-gray-500">Think about the last few times you couldn&apos;t start something. What was actually going on? Check the ones you recognize:</p>
 
@@ -1199,7 +1204,7 @@ export default function WorkbookPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm mb-8 flex-shrink-0" style={{ borderColor: C.goldLight }}>
+          <div className="bg-white rounded-2xl p-5 border-2 mb-8 flex-shrink-0" style={{ borderColor: C.goldLight }}>
             <p className="font-bold text-[16px] mb-4" style={{ color: C.sage }}>My top 3 blockers (the ones that show up most):</p>
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
@@ -1237,7 +1242,7 @@ export default function WorkbookPage() {
                 "Visit Chapter 7 if the shame spiral is the real issue.",
               ]},
             ] as { title: string; items: string[] }[]).map((section, idx) => (
-              <div key={idx} className="bg-white rounded-2xl p-5 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+              <div key={idx} className="bg-white rounded-2xl p-5 border-2" style={{ borderColor: '#e2dec9' }}>
                 <p className={`${radley.className} font-bold text-[17px] uppercase tracking-widest mb-3`} style={{ color: C.sage }}>{section.title}</p>
                 <div className="space-y-3">
                   {[...section.items, ""].map((item, i) => (
@@ -1260,12 +1265,12 @@ export default function WorkbookPage() {
 
         {/* --- CHAPTER 4 WORKBOOK PAGE 2: The Task Shrinker --- */}
         <section className="worksheet-page relative px-20 pt-10 flex flex-col pb-10" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-6 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-6 drop-`} style={{ color: C.charcoal }}>
             The Task Shrinker
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-6" style={{ color: C.sage }}>Action Planning Template</p>
 
-          <div className="mb-6 p-5 rounded-3xl text-[15px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-6 p-5 rounded-3xl text-[15px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Take 5 tasks you&apos;ve been avoiding. For each one, break it down to the absolute smallest first step. I mean embarrassingly small. If your first step could be broken down further, break it down. The goal is a step so tiny your brain can&apos;t object to it.</p>
           </div>
 
@@ -1295,7 +1300,7 @@ export default function WorkbookPage() {
             </tbody>
           </table>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4 flex-shrink-0" style={{ borderColor: C.sageLight }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4 flex-shrink-0" style={{ borderColor: C.sageLight }}>
             <p className="font-bold text-[14px] italic leading-snug" style={{ color: C.charcoal }}>
               <span style={{ color: C.sage }}>P.S.</span> If you actually did the smallest first step for even one of those tasks right now... That&apos;s initiation. You just tricked your brain into starting.
             </p>
@@ -1310,10 +1315,10 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 26: CHAPTER 5 TITLE --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 5
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             Doing the Boring Stuff Without Dying
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1330,7 +1335,7 @@ export default function WorkbookPage() {
 
             <p>I&apos;m not irresponsible. I&apos;m just deeply, profoundly uninterested and unstimulated.</p>
 
-            <div className="my-6 p-6 rounded-2xl shadow-sm border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-6 p-6 rounded-2xl border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[22px] leading-snug" style={{ color: C.charcoal }}>
                 I call this one the Boredom Blackout.
               </p>
@@ -1354,7 +1359,7 @@ export default function WorkbookPage() {
 
             <p>A neuroimaging study looked at this directly. Researchers found that adults with ADHD scored significantly lower on a trait measure of motivation than adults without ADHD. They traced this back to the dopamine reward system in the brain — the part that&apos;s supposed to light up and say &ldquo;yes, let&apos;s do this.&rdquo; In adults with ADHD, that system was less active. The researchers concluded that this is likely why people with ADHD have such a hard time engaging with tasks that aren&apos;t inherently rewarding or stimulating <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Volkow et al., 2011)</span>. In other words, it&apos;s not that you&apos;re choosing not to care about boring tasks. Your brain&apos;s reward system is literally producing less of the signal it needs to engage with them.</p>
 
-            <div className="my-8 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
               <p className="font-bold text-[20px] leading-snug" style={{ color: C.charcoal }}>
                 And now cue the shame. You know the task is important. Other people seem to just... do these things. And you&apos;re sitting there unable to make yourself open an envelope. It feels like a personal failing. It&apos;s not.
               </p>
@@ -1362,7 +1367,7 @@ export default function WorkbookPage() {
 
             <p>It&apos;s your brain&apos;s reward system not responding to a task that doesn&apos;t offer it enough stimulation. That&apos;s a completely different problem than not caring, and it has a completely different set of solutions.</p>
 
-            <p className="font-bold px-6 py-5 rounded-xl shadow-sm" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
+            <p className="font-bold px-6 py-5 rounded-xl" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
               The manipulation isn&apos;t about forcing yourself to care about boring tasks. You won&apos;t. Your brain doesn&apos;t work that way. The manipulation is about adding something to the task, or to the environment around the task, that gives your brain the stimulation it actually needs to show up.
             </p>
 
@@ -1387,7 +1392,7 @@ export default function WorkbookPage() {
               { title: "Automate or delegate it.", body: "Some boring tasks don\u2019t need to be done by you at all. Auto-pay bills. Set up recurring grocery orders. Put subscriptions on auto-renew (or auto-cancel, depending on the subscription). And if a task can\u2019t be automated, ask yourself: can someone else do this? Every boring task you can hand off to a system or another person is one less thing draining your limited energy." },
               { title: "Make it urgent.", body: "Your brain responds to urgency even when it doesn\u2019t respond to importance. Tell someone you\u2019ll have it done by 3pm. Set a deadline that matters. Create consequences that are immediate, not hypothetical." },
             ] as { title: string; body: string }[]).map((item, i) => (
-              <div key={i} className="p-5 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
+              <div key={i} className="p-5 rounded-2xl border-2" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
                 <p className="font-black text-[18px]" style={{ color: C.sage }}>{item.title}</p>
                 <p className="text-[17px] leading-relaxed text-gray-700">{item.body}</p>
               </div>
@@ -1409,12 +1414,12 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 29: CHAPTER 5 WORKBOOK PAGE 1 — Boring Task Graveyard --- */}
         <section className="worksheet-page relative px-20 pt-20 px-20 pt-12 flex flex-col pb-32" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight mt-10 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight mt-10 drop-`} style={{ color: C.charcoal }}>
             My Boring Task Graveyard
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-10" style={{ color: C.sage }}>Brain Dump</p>
 
-          <div className="mb-8 p-6 rounded-3xl text-[17px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-8 p-6 rounded-3xl text-[17px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>This is every boring task you&apos;re currently avoiding. All of them. Big ones, small ones, the ones that have been on your list so long they&apos;ve become background noise. Don&apos;t filter, don&apos;t judge, don&apos;t organize. Just get them out of your head and onto this page.</p>
           </div>
 
@@ -1425,12 +1430,12 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 30: CHAPTER 5 WORKBOOK PAGE 2 — Boring Task Battle Plan --- */}
         <section className="worksheet-page relative px-20 pt-10 flex flex-col pb-10" style={{ backgroundColor: '#ffffff' }}>
-          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-6 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[56px] text-center mb-2 leading-tight mt-6 drop-`} style={{ color: C.charcoal }}>
             The Boring Task Battle Plan
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-4" style={{ color: C.sage }}>Action Planning Template</p>
 
-          <div className="mb-4 p-5 rounded-3xl text-[17px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-4 p-5 rounded-3xl text-[17px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Pick 5 tasks from the Graveyard. For each one, assign a strategy: pair it, move it, shrink it, or automate/delegate it. Some tasks might get more than one.</p>
           </div>
 
@@ -1459,7 +1464,7 @@ export default function WorkbookPage() {
             </tbody>
           </table>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4 flex-shrink-0" style={{ borderColor: C.goldLight }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4 flex-shrink-0" style={{ borderColor: C.goldLight }}>
             <div className="space-y-3">
               {["Which one am I doing first?", "When?"].map((label, i) => (
                 <div key={i} className="flex items-end gap-3 w-full">
@@ -1487,12 +1492,12 @@ export default function WorkbookPage() {
             <span className="text-xs font-black uppercase tracking-[0.2em]" style={{ color: C.gold }}>Bonus</span>
             <div className="flex-grow border-t-2" style={{ borderColor: C.goldLight }}></div>
           </div>
-          <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight drop-`} style={{ color: C.charcoal }}>
             My Agony Hour Blueprint
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-8" style={{ color: C.sage }}>Weekly Planner</p>
 
-          <div className="mb-5 p-6 rounded-3xl text-[17px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-5 p-6 rounded-3xl text-[17px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Instead of letting boring tasks pile up until they become a crisis, batch them into one dedicated hour each week. Pick a day, a time, and a place. Bring your Bribe Menu. Make it a ritual, not a punishment. If a full hour feels like too much, start with 30 minutes.</p>
           </div>
 
@@ -1502,7 +1507,7 @@ export default function WorkbookPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm mb-5" style={{ borderColor: C.goldLight }}>
+          <div className="bg-white rounded-2xl p-5 border-2 mb-5" style={{ borderColor: C.goldLight }}>
             <p className="font-bold text-[15px] mb-4" style={{ color: C.sage }}>My Agony Hour:</p>
             <div className="space-y-4">
               {["Day:", "Time:", "Where:"].map((label, i) => (
@@ -1518,7 +1523,7 @@ export default function WorkbookPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm mb-5" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-5 border-2 mb-5" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-4" style={{ color: C.sage }}>My Agony Hour task list for this week:</p>
             <div className="grid grid-cols-2 gap-y-3 gap-x-6 mb-5">
               {Array.from({ length: 6 }).map((_, i) => (
@@ -1555,10 +1560,10 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 32: CHAPTER 6 TITLE --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 6
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             When My Brain Won&apos;t Shut Up
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1575,7 +1580,7 @@ export default function WorkbookPage() {
 
             <p>And then 40 minutes have passed and you haven&apos;t started the thing. You haven&apos;t done anything, actually. You&apos;ve just been sitting there while your brain held an all-staff meeting you didn&apos;t call.</p>
 
-            <div className="my-4 p-6 rounded-2xl shadow-sm border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-4 p-6 rounded-2xl border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[21px] leading-snug" style={{ color: C.charcoal }}>
                 I call this one the Overthinking Looper.
               </p>
@@ -1587,7 +1592,7 @@ export default function WorkbookPage() {
 
             <p>And here&apos;s why this chapter is in a book called &ldquo;Manipulating Myself to Do Stuff&rdquo;: because you can&apos;t manipulate yourself into doing anything when your brain is off delivering a full presentation covering everything you did wrong this week, everything you need to do, and maybe a few random funny memories thrown in for variety. Mental clutter isn&apos;t just annoying. It makes it genuinely harder to start things, make decisions, and follow through on plans. When your head is full, there&apos;s no room left for action.</p>
 
-            <p className="font-bold px-6 py-5 rounded-xl shadow-sm" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
+            <p className="font-bold px-6 py-5 rounded-xl" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
               This chapter is about clearing the runway so you can take off.
             </p>
           </div>
@@ -1604,7 +1609,7 @@ export default function WorkbookPage() {
 
             <p>Your brain also has a <strong>task-positive network</strong>, or TPN, which is the network that lights up when you&apos;re actually doing something. In most people&apos;s brains, these two networks work like a seesaw: when one goes up, the other goes down. You&apos;re either doing or daydreaming, but not both at the same time.</p>
 
-            <div className="my-4 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
+            <div className="my-4 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
               <p className="font-bold text-[19px] leading-snug" style={{ color: C.charcoal }}>
                 In ADHD 2.0, Hallowell and Dr. John Ratey describe what they call &ldquo;the glitchy switch.&rdquo; In ADHD, that seesaw doesn&apos;t work properly. When the TPN turns on, the DMN stays on too, competing for your attention instead of stepping aside. They describe it as the DMN trying to muscle its way in and pull you into its grasp, even when you&apos;re trying to focus on a task <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Hallowell & Ratey, 2021, pp. 24–26)</span>.
               </p>
@@ -1614,7 +1619,7 @@ export default function WorkbookPage() {
 
             <p>Here&apos;s the part most people miss: a lot of folks with ADHD don&apos;t realize this is an ADHD thing at all. They think they&apos;re just &ldquo;an overthinker&rdquo; or &ldquo;an anxious person.&rdquo; And sometimes those things are true too. But the constant mental chatter, the inability to sit in silence without your brain filling it with noise, the way your thoughts jump from topic to topic without any input from you? For a lot of ADHDers, that&apos;s the glitchy switch in action. Once you understand that, you can stop trying to think your way out of it and start working with your wiring instead of against it.</p>
 
-            <p className="font-bold px-6 py-5 rounded-xl shadow-sm" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
+            <p className="font-bold px-6 py-5 rounded-xl" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
               The manipulation here isn&apos;t really about stopping the thoughts. It&apos;s about giving them somewhere to go so they stop circling inside your head.
             </p>
           </div>
@@ -1627,30 +1632,30 @@ export default function WorkbookPage() {
 
             <p>So your DMN is running the show and you need to get back to actually doing things. Thinking your way out of a thought loop is hard. So let&apos;s interrupt it instead. Here&apos;s some ways you can do that.</p>
 
-            <div className="p-4 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
+            <div className="p-4 rounded-2xl border-2" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
               <p className="font-black text-[17px]" style={{ color: C.sage }}>Dump it out.</p>
               <p className="text-[16px] leading-relaxed text-gray-700">Grab a piece of paper and write down everything in your head. Not organized. Not categorized. Not neat. Just... out. The more you try to hold information in your head, the louder it gets. Get it on paper and your brain can stop recycling it. Then sort what you wrote: some of it is tasks, some of it is feelings, some of it is stuff you can let go of entirely.</p>
             </div>
-            <div className="p-4 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
+            <div className="p-4 rounded-2xl border-2" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
               <p className="font-black text-[17px]" style={{ color: C.sage }}>Park it and move on.</p>
               <p className="text-[16px] leading-relaxed text-gray-700">Keep a notepad next to you while you work. When a random thought pops up, jot it down and get back to what you were doing. You&apos;re not ignoring the thought. You&apos;re parking it so your brain can let go of it for now.</p>
             </div>
-            <div className="p-4 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
+            <div className="p-4 rounded-2xl border-2" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
               <p className="font-black text-[17px]" style={{ color: C.sage }}>Move your body.</p>
               <p className="text-[16px] leading-relaxed text-gray-700">A study found that even a single bout of moderate exercise reduced rumination in participants <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Brand et al., 2018)</span>. A walk, some stretching, even just getting up and changing rooms. You&apos;re not outrunning the thoughts. You&apos;re giving your brain something physical to focus on instead.</p>
             </div>
-            <div className="p-4 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
+            <div className="p-4 rounded-2xl border-2" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
               <p className="font-black text-[17px]" style={{ color: C.sage }}>Name what’s going on.</p>
               <p className="text-[16px] leading-relaxed text-gray-700">When your brain is spiraling, try naming it. “I’m overthinking right now.” Studies have found that simply naming what you’re feeling can reduce the intensity of that emotional response <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Lieberman et al., 2011)</span>. It doesn’t make the spiral stop, but it shifts you from being inside it to noticing it.</p>
             </div>
-            <div className="p-4 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
+            <div className="p-4 rounded-2xl border-2" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
               <p className="font-black text-[17px]" style={{ color: C.sage }}>Breathe in a pattern.</p>
               <p className="text-[16px] leading-relaxed text-gray-700">Focused breathing is one of the simplest ways to flip the glitchy switch back. Dr. Hallowell &amp; Dr. Ratey recommend giving your brain a small task to focus on &mdash; like inhaling for six beats, holding for three, exhaling for eight, holding for three, and repeating. A few cycles of this and you’ve nudged your brain back into the task-positive network <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Hallowell &amp; Ratey, 2021)</span>.</p>
             </div>
 
             <p className="text-[17px]">Any one of these can break the loop. You don&apos;t need all five. You need the one that works for you in the moment.</p>
 
-            <div className="mt-2 px-6 py-5 rounded-xl shadow-sm italic text-[16px]" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
+            <div className="mt-2 px-6 py-5 rounded-xl italic text-[16px]" style={{ backgroundColor: '#ebf2ed', color: C.charcoal }}>
               <strong>One more thing.</strong>{' '}If the overthinking feels like more than a nuisance — if it&apos;s constant, if it&apos;s keeping you from sleeping or functioning, if it feels like it&apos;s running your life — that&apos;s worth talking to someone about. A therapist who understands ADHD can help you untangle what&apos;s brain wiring and what might need more support than a workbook can give you. This book is a starting point, not a ceiling.
             </div>
           </div>
@@ -1669,12 +1674,12 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 37: CH6 WORKBOOK PAGE 1a — THE DUMP --- */}
         <section className="worksheet-page relative px-20 pt-20 px-20 pt-12 flex flex-col bg-white pb-32">
-          <h1 className={`${caveat.className} text-[55px] text-center mb-2 leading-tight mt-10 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[55px] text-center mb-2 leading-tight mt-10 drop-`} style={{ color: C.charcoal }}>
             The Big Brain Dump + The Sort
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-8" style={{ color: C.sage }}>Brain Dump + Action Planning</p>
 
-          <div className="mb-6 p-5 rounded-3xl text-[16px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-6 p-5 rounded-3xl text-[16px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>This exercise has two parts. First, dump. Then sort. Do the dump all at once. Do the sort after, when you&apos;re ready.</p>
           </div>
 
@@ -1696,7 +1701,7 @@ export default function WorkbookPage() {
               { letter: "C", label: "Things that are just feelings", sub: "not a task, just something I\u2019m carrying" },
               { letter: "D", label: "Things I can let go of", sub: "not mine to solve, already done, or just noise" },
             ] as { letter: string; label: string; sub: string }[]).map((bucket) => (
-              <div key={bucket.letter} className="bg-white rounded-2xl p-5 border-2 shadow-sm flex flex-col" style={{ borderColor: '#e2dec9', minHeight: '200px' }}>
+              <div key={bucket.letter} className="bg-white rounded-2xl p-5 border-2 flex flex-col" style={{ borderColor: '#e2dec9', minHeight: '200px' }}>
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`${caveat.className} text-[40px] font-bold leading-none`} style={{ color: C.gold }}>{bucket.letter}.</span>
                   <div>
@@ -1713,7 +1718,7 @@ export default function WorkbookPage() {
             ))}
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-[3px] shadow-sm flex-shrink-0" style={{ borderColor: C.goldLight }}>
+          <div className="bg-white rounded-2xl p-5 border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight }}>
             <p className="font-bold text-[15px] mb-4" style={{ color: C.charcoal }}>How does your brain feel now compared to before the dump? Even a little lighter counts.</p>
             <div className="space-y-4">
               <div className="border-b-[2px] border-dotted mt-7" style={{ borderColor: '#e2dec9' }}></div>
@@ -1724,18 +1729,18 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 39: CH6 WORKBOOK PAGE 2a — SPOT THE PATTERN --- */}
         <section className="worksheet-page relative px-20 pt-10 flex flex-col bg-white pb-10">
-          <h1 className={`${caveat.className} text-[48px] text-center mb-2 leading-tight mt-6 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[48px] text-center mb-2 leading-tight mt-6 drop-`} style={{ color: C.charcoal }}>
             My Overthinking Patterns + My Interrupt Plan
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-4" style={{ color: C.sage }}>Reflection + Action Planning</p>
 
-          <div className="mb-4 p-4 rounded-3xl text-[15px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-4 p-4 rounded-3xl text-[15px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Let&apos;s figure out when and where your brain tends to get the loudest. If you can spot your patterns, you can start to interrupt them earlier.</p>
           </div>
 
           <p className="font-black uppercase tracking-[0.15em] text-sm mb-3" style={{ color: C.sage }}>Part 1: Spot the Pattern</p>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-2" style={{ color: C.charcoal }}>When do I overthink most?</p>
             <div className="grid grid-cols-2 gap-y-2 gap-x-6">
               {["At night / trying to sleep", "When I\u2019m alone with no distractions", "After social interactions", "Before something stressful", "When I\u2019m bored or understimulated", "When I feel like I messed something up"].map((item, i) => (
@@ -1753,7 +1758,7 @@ export default function WorkbookPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-2" style={{ color: C.charcoal }}>What do I tend to overthink about?</p>
             <div className="grid grid-cols-2 gap-y-2 gap-x-6">
               {([
@@ -1783,7 +1788,7 @@ export default function WorkbookPage() {
             If you checked &ldquo;whether people are upset with me&rdquo; or &ldquo;how someone&apos;s tone made me feel,&rdquo; you might be dealing with rejection sensitivity, which is incredibly common in ADHD. We touch on that in Chapter 7.
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-2" style={{ color: C.charcoal }}>What&apos;s usually underneath the overthinking? <span className="font-normal text-gray-500 text-[13px]">(the feeling, not the topic)</span></p>
             <div className="grid grid-cols-2 gap-y-2 gap-x-6">
               {["Anxiety", "Shame", "Fear of getting it wrong", "Feeling out of control", "Loneliness", "Guilt about not doing enough"].map((item, i) => (
@@ -1807,7 +1812,7 @@ export default function WorkbookPage() {
           <p className="font-black uppercase tracking-[0.15em] text-sm mb-4 mt-6" style={{ color: C.sage }}>Part 2: Build Your Interrupt Plan</p>
           <p className="text-[16px] text-gray-700 mb-4">Now that you know your patterns, pick the strategies you&apos;ll use to break out of them. These are your tools for switching your brain back into doing mode.</p>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-3" style={{ color: C.sage }}>My signal that I&apos;m stuck in a thought loop:</p>
             <div className="space-y-2">
               {[
@@ -1829,7 +1834,7 @@ export default function WorkbookPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border-[3px] shadow-sm mb-4" style={{ borderColor: C.goldLight }}>
+          <div className="bg-white rounded-2xl p-4 border-[3px] mb-4" style={{ borderColor: C.goldLight }}>
             <p className="font-bold text-[15px]" style={{ color: C.sage }}>When I notice that signal, I will try:</p>
             <p className="text-[12px] italic text-gray-400 mb-3">Check the ones you&apos;re willing to try, then rank your top 3</p>
             <div className="space-y-2">
@@ -1853,7 +1858,7 @@ export default function WorkbookPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border-2 shadow-sm mb-4" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-4 border-2 mb-4" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-3" style={{ color: C.sage }}>My top 3 interrupt strategies:</p>
             {[1,2,3].map(n => (
               <div key={n} className="flex items-end gap-3 mb-3">
@@ -1877,10 +1882,10 @@ export default function WorkbookPage() {
 
         {/* --- CHAPTER 7 COVER --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 7
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             The Shame Spiral (and How to Climb Out)
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1909,7 +1914,7 @@ export default function WorkbookPage() {
 
             <p>And here&apos;s the part that really gets you: the shame doesn&apos;t motivate you. It paralyzes you. The worse you feel about not doing the thing, the harder it becomes to do the thing. So you avoid it. You avoid the task, you avoid thinking about the task, you avoid the people connected to the task. And then you feel shame about the avoidance, which makes you avoid harder.</p>
 
-            <div className="my-4 p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-4 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[20px] leading-snug" style={{ color: C.charcoal }}>
                 That&apos;s the spiral. You didn&apos;t just fail at a task. You failed at a task, then decided it meant something about who you are, then let that meaning crush you, then couldn&apos;t move because you were being crushed. I call this one the Shame Spiraler.
               </p>
@@ -1934,7 +1939,7 @@ export default function WorkbookPage() {
 
             <p>Dodson calls one specific version of this rejection sensitive dysphoria (RSD): a disproportionate emotional response to perceived rejection or criticism <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Dodson, 2016)</span>. But RSD is just one piece of it. The bigger picture is that your emotional responses are louder than the situation calls for, and when the loudest emotion is shame, it shuts everything down.</p>
 
-            <div className="p-6 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
+            <div className="p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
               <p className="text-[18px] leading-snug font-medium" style={{ color: C.charcoal }}>
                 A systematic review of women with undiagnosed ADHD found that many grew up with deep-rooted patterns of self-blame, guilt, and negative automatic thoughts like &ldquo;what&apos;s wrong with you&rdquo; and &ldquo;you&apos;re a failure&rdquo; <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Attoe &amp; Climie, 2023)</span>. While that study focused on women, these patterns aren&apos;t limited to one gender. Dr. Dodson estimates that children with ADHD receive 20,000 more corrective or negative messages than their peers by age 10 <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Dodson, 2016)</span>. By the time you&apos;re an adult, that&apos;s not just a number. It&apos;s a foundation made of &ldquo;something is wrong with me.&rdquo;
               </p>
@@ -1951,7 +1956,7 @@ export default function WorkbookPage() {
 
             <p>The shame spiral follows a pattern:</p>
 
-            <div className="my-2 p-5 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-2 p-5 rounded-2xl border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[19px] leading-relaxed" style={{ color: C.charcoal }}>
                 I didn&apos;t do the thing → I&apos;m a terrible person → I can&apos;t face it → I avoid it → I feel worse → I avoid harder.
               </p>
@@ -1966,7 +1971,7 @@ export default function WorkbookPage() {
               { title: "Talk to yourself like you\u2019d talk to a friend.", body: <>If your friend told you they&apos;d been avoiding an email for two weeks and felt terrible about it, would you say &ldquo;yeah, you&apos;re a failure and you&apos;ll never change&rdquo;? No. You&apos;d say &ldquo;just send it now, it&apos;s not as bad as you think.&rdquo; Give yourself that same energy. Self-compassion isn&apos;t soft. It&apos;s strategic. Shame keeps you stuck. Compassion gets you moving.</> },
               { title: "Name the shame out loud.", body: <>&ldquo;I&apos;m in a shame spiral right now. I feel terrible about not doing this thing. That feeling is making it harder to do the thing.&rdquo; Naming it out loud <span className="uppercase text-xs opacity-60 tracking-wider font-bold">(Lieberman et al., 2011)</span> creates distance between you and the emotion. You&apos;re not the shame. You&apos;re a person noticing the shame. That&apos;s a different position to act from.</> },
             ].map((item, i) => (
-              <div key={i} className="p-4 rounded-2xl border-2 shadow-sm" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
+              <div key={i} className="p-4 rounded-2xl border-2" style={{ borderColor: '#e2dec9', backgroundColor: '#fafafa' }}>
                 <p className="font-black text-[16px]" style={{ color: C.sage }}>{item.title}</p>
                 <p className="text-[15px] leading-relaxed text-gray-700">{item.body}</p>
               </div>
@@ -1991,12 +1996,12 @@ export default function WorkbookPage() {
 
         {/* --- CHAPTER 7 WORKBOOK PAGE 1: The Shame Spiral Map --- */}
         <section className="worksheet-page relative px-20 pt-8 flex flex-col bg-white pb-8">
-          <h1 className={`${caveat.className} text-[55px] text-center mb-2 leading-tight mt-4 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[55px] text-center mb-2 leading-tight mt-4 drop-`} style={{ color: C.charcoal }}>
             The Shame Spiral Map
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-3" style={{ color: C.sage }}>Reflection + Pattern Recognition</p>
 
-          <div className="mb-3 p-4 rounded-3xl text-[14px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
+          <div className="mb-3 p-4 rounded-3xl text-[14px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#fafafa' }}>
             <p className="font-medium leading-snug"><span className="font-black text-[13px] uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Let&apos;s map out your spiral. Think about the last time you got stuck in one and walk through what actually happened, step by step.</p>
           </div>
 
@@ -2014,7 +2019,7 @@ export default function WorkbookPage() {
               <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
             </div>
 
-            <div className="bg-white rounded-2xl py-3 px-4 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-2xl py-3 px-4 border-2" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold text-[14px] mb-2" style={{ color: C.charcoal }}>What did I do next? <span className="font-normal text-[11px] text-gray-400">(check all that apply)</span></p>
               <div className="grid grid-cols-2 gap-y-1 gap-x-2">
                 {["Avoided the task entirely", "Avoided the people connected to the task", "Shut down (stayed in bed, scrolled, zoned out)", "Tried to distract myself from the feeling", "Beat myself up internally for hours or days", "Took it out on someone else"].map((item, i) => (
@@ -2030,7 +2035,7 @@ export default function WorkbookPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl py-3 px-4 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-2xl py-3 px-4 border-2" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold text-[14px] mb-2" style={{ color: C.charcoal }}>How long did the spiral last?</p>
               <div className="flex flex-wrap gap-4">
                 {["A few hours", "A day", "Multiple days", "It\u2019s still going"].map((item, i) => (
@@ -2042,7 +2047,7 @@ export default function WorkbookPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl py-3 px-4 border-[3px] shadow-sm" style={{ borderColor: C.goldLight }}>
+            <div className="bg-white rounded-2xl py-3 px-4 border-[3px]" style={{ borderColor: C.goldLight }}>
               <p className="font-bold text-[14px] mb-2" style={{ color: C.sage }}>The fact vs. the story:</p>
               <div className="space-y-2">
                 <div>
@@ -2071,17 +2076,17 @@ export default function WorkbookPage() {
 
         {/* --- CHAPTER 7 WORKBOOK PAGE 2: My Getting Back Up Plan --- */}
         <section className="worksheet-page relative px-20 pt-20 px-20 pt-12 flex flex-col pb-32" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-10 drop-shadow-sm`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[52px] text-center mb-2 leading-tight mt-10 drop-`} style={{ color: C.charcoal }}>
             My Getting Back Up Plan
           </h1>
           <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-6" style={{ color: C.sage }}>Action Planning</p>
 
-          <div className="mb-5 p-5 rounded-3xl text-[16px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
+          <div className="mb-5 p-5 rounded-3xl text-[16px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Shame spirals are harder to interrupt when you&apos;re already in one. That&apos;s why we&apos;re building this plan now, while your head is clear.</p>
           </div>
 
           <div className="space-y-5 flex-grow flex flex-col">
-            <div className="bg-white rounded-2xl p-5 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-2xl p-5 border-2" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold text-[15px] mb-3" style={{ color: C.sage }}>My shame triggers <span className="font-normal text-gray-500 text-[13px]">(what situations tend to start the spiral)</span></p>
               <div className="grid grid-cols-2 gap-2">
                 {([
@@ -2107,7 +2112,7 @@ export default function WorkbookPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 border-[3px] shadow-sm" style={{ borderColor: C.goldLight }}>
+            <div className="bg-white rounded-2xl p-5 border-[3px]" style={{ borderColor: C.goldLight }}>
               <p className="font-bold text-[15px]" style={{ color: C.sage }}>When I notice I&apos;m in the spiral, I will try:</p>
               <p className="text-[12px] italic text-gray-400 mb-3">Check the ones you&apos;re willing to use, then rank your top 3 below</p>
               <div className="space-y-2">
@@ -2133,7 +2138,7 @@ export default function WorkbookPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-5 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-2xl p-5 border-2" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold text-[15px] mb-3" style={{ color: C.sage }}>My top 3 recovery strategies:</p>
               {[1,2,3].map(n => (
                 <div key={n} className="flex items-center gap-3">
@@ -2144,12 +2149,12 @@ export default function WorkbookPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-2xl p-4 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+              <div className="bg-white rounded-2xl p-4 border-2" style={{ borderColor: '#e2dec9' }}>
                 <p className="font-bold text-[13px] mb-3" style={{ color: C.charcoal }}>The smallest possible recovery action for the thing I&apos;m currently avoiding:</p>
                 <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
                 <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
               </div>
-              <div className="bg-white rounded-2xl p-4 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+              <div className="bg-white rounded-2xl p-4 border-2" style={{ borderColor: '#e2dec9' }}>
                 <p className="font-bold text-[13px]" style={{ color: C.charcoal }}>A sentence I can say to myself when the shame voice gets loud:</p>
                 <p className="text-[11px] italic text-gray-400 mb-2">(example: &ldquo;The feeling is real. The story isn&apos;t.&rdquo;)</p>
                 <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
@@ -2172,10 +2177,10 @@ export default function WorkbookPage() {
 
         {/* --- CHAPTER 8 COVER --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 8
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             Building Systems That Actually Stick
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2192,7 +2197,7 @@ export default function WorkbookPage() {
 
             <p>The graveyard of abandoned systems in my life could fill a storage unit. Planners with two weeks of entries and then blank pages. Whiteboards that became background decoration. Reminder apps I stopped opening because the notifications stressed me out. Every single one worked for a little while. Then it didn&apos;t. And every time one stopped working, I assumed the problem was me. ...Sigh.</p>
 
-            <div className="my-2 p-5 rounded-2xl shadow-sm border-l-[6px] text-center" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-2 p-5 rounded-2xl border-l-[6px] text-center" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[18px] leading-relaxed" style={{ color: C.charcoal }}>
                 I call this one the System Hopper.
               </p>
@@ -2217,7 +2222,7 @@ export default function WorkbookPage() {
 
             <p>Before we go any further, let&apos;s define what we&apos;re actually talking about when we say &ldquo;system.&rdquo;</p>
 
-            <div className="my-2 p-5 rounded-2xl shadow-sm border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
+            <div className="my-2 p-5 rounded-2xl border-l-[6px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[18px] leading-relaxed" style={{ color: C.charcoal }}>
                 A system is just a repeatable way of getting something done without relying on your brain to figure it out every time.
               </p>
@@ -2229,7 +2234,7 @@ export default function WorkbookPage() {
 
             <p>Barkley&apos;s research makes a distinction that changes everything when you understand it:</p>
 
-            <div className="my-2 p-5 rounded-2xl shadow-sm" style={{ backgroundColor: '#ebf2ed' }}>
+            <div className="my-2 p-5 rounded-2xl" style={{ backgroundColor: '#ebf2ed' }}>
               <p className="font-bold text-[18px] leading-relaxed" style={{ color: C.charcoal }}>
                 ADHD isn&apos;t a problem of not knowing what to do. It&apos;s a problem of not being able to consistently do what you already know.
               </p>
@@ -2279,7 +2284,7 @@ export default function WorkbookPage() {
               { num: 6, q: "When's the last time this actually helped me?", body: "If you can't answer that, it's either too complicated and needs to be stripped down, or it's run its course. A system you maintain out of obligation isn't serving you. It's just another thing on your list.", build: false },
               { num: 7, q: "Is this shiny object syndrome or a real failure?", body: "Novelty-seeking applies to systems too. Before you download the next app, ask: did the current system actually stop working, or am I just bored? Sometimes the fix is making the old one interesting again. Change the color. Move the whiteboard. Feed the novelty without scrapping the structure.", build: false },
             ] as { num: number; q: string; body: string; build: boolean }[]).map(({ num, q, body, build }) => (
-              <div key={num} className="flex gap-4 py-[10px] px-5 rounded-2xl shadow-sm" style={{ backgroundColor: build ? C.cream : '#f0f6f3' }}>
+              <div key={num} className="flex gap-4 py-[10px] px-5 rounded-2xl" style={{ backgroundColor: build ? C.cream : '#f0f6f3' }}>
                 <span className={`${radley.className} text-[26px] font-bold flex-shrink-0 leading-none mt-1`} style={{ color: C.gold }}>{num}</span>
                 <div>
                   <p className="font-bold text-[14px] mb-1" style={{ color: C.charcoal }}>{q}</p>
@@ -2304,11 +2309,11 @@ export default function WorkbookPage() {
         {/* --- CHAPTER 8: WORKBOOK PAGE 1 — My System Graveyard --- */}
         <section className="worksheet-page relative px-16 pt-16 flex flex-col space-y-5 pb-32" style={{ backgroundColor: C.cream }}>
           <div>
-            <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight drop-shadow-sm`} style={{ color: C.charcoal }}>My System Graveyard</h1>
+            <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight drop-`} style={{ color: C.charcoal }}>My System Graveyard</h1>
             <p className="text-center font-black tracking-[0.2em] uppercase text-sm" style={{ color: C.sage }}>Reflection</p>
           </div>
 
-          <div className="p-5 rounded-3xl text-[16px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
+          <div className="p-5 rounded-3xl text-[16px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Before we build something new, let&apos;s look at what&apos;s failed before and figure out why. There&apos;s useful information in the wreckage.</p>
           </div>
 
@@ -2333,7 +2338,7 @@ export default function WorkbookPage() {
             </tbody>
           </table>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-5 border-2" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-3" style={{ color: C.sage }}>Do you notice a pattern? <span className="font-normal text-gray-500 text-[13px]">(check any that apply)</span></p>
             <div className="grid grid-cols-2 gap-2">
               {["They were too complicated", "They relied on me remembering to use them", "They required too many steps", "They only worked when I was motivated", "I got bored and needed novelty", "I felt bad when I missed a day and gave up entirely", "Life got chaotic and they were the first to go"].map((item, i) => (
@@ -2351,7 +2356,7 @@ export default function WorkbookPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm flex-grow" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-5 border-2 flex-grow" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-2" style={{ color: C.sage }}>Knowing this, what would you do differently next time?</p>
             <div className="border-b-[2px] border-dotted mt-7" style={{ borderColor: '#e2dec9' }}></div>
             <div className="border-b-[2px] border-dotted mt-7" style={{ borderColor: '#e2dec9' }}></div>
@@ -2361,13 +2366,13 @@ export default function WorkbookPage() {
 
         {/* --- CHAPTER 8: WORKBOOK PAGE 2 — Build Your System --- */}
         <section className="worksheet-page relative px-20 pt-16 flex flex-col space-y-3 pb-10" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight drop-shadow-sm`} style={{ color: C.charcoal }}>Build Your System</h1>
+          <h1 className={`${caveat.className} text-[60px] text-center mb-2 leading-tight drop-`} style={{ color: C.charcoal }}>Build Your System</h1>
 
-          <div className="p-4 rounded-3xl text-[15px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
+          <div className="p-4 rounded-3xl text-[15px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Pick one area of your life that needs a system. Then run it through the 7 Commandments.</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+          <div className="bg-white rounded-2xl p-5 border-2" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-3" style={{ color: C.sage }}>The area I&apos;m building a system for:</p>
             <div className="grid grid-cols-2 gap-2">
               {["Morning routine", "Managing tasks / to-do's", "Keeping up with bills / admin", "Cleaning / household stuff", "Email / messages"].map((item, i) => (
@@ -2389,14 +2394,14 @@ export default function WorkbookPage() {
               { n: 3, q: "Does it live in one place?", sub: "What's my one tool? (if applicable)" },
               { n: 4, q: "What's the smallest version that still counts?" },
             ] as { n: number; q: string; sub?: string }[]).map(({ n, q, sub }) => (
-              <div key={n} className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+              <div key={n} className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
                 <p className="font-bold text-[14px]" style={{ color: C.sage }}>#{n} — {q}</p>
                 {sub && <p className="text-[12px] italic text-gray-400 mb-1">{sub}</p>}
                 <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
               </div>
             ))}
 
-            <div className="bg-white rounded-xl px-5 pt-4 pb-4 border-[3px] shadow-sm" style={{ borderColor: C.goldLight }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-4 border-[3px]" style={{ borderColor: C.goldLight }}>
               <p className="font-bold text-[14px]" style={{ color: C.sage }}>#5 — What&apos;s my re-entry micro step?</p>
               <p className="text-[12px] italic text-gray-400 mb-3">The smallest possible version of this system that still counts as doing it. This is how you get back in when you fall off.</p>
               <div className="flex items-center gap-2">
@@ -2413,14 +2418,14 @@ export default function WorkbookPage() {
               { n: 6, q: "When's the last time this system actually helped me?", sub: "Does it need to be simplified or replaced? (if re-building)" },
               { n: 7, q: "How can I feed the novelty without scrapping the whole thing?", sub: "(if re-building a previous system)" },
             ] as { n: number; q: string; sub?: string }[]).map(({ n, q, sub }) => (
-              <div key={n} className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+              <div key={n} className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
                 <p className="font-bold text-[14px]" style={{ color: C.sage }}>#{n} — {q}</p>
                 {sub && <p className="text-[12px] italic text-gray-400 mb-1">{sub}</p>}
                 <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
               </div>
             ))}
 
-          <div className="mt-2 bg-white rounded-2xl p-5 border-2 shadow-sm" style={{ borderColor: '#e2dec9' }}>
+          <div className="mt-2 bg-white rounded-2xl p-5 border-2" style={{ borderColor: '#e2dec9' }}>
             <p className="font-bold text-[15px] mb-1" style={{ color: C.sage }}>My system in one sentence:</p>
             <div className="border-b-[2px] border-dotted mt-6" style={{ borderColor: '#e2dec9' }}></div>
           </div>
@@ -2435,10 +2440,10 @@ export default function WorkbookPage() {
 
         {/* --- PAGE 51: CHAPTER 9 TITLE --- */}
         <section className="chapter-title-page min-h-[1056px] flex flex-col justify-center items-center text-center px-20 py-20" style={{ backgroundColor: C.cream }}>
-          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-shadow-md`} style={{ color: C.charcoal }}>
+          <h1 className={`${caveat.className} text-[110px] leading-none mb-10 tracking-wide drop-`} style={{ color: C.charcoal }}>
             CHAPTER 9
           </h1>
-          <h2 className={`${radley.className} text-[56px] italic drop-shadow-sm px-8 relative`} style={{ color: C.sage }}>
+          <h2 className={`${radley.className} text-[56px] italic px-8 relative`} style={{ color: C.sage }}>
             When You Can&apos;t Even Manipulate Yourself
           </h2>
           <svg className="mt-12 w-48 h-12" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2453,7 +2458,7 @@ export default function WorkbookPage() {
 
             <p>Whether you&apos;ve read every chapter or skipped straight to this one, here&apos;s what you&apos;ve got available to you: the bribes, the brain dumps, the 7 Commandments, the shame spiral map, the interrupt plan. You&apos;ve got tools. You&apos;ve got strategies. You&apos;ve got worksheets you may or may not have filled out yet (no judgment).</p>
 
-            <div className="my-8 p-6 rounded-2xl border-l-[6px] shadow-sm" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
+            <div className="my-8 p-6 rounded-2xl border-l-[6px]" style={{ backgroundColor: '#ffffff', borderColor: C.gold }}>
               <p className="font-bold text-[20px] leading-[1.6]" style={{ color: C.charcoal }}>
                 You can&apos;t start. You can&apos;t think. You can&apos;t even figure out which tool to reach for because your brain has decided to just... not. You&apos;re not in a shame spiral. You&apos;re not overthinking. You&apos;re just stuck. Fully, completely, can&apos;t-move stuck.
               </p>
@@ -2488,7 +2493,7 @@ export default function WorkbookPage() {
                 { num: 9, title: "Lower the bar.", body: "Whatever you think you need to do today, cut it in half. Then cut it in half again. That's your new goal. If you do more, great. If you don't, you still did something. Remember from Chapter 8: persistency, not consistency. You're getting back on, not catching up." },
                 { num: 10, title: "Rest without guilt.", body: "Sometimes your brain and body genuinely need to stop. That's not failure. That's information. If every tool in this book isn't getting through today, maybe today isn't the day. Let it be. Tomorrow you try again. The tools will still be here." },
               ]).map(({ num, title, body }) => (
-                <div key={num} className="bg-white rounded-2xl p-5 border-2 shadow-sm flex gap-5 items-start" style={{ borderColor: '#e2dec9' }}>
+                <div key={num} className="bg-white rounded-2xl p-5 border-2 flex gap-5 items-start" style={{ borderColor: '#e2dec9' }}>
                   <div className={`${radley.className} text-[44px] font-bold leading-none mt-[-4px]`} style={{ color: C.gold }}>
                     {num}
                   </div>
@@ -2505,40 +2510,40 @@ export default function WorkbookPage() {
         {/* --- PAGE 54: CHAPTER 9 WORKBOOK PAGE — My Personal Emergency Kit --- */}
         <section className="worksheet-page relative px-16 pt-16 flex flex-col gap-4 pb-32" style={{ backgroundColor: C.cream }}>
           <div>
-            <h1 className={`${caveat.className} text-[50px] text-center mb-1 leading-tight drop-shadow-sm`} style={{ color: C.charcoal }}>My Personal Emergency Kit</h1>
+            <h1 className={`${caveat.className} text-[50px] text-center mb-1 leading-tight drop-`} style={{ color: C.charcoal }}>My Personal Emergency Kit</h1>
             <p className="text-center font-black tracking-[0.2em] uppercase text-sm mb-4" style={{ color: C.sage }}>Quick Reference Card</p>
           </div>
 
-          <div className="p-4 rounded-3xl text-[15px] shadow-sm border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
+          <div className="p-4 rounded-3xl text-[15px] border-[3px] flex-shrink-0" style={{ borderColor: C.goldLight, backgroundColor: '#ffffff' }}>
             <p className="font-medium leading-snug"><span className="font-black text-sm uppercase tracking-widest" style={{ color: C.sage }}>Instructions: </span>Customize this so it&apos;s ready before you need it. When you&apos;re stuck, you won&apos;t have the energy to figure out what to do. This page does the figuring for you.</p>
           </div>
 
           <div className="space-y-4 flex-grow flex flex-col text-[14px]">
-            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold" style={{ color: C.sage }}>My go-to sensory reset</p>
               <p className="text-[12px] italic text-gray-500 mb-2">(the thing that snaps me back to my body)</p>
               <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
             </div>
 
-            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold" style={{ color: C.sage }}>My smallest possible task</p>
               <p className="text-[12px] italic text-gray-500 mb-2">(the thing I can always do, no matter how bad the day is, e.g. straighten up the sofa, bring 1 dish to the sink)</p>
               <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
             </div>
 
-            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold" style={{ color: C.sage }}>My re-entry micro step</p>
               <p className="text-[12px] italic text-gray-500 mb-2">(the tiniest thing I can do to unfreeze and start moving again, e.g., drink a glass of water, get changed, step outside)</p>
               <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
             </div>
 
-            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold" style={{ color: C.sage }}>My defiance fuel</p>
               <p className="text-[12px] italic text-gray-500 mb-2">(the thing my brain says I can&apos;t do that I want to prove wrong)</p>
               <div className="border-b-[2px] border-dotted mt-4" style={{ borderColor: '#e2dec9' }}></div>
             </div>
 
-            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold" style={{ color: C.sage }}>My breathing pattern</p>
               <div className="flex items-center gap-4 mt-3">
                 <div className="flex-1 flex items-end gap-2"><div className="border-b-[2px] border-dotted flex-grow" style={{ borderColor: '#e2dec9' }}></div><span className="text-gray-500">in,</span></div>
@@ -2548,7 +2553,7 @@ export default function WorkbookPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border shadow-sm" style={{ borderColor: '#e2dec9' }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-3 border" style={{ borderColor: '#e2dec9' }}>
               <p className="font-bold" style={{ color: C.sage }}>My backup person</p>
               <p className="text-[12px] italic text-gray-500 mb-2">(the one I text or call when I&apos;m stuck)</p>
               <div className="flex items-end gap-2 mt-2">
@@ -2557,7 +2562,7 @@ export default function WorkbookPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl px-5 pt-4 pb-4 border-[3px] shadow-sm" style={{ borderColor: C.goldLight }}>
+            <div className="bg-white rounded-xl px-5 pt-4 pb-4 border-[3px]" style={{ borderColor: C.goldLight }}>
               <p className="font-bold mb-2" style={{ color: C.sage }}>My permission slip</p>
               <div className="flex items-end gap-2">
                 <span className="text-gray-700">If nothing works today, I am allowed to:</span>
@@ -2617,8 +2622,8 @@ export default function WorkbookPage() {
         </section>
 
         {/* --- PAGE 57: REFERENCES --- */}
-        <section className="front-matter-page relative px-16 pt-6 bg-white flex flex-col text-[12px] text-gray-600 leading-snug pb-4">
-          <h2 className={`${radley.className} text-[30px] mb-4 font-bold uppercase tracking-widest`} style={{ color: C.charcoal }}>References</h2>
+        <section className="front-matter-page relative px-16 pt-12 bg-white flex flex-col text-[12px] text-gray-600 leading-normal pb-4">
+          <h2 className={`${radley.className} text-[30px] mb-6 font-bold uppercase tracking-widest`} style={{ color: C.charcoal }}>References</h2>
           
 
           <div className="space-y-2">

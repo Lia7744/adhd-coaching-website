@@ -54,16 +54,16 @@ export default function WorkbookThankYouPage() {
               <h2 className="text-2xl font-bold text-brand-charcoal">Step 1: Get Your Workbook</h2>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a 
-                  href="/assets-xq9s2m/PDF_Manipulating_Myself_to_do_Stuff_Interactive.pdf"
-                  download="PDF_Manipulating_Myself_to_do_Stuff_Interactive.pdf"
+                  href="/assets-xq9s2m/Interactive_Workbook_MMTDS.pdf"
+                  download="Interactive_Workbook_MMTDS.pdf"
                   className="w-full sm:w-auto inline-flex bg-brand-charcoal hover:bg-black text-brand-white h-14 px-8 rounded-full text-base font-bold shadow-lg items-center justify-center gap-2 transition-all transform hover:scale-105"
                 >
                   <Download className="w-5 h-5" />
                   Interactive Version
                 </a>
                 <a 
-                  href="/assets-xq9s2m/PDF_Manipulating_Myself_to_do_Stuff_Printable.pdf"
-                  download="PDF_Manipulating_Myself_to_do_Stuff_Printable.pdf"
+                  href="/assets-xq9s2m/Printable_Workbook_MMTDS.pdf"
+                  download="Printable_Workbook_MMTDS.pdf"
                   className="w-full sm:w-auto inline-flex bg-transparent border-2 border-brand-charcoal hover:bg-brand-charcoal hover:text-brand-white text-brand-charcoal h-14 px-8 rounded-full text-base font-bold items-center justify-center gap-2 transition-all transform hover:scale-105"
                 >
                   <Download className="w-5 h-5" />

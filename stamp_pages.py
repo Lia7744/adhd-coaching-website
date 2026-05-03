@@ -1,37 +1,44 @@
 import fitz
 
-def stamp_pdf(input_path, output_path):
-    doc = fitz.open(input_path)
-    
-    # 0-indexed pages to skip
-    skip_pages = {
-        0, 1, 2, # Front matter
-        3, 13, 21, 32, 42, 52, 62, 72, 81, # Chapter intros
-        12, 19, 20, 28, 30, 39, 41, 48, 49, 50, 58, 60, 69, 70, 78, 79, 80, 85 # Worksheets
-    }
-    
-    for i, page in enumerate(doc):
-        # Update TOC on page 2 (0-indexed)
-        if i == 2:
-            # We don't necessarily need to update the TOC in the PDF if the user will just use the new code,
-            # but let's do it to be safe and perfect!
-            # Let's draw white rectangles over the old numbers and write the new ones.
-            # However, placing them exactly is hard without knowing the coordinates.
-            pass
-            
-        if i not in skip_pages:
-            rect = page.rect
-            x = rect.width / 2.0
-            y = rect.height - 40 # 40 points from bottom
-            page.insert_text(
-                fitz.Point(x, y), 
-                str(i + 1),
-                fontsize=11, 
-                fontname="helv", 
-                color=(0.4, 0.4, 0.4) # Gray color
-            )
-            
-    doc.save(output_path)
+input_pdf = "public/assets-xq9s2m/MAY 3 FINAL MMTDS copy.pdf"
+output_pdf = "public/assets-xq9s2m/MAY 3 FINAL MMTDS copy_stamped.pdf"
 
-stamp_pdf("public/assets-xq9s2m/PDF_Manipulating_Myself_to_do_Stuff_Printable_BACKUP.pdf", "public/assets-xq9s2m/PDF_Manipulating_Myself_to_do_Stuff_Printable.pdf")
-stamp_pdf("public/assets-xq9s2m/PDF_Manipulating_Myself_to_do_Stuff_Interactive_BACKUP.pdf", "public/assets-xq9s2m/PDF_Manipulating_Myself_to_do_Stuff_Interactive.pdf")
+doc = fitz.open(input_pdf)
+
+# Known 1-indexed pages to skip
+skip_pages = {
+    1, 2, 3,  # Cover, page 2, TOC
+    4, 13, 22, 33, 43, 53, 63, 73, 82,  # Chapters
+    7, 11, 12, 20, 21, 29, 30, 31, 32, 40, 41, 42, 49, 50, 51, 52, 
+    59, 60, 61, 62, 70, 71, 72, 79, 80, 81, 86,  # Worksheets
+    88, 89  # Want to go deeper, References
+}
+
+font_size = 12
+color = (0.5, 0.5, 0.5) # Gray
+margin_right = 50
+margin_bottom = 40
+
+for i in range(len(doc)):
+    page_num = i + 1
+    
+    if page_num in skip_pages:
+        print(f"Skipping page {page_num}")
+        continue
+        
+    page = doc[i]
+    rect = page.rect
+    
+    text = str(page_num)
+    
+    # Calculate position (bottom right)
+    text_width = fitz.get_text_length(text, fontname="helv", fontsize=font_size)
+    x = rect.width - margin_right - text_width
+    y = rect.height - margin_bottom
+    
+    page.insert_text((x, y), text, fontname="helv", fontsize=font_size, color=color)
+    print(f"Stamped page {page_num}")
+
+doc.save(output_pdf)
+doc.close()
+print(f"Successfully saved to {output_pdf}")
