@@ -2,12 +2,12 @@ import type { NextConfig } from "next";
 
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://*.supabase.co;
+    img-src 'self' blob: data: https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com;
     font-src 'self' https://fonts.gstatic.com;
     frame-src 'self' https://lg-coaching-tracker.vercel.app https://whop.com;
-    connect-src 'self' https://*.supabase.co wss://*.supabase.co https://vitals.vercel-insights.com;
+    connect-src 'self' https://*.supabase.co wss://*.supabase.co https://vitals.vercel-insights.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net;
     object-src 'none';
     base-uri 'self';
     form-action 'self' https://whop.com;
