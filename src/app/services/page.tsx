@@ -46,6 +46,15 @@ export default function ServicesPage() {
   const [currencyLoaded, setCurrencyLoaded] = useState(false);
 
   useEffect(() => {
+    // Check URL override first
+    const params = new URLSearchParams(window.location.search);
+    const forceCurrency = params.get('currency');
+    if (forceCurrency === 'USD' || forceCurrency === 'CAD') {
+      setCurrency(forceCurrency);
+      setCurrencyLoaded(true);
+      return;
+    }
+
     fetch("/api/geo")
       .then((r) => r.json())
       .then((data) => { setCurrency(data?.country === "CA" ? "CAD" : "USD"); })
