@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Lock, ArrowRight, BookOpen, Settings, Mail } from "lucide-react";
 import { sendMagicLink, verifyOtpCode } from "@/app/tracker/actions";
+import Header from "@/components/Header";
 
 export default function PortalLogin() {
   const [email, setEmail] = useState("");
@@ -52,8 +53,10 @@ export default function PortalLogin() {
   };
 
   return (
-    <div className="flex-1 w-full max-w-4xl flex flex-col items-center justify-center px-6 py-20 text-center">
-      <div className="w-20 h-20 bg-brand-sage/10 rounded-3xl flex items-center justify-center mb-6">
+    <>
+      <Header forceShow={true} />
+      <div className="flex-1 w-full max-w-4xl flex flex-col items-center justify-center px-6 py-20 text-center">
+        <div className="w-20 h-20 bg-brand-sage/10 rounded-3xl flex items-center justify-center mb-6">
         <Lock className="w-10 h-10 text-brand-sage" />
       </div>
 
@@ -152,7 +155,8 @@ export default function PortalLogin() {
             </a>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

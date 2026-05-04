@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Lock, ArrowRight, Mail } from "lucide-react";
 import { sendCoachMagicLink, verifyCoachOtp } from "@/app/coachlg/actions";
+import Header from "@/components/Header";
 
 export default function CoachLogin() {
   const [email, setEmail] = useState("hello@lianagroombridge.com");
@@ -38,7 +39,9 @@ export default function CoachLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-6">
+    <>
+      <Header forceShow={true} />
+      <div className="min-h-screen bg-white flex items-center justify-center p-6">
       <div className="w-full max-w-md bg-[#F9F7F3] rounded-[2.5rem] shadow-xl border border-brand-sage/10 p-10 relative overflow-hidden">
         <div className="flex flex-col items-center mb-8">
           <div className="w-16 h-16 bg-brand-sage/10 rounded-2xl flex items-center justify-center mb-4">
@@ -103,7 +106,8 @@ export default function CoachLogin() {
             </button>
           </form>
         )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

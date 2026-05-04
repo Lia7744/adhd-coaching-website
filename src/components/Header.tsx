@@ -7,13 +7,13 @@ import { Menu, X, Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Quiz from "@/components/Quiz";
 
-export default function Header() {
+export default function Header({ forceShow = false }: { forceShow?: boolean } = {}) {
   const pathname = usePathname();
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Hide the global header on portal/tracker routes so it doesn't overlap dashboard UIs
-  if (pathname?.startsWith("/tracker") || pathname?.startsWith("/coachlg")) {
+  if (!forceShow && (pathname?.startsWith("/tracker") || pathname?.startsWith("/coachlg"))) {
     return null;
   }
 
