@@ -66,9 +66,9 @@ export default function PortalLogin() {
 
       <div className="w-full flex flex-col sm:flex-row gap-6 max-w-3xl">
         {/* Tracker Login Card */}
-        <div className="flex-1 bg-white border-2 border-brand-border rounded-3xl p-8 shadow-xl text-left flex flex-col">
+        <div className="flex-1 bg-[#F9F7F3] border border-brand-sage/10 rounded-[2.5rem] p-8 sm:p-10 shadow-xl text-left flex flex-col relative overflow-hidden">
           <h3 className="text-2xl font-bold text-brand-charcoal mb-4 flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-brand-gold" />
+            <BookOpen className="w-6 h-6 text-brand-sage" />
             Access Your Tracker
           </h3>
           <p className="text-brand-warm-gray mb-6 text-sm">
@@ -94,7 +94,7 @@ export default function PortalLogin() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-brand-sage hover:brightness-90 text-white rounded-xl py-3 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                className="w-full bg-brand-sage hover:bg-brand-sage-hover text-white rounded-full h-14 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50 mt-2 shadow-md active:scale-95"
               >
                 {isLoading ? "Sending..." : "Send Login Code"} <ArrowRight className="w-4 h-4" />
               </button>
@@ -117,7 +117,7 @@ export default function PortalLogin() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-brand-sage hover:brightness-90 text-white rounded-xl py-3 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                className="w-full bg-brand-sage hover:bg-brand-sage-hover text-white rounded-full h-14 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50 mt-2 shadow-md active:scale-95"
               >
                 {isLoading ? "Verifying..." : "Verify & Login"} <ArrowRight className="w-4 h-4" />
               </button>
@@ -133,9 +133,9 @@ export default function PortalLogin() {
         </div>
 
         {/* Manage Membership Card */}
-        <div className="flex-1 bg-white border-2 border-brand-border rounded-3xl p-8 shadow-xl text-left flex flex-col">
+        <div className="flex-1 bg-[#F9F7F3] border border-brand-sage/10 rounded-[2.5rem] p-8 sm:p-10 shadow-xl text-left flex flex-col relative overflow-hidden">
           <h3 className="text-2xl font-bold text-brand-charcoal mb-4 flex items-center gap-2">
-            <Settings className="w-6 h-6 text-[#D25D48]" />
+            <Settings className="w-6 h-6 text-brand-charcoal" />
             Manage Membership
           </h3>
           <p className="text-brand-warm-gray mb-6 text-sm">
@@ -146,7 +146,7 @@ export default function PortalLogin() {
               href="https://whop.com/login/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#1A1A1A] hover:bg-black text-white rounded-xl py-3 font-bold flex items-center justify-center gap-2 transition-all"
+              className="w-full bg-black hover:bg-gray-800 text-white rounded-full h-14 font-bold flex items-center justify-center gap-2 transition-all shadow-md active:scale-95"
             >
               Go to Whop Hub <ArrowRight className="w-4 h-4" />
             </a>

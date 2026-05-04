@@ -30,61 +30,41 @@ export default function ShopPage() {
     : "https://whop.com/checkout/plan_0XKFQdLkmshAq";
 
   return (
-    <div className="min-h-screen bg-brand-cream selection:bg-brand-sage/30">
-      {/* ═══ NAVIGATION ═══ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <a href="/" className="flex items-center gap-3">
-              <Image src="/logo-transparent.png" alt="LG ADHD Coaching" width={80} height={80} />
-              <span className="text-xl sm:text-2xl font-serif font-black text-brand-charcoal tracking-tight">
-                Liana Groombridge <span className="text-brand-warm-gray font-normal hidden sm:inline">| ADHD Coaching</span>
-              </span>
-            </a>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="/?quiz=true" className="px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest bg-brand-gold text-brand-cream hover:bg-brand-gold-hover transition-colors">Take the Quiz</a>
-              <a href="/" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Home</a>
-              <a href="/services" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Services</a>
-              <a href="/shop" className="text-sm font-bold text-brand-charcoal transition-colors">Shop</a>
-              <a href="/tracker" className="flex items-center gap-2 text-brand-sage font-bold text-sm bg-brand-sage/10 px-3 py-1.5 rounded-full"><Lock className="w-3.5 h-3.5" /> Client Portal</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
 
-      {/* ═══ PRODUCT HERO ═══ */}
-      <header className="pt-40 pb-20 px-6 sm:px-12 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-20 right-10 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-10 left-10 w-72 h-72 bg-brand-gold/20 rounded-full blur-3xl -z-10" />
+      <main className="flex-grow pt-24 bg-white">
+        {/* ═══ PRODUCT HERO ═══ */}
+        <header className="pt-16 pb-20 px-6 sm:px-12 relative overflow-hidden">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              
+              {/* Left: Product Image */}
+              <div className="flex flex-col items-center gap-6 max-w-[520px] mx-auto w-full">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage font-bold text-xs uppercase tracking-widest border border-brand-sage/20">
+                  <Sparkles className="w-3 h-3" />
+                  Digital Download
+                </div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            
-            {/* Left: Product Image */}
-            <div className="relative group perspective-1000 max-w-[520px] mx-auto w-full">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-brand-gold/40 to-brand-sage/40 rounded-[3rem] blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative transform transition-transform duration-700 group-hover:rotate-y-12">
-                <Image 
-                  src="/workbook-cover-final.png"
-                  alt="Manipulating Myself to Do Stuff Workbook Cover" 
-                  width={600} 
-                  height={800} 
-                  className="w-full h-auto rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-4 border-[#e9e6dc] object-contain relative z-10"
-                  priority
-                />
+                <div className="relative group perspective-1000 w-full">
+                  <div className="relative transform transition-transform duration-700 group-hover:rotate-y-6">
+                    <Image 
+                      src="/workbook-cover-final.png"
+                      alt="Manipulating Myself to Do Stuff Workbook Cover" 
+                      width={600} 
+                      height={800} 
+                      className="w-full h-auto rounded-xl shadow-2xl border border-brand-sage/10 object-contain relative z-10"
+                      priority
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
 
             {/* Right: Sales Copy */}
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage font-bold text-xs uppercase tracking-widest border border-brand-sage/20">
-                <Sparkles className="w-3 h-3" />
-                Digital Download
-              </div>
               
               <h1 className="text-4xl sm:text-5xl font-serif font-black text-brand-charcoal leading-tight">
-                Because willpower is a scam and your brain needs a better offer.
+                Because willpower is a scam and your brain needs
+                <span className="font-handwriting text-brand-sage text-5xl sm:text-7xl block mt-4 rotate-[-2deg]">a better offer.</span>
               </h1>
               
               <p className="text-xl text-brand-charcoal/80 leading-relaxed font-bold">
@@ -99,11 +79,11 @@ export default function ShopPage() {
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <a 
                   href={checkoutUrl}
-                  onClick={() => sendGAEvent({ event: "begin_checkout", item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
-                  className="w-full sm:w-auto bg-brand-sage hover:brightness-90 text-brand-white h-16 px-10 rounded-full text-xl font-bold shadow-xl shadow-brand-sage/40 flex items-center justify-center gap-2 transition-all transform hover:scale-105"
+                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-14 px-10 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
                 >
                   {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
-                  <ArrowRight className="w-5 h-5 ml-1" />
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
               <p className="text-sm text-brand-warm-gray italic">
@@ -131,11 +111,8 @@ export default function ShopPage() {
       </header>
 
       {/* ═══ WHAT'S INSIDE ═══ */}
-      <section className="py-20 bg-brand-white relative">
-        {/* Subtle top wavy border could go here using SVG, but using standard border for now */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-border to-transparent" />
-        
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-24 bg-[#F9F7F3] relative">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-serif font-black text-brand-charcoal mb-4">
               What exactly is inside?
@@ -147,9 +124,9 @@ export default function ShopPage() {
 
           <div className="grid md:grid-cols-2 gap-6">
             
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-[#D25D48]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Coffee className="w-6 h-6 text-[#D25D48]" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-sage/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Coffee className="w-5 h-5 text-brand-sage" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">The Bribe Menu</h3>
@@ -159,9 +136,9 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-brand-gold/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Zap className="w-6 h-6 text-[#B8923E]" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-charcoal/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Zap className="w-5 h-5 text-brand-charcoal" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">Interest vs. Importance</h3>
@@ -171,9 +148,9 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-brand-sage/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <ListChecks className="w-6 h-6 text-brand-sage" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-charcoal/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <ListChecks className="w-5 h-5 text-brand-charcoal" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">7 Commandments of Systems</h3>
@@ -183,9 +160,9 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-brand-charcoal/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Hourglass className="w-6 h-6 text-brand-charcoal" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-sage/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Hourglass className="w-5 h-5 text-brand-sage" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">The Agony Hour Blueprint</h3>
@@ -195,9 +172,9 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-brand-sage/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Target className="w-6 h-6 text-brand-sage" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-sage/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Target className="w-5 h-5 text-brand-sage" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">Trapping Your Future Self</h3>
@@ -207,9 +184,9 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-[#D25D48]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <RotateCcw className="w-6 h-6 text-[#D25D48]" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-charcoal/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <RotateCcw className="w-5 h-5 text-brand-charcoal" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">Shame Spiral Map</h3>
@@ -219,9 +196,9 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-brand-gold/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <BookOpen className="w-6 h-6 text-[#B8923E]" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-charcoal/5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <BookOpen className="w-5 h-5 text-brand-charcoal" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">20+ Workbook Exercises</h3>
@@ -231,9 +208,9 @@ export default function ShopPage() {
               </div>
             </div>
 
-            <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 hover:border-brand-sage transition-colors group flex gap-4">
-              <div className="w-14 h-14 shrink-0 bg-brand-charcoal/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <ShieldAlert className="w-6 h-6 text-brand-charcoal" />
+            <div className="bg-white/80 backdrop-blur-sm border border-brand-border hover:border-brand-sage/40 rounded-2xl p-6 sm:p-8 transition-all group flex gap-4">
+              <div className="w-12 h-12 shrink-0 bg-brand-sage/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <ShieldAlert className="w-5 h-5 text-brand-sage" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-brand-charcoal mb-2 leading-tight">The Emergency Kit</h3>
@@ -246,14 +223,13 @@ export default function ShopPage() {
           </div>
 
           {/* Book Summary Card */}
-          <div className="mt-16 max-w-4xl mx-auto bg-brand-cream border-2 border-brand-sage/20 rounded-[2.5rem] p-8 sm:p-14 text-center space-y-8 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-            <h3 className="text-3xl font-serif font-black text-brand-charcoal relative z-10">Why "manipulating"?</h3>
-            <p className="text-brand-charcoal/80 text-lg sm:text-xl leading-relaxed relative z-10 max-w-2xl mx-auto">
+          <div className="mt-16 max-w-4xl mx-auto bg-[#483428] rounded-2xl p-8 sm:p-14 text-center space-y-8 shadow-xl">
+            <h3 className="text-3xl font-serif font-black text-white">Why "manipulating"?</h3>
+            <p className="text-white/80 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
               Because your brain doesn't respond to &quot;just try harder.&quot; It responds to being outsmarted. Every strategy in this book is a way of rigging the game so your brain cooperates—not because it wants to, but because you gave it no good reason not to.
             </p>
-            <div className="w-16 h-1 bg-[#D25D48]/30 mx-auto rounded-full relative z-10"></div>
-            <p className="text-brand-warm-gray italic relative z-10 max-w-xl mx-auto">
+            <div className="w-16 h-1 bg-brand-sage mx-auto rounded-full"></div>
+            <p className="text-white/60 italic max-w-xl mx-auto">
               Written by an ICF-certified ADHD coach who also has ADHD, has been in every one of these spirals, and got tired of generic advice that starts with &quot;just.&quot;
             </p>
           </div>
@@ -261,28 +237,30 @@ export default function ShopPage() {
       </section>
 
       {/* ═══ BOTTOM CTA ═══ */}
-      <section className="py-24 bg-brand-charcoal text-center px-6">
+      {/* ═══ BOTTOM CTA ═══ */}
+      <section className="py-24 bg-black text-center px-6">
         <div className="max-w-2xl mx-auto space-y-8">
-          <h2 className="text-4xl sm:text-5xl font-serif font-black italic text-brand-cream leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-serif font-black text-white leading-tight">
             Your brain won't do the thing?<br/>
-            Time to outsmart it.
+            <span className="text-brand-sage font-handwriting block text-5xl sm:text-6xl mt-2 rotate-[-2deg]">Time to outsmart it.</span>
           </h2>
-          <p className="text-lg text-brand-cream/70">
+          <p className="text-lg text-white/70">
             Instant digital download. Start reading in 30 seconds.
           </p>
           <a
             href={checkoutUrl}
-            onClick={() => sendGAEvent({ event: "begin_checkout", item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
-            className="inline-flex bg-brand-sage hover:brightness-90 text-brand-white h-16 px-12 rounded-full text-xl font-bold shadow-[0_0_40px_-5px_var(--color-brand-gold)] items-center justify-center gap-2 transition-all transform hover:scale-105"
+            onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
+            className="inline-flex bg-white hover:bg-gray-200 text-brand-charcoal h-14 px-10 rounded-full font-bold text-base shadow-md items-center justify-center gap-2 transition-all transform hover:scale-105 active:scale-95"
           >
-            {isLoading ? "Loading..." : `Download Now for ${price}`}
+            {isLoading ? "Loading..." : `Download Now for ${price}`} <ArrowRight className="w-4 h-4 ml-1" />
           </a>
-          <p className="text-sm text-brand-cream/60 italic pt-4">
+          <p className="text-sm text-white/50 italic pt-4">
             Due to the digital nature of this product, all sales are final.
           </p>
         </div>
       </section>
 
+      </main>
     </div>
   );
 }

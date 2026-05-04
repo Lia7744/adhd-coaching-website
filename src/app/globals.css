@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand palette — refined */
-  --bg-primary: #FAF9F6;
+  /* Brand palette — refined for new aesthetic */
+  --bg-primary: #F4F0E6; /* Warm cream/beige */
   --bg-secondary: #FFFFFF;
-  --bg-dark: #1A1A1A;
-  --text-primary: #1A1A1A;
-  --text-muted: #6B6B6B;
-  --accent-sage: #5E8C6A;
-  --accent-sage-hover: #4A7254;
-  --accent-sage-light: #E8F0EA;
-  --accent-gold: #D4A853;
-  --accent-gold-hover: #C09540;
-  --accent-gold-light: #FBF5E8;
-  --border-neutral: #E8E5E0;
+  --bg-dark: #162B2B; /* Dark teal for contrast */
+  --text-primary: #142F2D; /* Deep dark teal for main text */
+  --text-muted: #333333; /* Darker warm gray */
+  --accent-sage: #5A7D62; /* Slightly richer sage */
+  --accent-sage-hover: #48644E;
+  --accent-sage-light: #E4EBE6;
+  --accent-gold: #C99A38; /* Mustard gold */
+  --accent-gold-hover: #B5882E;
+  --accent-gold-light: #F5ECD5;
+  --border-neutral: #E6DFD1;
 
   --background: var(--bg-primary);
   --foreground: var(--text-primary);

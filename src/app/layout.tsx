@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans, Caveat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
+import Header from "@/components/Header";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -35,6 +36,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${dmSans.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans text-brand-charcoal bg-brand-cream selection:bg-brand-sage/20">
+        <Header />
         {children}
         <Analytics />
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}

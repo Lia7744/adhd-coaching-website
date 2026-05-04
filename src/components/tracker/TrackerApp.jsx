@@ -15,8 +15,8 @@ const DonutChart = ({ percentage, size = 90, strokeWidth = 10 }) => {
 
   const getColor = (pct) => {
     if (pct >= 75) return "#5E8C6A";
-    if (pct >= 40) return "#D4A853";
-    return "#D4A853";
+    if (pct >= 40) return "#483428";
+    return "#483428";
   };
 
   return (
@@ -190,7 +190,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
         <div style={{ display: "flex", alignItems: "center", gap: 16, flex: 1, minWidth: 0 }}>
           <div style={{
             width: 8, height: 40, borderRadius: 4, flexShrink: 0,
-            background: percentage >= 75 ? "#5E8C6A" : percentage >= 40 ? "#D4A853" : "#D4A853",
+            background: percentage >= 75 ? "#5E8C6A" : percentage >= 40 ? "#483428" : "#483428",
           }} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{
@@ -312,8 +312,8 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
               onClick={() => onUpdate({ ...goal, completed: !goal.completed })}
               style={{
                 fontFamily: "'DM Sans', sans-serif", fontSize: 12,
-                color: goal.completed ? "#D4A853" : "#5E8C6A",
-                background: goal.completed ? "#FFF8F0" : "#E8F5F0",
+                color: goal.completed ? "#483428" : "#5E8C6A",
+                background: goal.completed ? "#F4EFEB" : "#E8F5F0",
                 border: "none", borderRadius: 8, padding: "5px 14px", cursor: "pointer",
               }}
             >
@@ -322,7 +322,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
             <button
               onClick={onDelete}
               style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#D4A853",
+                fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#483428",
                 background: "none", border: "1px solid #E8E5E0", borderRadius: 8,
                 padding: "5px 14px", cursor: "pointer",
               }}
@@ -343,9 +343,9 @@ const StrengthItem = ({ strength, onUpdate, onDelete }) => {
   return (
     <div style={{
       display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px",
-      background: "#F0F7F4", borderRadius: 10, border: "1px solid #D5E8DF",
+      background: "#FFFFFF", borderRadius: 10, border: "1px solid #E8E5E0",
     }}>
-      <span style={{ color: "#5E8C6A", fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>◆</span>
+      <span style={{ color: "#483428", fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>✦</span>
       <EditableText
         value={strength.text}
         onChange={(text) => onUpdate({ ...strength, text })}
@@ -366,7 +366,7 @@ const StrategyItem = ({ strategy, onUpdate, onDelete }) => {
       display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px",
       background: "#FFFFFF", borderRadius: 10, border: "1px solid #E8E5E0",
     }}>
-      <span style={{ color: "#D4A853", fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>✦</span>
+      <span style={{ color: "#483428", fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>✦</span>
       <EditableText
         value={strategy.text}
         onChange={(text) => onUpdate({ ...strategy, text })}
@@ -452,7 +452,7 @@ const SessionNote = ({ session, onUpdate, onDelete }) => {
             />
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <button onClick={onDelete} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#D4A853", background: "none", border: "1px solid #E8E5E0", borderRadius: 8, padding: "4px 12px", cursor: "pointer" }}>
+            <button onClick={onDelete} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#483428", background: "none", border: "1px solid #E8E5E0", borderRadius: 8, padding: "4px 12px", cursor: "pointer" }}>
               Remove Session
             </button>
           </div>
@@ -539,26 +539,31 @@ export default function CoachingTracker({ data, onUpdate }) {
   const overallPct = totalActions === 0 ? 0 : (doneActions / totalActions) * 100;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#FAF9F6", fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ minHeight: "100vh", background: "#F9F7F3", fontFamily: "'DM Sans', sans-serif" }}>
 
-      {/* Header */}
+      {/* Header Section Card */}
       <div style={{
-        background: "linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%)",
-        padding: "32px 24px 28px", color: "white",
+        background: "transparent",
+        padding: "32px 24px 28px", color: "#1A1A1A",
       }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+        <div style={{ 
+          maxWidth: 800, margin: "0 auto", 
+          background: "rgba(94, 140, 106, 0.15)", border: "1px solid rgba(94, 140, 106, 0.3)", borderRadius: 20,
+          padding: "32px"
+        }}>
+          {/* Avatar / Name / Date */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24, paddingBottom: 24, borderBottom: "1px solid rgba(94, 140, 106, 0.2)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
               <div style={{ position: "relative" }}>
                 <div
                   onClick={() => onUpdate({ ...data, showSymbolPicker: !data.showSymbolPicker })}
                   style={{
                     width: 48, height: 48, borderRadius: "50%",
-                    background: "rgba(212,163,115,0.2)",
+                    background: "rgba(255, 255, 255, 0.6)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: data.avatarSymbol ? 26 : 22,
-                    fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#D4A853",
-                    cursor: "pointer", border: "2px solid rgba(212,163,115,0.3)",
+                    fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#5E8C6A",
+                    cursor: "pointer", border: "1px solid rgba(94, 140, 106, 0.2)",
                   }}
                 >
                   {data.avatarSymbol || data.clientInitial || "?"}
@@ -608,19 +613,19 @@ export default function CoachingTracker({ data, onUpdate }) {
                   value={data.clientName}
                   onChange={(v) => update("clientName", v)}
                   placeholder="Client Name"
-                  style={{ fontSize: 22, fontWeight: 700, color: "white", fontFamily: "'Playfair Display', serif" }}
+                  style={{ fontSize: 22, fontWeight: 700, color: "#1A1A1A", fontFamily: "'Playfair Display', serif" }}
                 />
               </div>
             </div>
             <div style={{ textAlign: "right" }}>
-              <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 1, color: "rgba(255,255,255,0.5)", marginBottom: 4 }}>Start Date</div>
+              <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 1, color: "#6B6B6B", marginBottom: 4 }}>Start Date</div>
               <input
                 type="date"
                 value={data.startDate || ""}
                 onChange={(e) => update("startDate", e.target.value)}
                 style={{
-                  fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "white",
-                  background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)",
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#1A1A1A",
+                  background: "rgba(255, 255, 255, 0.5)", border: "1px solid rgba(94, 140, 106, 0.2)",
                   borderRadius: 6, padding: "4px 8px",
                 }}
               />
@@ -629,12 +634,11 @@ export default function CoachingTracker({ data, onUpdate }) {
 
           {/* North Star */}
           <div style={{
-            background: "rgba(212,163,115,0.12)", border: "1px solid rgba(212,163,115,0.25)",
-            borderRadius: 14, padding: "18px 22px",
+            background: "rgba(255, 255, 255, 0.5)", border: "1px solid rgba(94, 140, 106, 0.2)", borderRadius: 12, padding: "20px 24px",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-              <span style={{ fontSize: 16 }}>✦</span>
-              <span style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, color: "#D4A853" }}>
+              <span style={{ fontSize: 16, color: "#5E8C6A" }}>✦</span>
+              <span style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, color: "#5E8C6A" }}>
                 North Star
               </span>
             </div>
@@ -643,21 +647,21 @@ export default function CoachingTracker({ data, onUpdate }) {
               onChange={(v) => update("northStar", v)}
               placeholder="What's the big vision? What version of yourself do you want to see by the end of your coaching journey?"
               multiline
-              style={{ fontSize: 15, color: "rgba(255,255,255,0.9)", lineHeight: 1.6, minHeight: 50 }}
+              style={{ fontSize: 15, color: "#1A1A1A", lineHeight: 1.6, minHeight: 50, fontWeight: 500 }}
             />
           </div>
 
           {/* Overall Progress Bar */}
           {totalActions > 0 && (
             <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 14 }}>
-              <div style={{ flex: 1, height: 6, background: "rgba(255,255,255,0.15)", borderRadius: 3, overflow: "hidden" }}>
+              <div style={{ flex: 1, height: 6, background: "rgba(72,52,40,0.1)", borderRadius: 3, overflow: "hidden" }}>
                 <div style={{
                   width: `${overallPct}%`, height: "100%", borderRadius: 3,
-                  background: "linear-gradient(90deg, #D4A853, #5E8C6A)",
+                  background: "#5E8C6A",
                   transition: "width 0.4s ease",
                 }} />
               </div>
-              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", whiteSpace: "nowrap" }}>
+              <span style={{ fontSize: 13, color: "#6B6B6B", whiteSpace: "nowrap" }}>
                 {doneActions}/{totalActions} actions
               </span>
             </div>
@@ -744,39 +748,39 @@ export default function CoachingTracker({ data, onUpdate }) {
           );
         })()}
 
-        {/* Strengths Section */}
+        {/* Session Log */}
         <SectionHeader
-          icon="💪"
-          title="My Strengths"
-          collapsed={collapsed.strengths}
-          onToggle={() => toggleSection('strengths')}
-          count={data.strengths.length}
+          icon="📝"
+          title="Session Log"
+          collapsed={collapsed.sessions}
+          onToggle={() => toggleSection('sessions')}
+          count={data.sessions.length}
           action={
-            <button onClick={addStrength} style={{
+            <button onClick={addSession} style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
-              color: "#5E8C6A", background: "#F0F7F4", border: "1px solid #D5E8DF",
-              borderRadius: 10, padding: "8px 18px", cursor: "pointer",
+              color: "white", background: "#5E8C6A", border: "none", borderRadius: 10,
+              padding: "8px 18px", cursor: "pointer",
             }}>
-              + Add Strength
+              + Log Session
             </button>
           }
         />
-        {!collapsed.strengths && (
+        {!collapsed.sessions && (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {data.strengths.length === 0 ? (
+            {data.sessions.length === 0 ? (
               <div style={{
-                textAlign: "center", padding: "30px 20px", background: "#F0F7F4",
-                borderRadius: 12, border: "1px dashed #D5E8DF", color: "#6B6B6B", fontSize: 14,
+                textAlign: "center", padding: "30px 20px", background: "#FFFFFF",
+                borderRadius: 12, border: "1px dashed #E8E5E0", color: "#6B6B6B", fontSize: 14,
               }}>
-                Recognize and track your strengths here. These can be utilized to help you overcome challenges you face.
+                Session notes will appear here. Log insights and action items after each session.
               </div>
             ) : (
-              data.strengths.map((s, idx) => (
-                <StrengthItem
+              data.sessions.map((s, idx) => (
+                <SessionNote
                   key={s.id}
-                  strength={s}
-                  onUpdate={(u) => updateStrength(idx, u)}
-                  onDelete={() => deleteStrength(idx)}
+                  session={s}
+                  onUpdate={(u) => updateSession(idx, u)}
+                  onDelete={() => deleteSession(idx)}
                 />
               ))
             )}
@@ -793,8 +797,8 @@ export default function CoachingTracker({ data, onUpdate }) {
           action={
             <button onClick={addStrategy} style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
-              color: "#D4A853", background: "#FFF8F0", border: "1px solid #F0E6D6",
-              borderRadius: 10, padding: "8px 18px", cursor: "pointer",
+              color: "white", background: "#5E8C6A", border: "none", borderRadius: 10,
+              padding: "8px 18px", cursor: "pointer",
             }}>
               + Add Strategy
             </button>
@@ -822,39 +826,39 @@ export default function CoachingTracker({ data, onUpdate }) {
           </div>
         )}
 
-        {/* Session Log */}
+        {/* Strengths Section */}
         <SectionHeader
-          icon="📝"
-          title="Session Log"
-          collapsed={collapsed.sessions}
-          onToggle={() => toggleSection('sessions')}
-          count={data.sessions.length}
+          icon="💪🏻"
+          title="My Strengths"
+          collapsed={collapsed.strengths}
+          onToggle={() => toggleSection('strengths')}
+          count={data.strengths.length}
           action={
-            <button onClick={addSession} style={{
+            <button onClick={addStrength} style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
-              color: "#5E8C6A", background: "#E8F5F0", border: "none", borderRadius: 10,
+              color: "white", background: "#5E8C6A", border: "none", borderRadius: 10,
               padding: "8px 18px", cursor: "pointer",
             }}>
-              + Log Session
+              + Add Strength
             </button>
           }
         />
-        {!collapsed.sessions && (
+        {!collapsed.strengths && (
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {data.sessions.length === 0 ? (
+            {data.strengths.length === 0 ? (
               <div style={{
                 textAlign: "center", padding: "30px 20px", background: "#FFFFFF",
                 borderRadius: 12, border: "1px dashed #E8E5E0", color: "#6B6B6B", fontSize: 14,
               }}>
-                Session notes will appear here. Log insights and action items after each session.
+                Recognize and track your strengths here. These can be utilized to help you overcome challenges you face.
               </div>
             ) : (
-              data.sessions.map((s, idx) => (
-                <SessionNote
+              data.strengths.map((s, idx) => (
+                <StrengthItem
                   key={s.id}
-                  session={s}
-                  onUpdate={(u) => updateSession(idx, u)}
-                  onDelete={() => deleteSession(idx)}
+                  strength={s}
+                  onUpdate={(u) => updateStrength(idx, u)}
+                  onDelete={() => deleteStrength(idx)}
                 />
               ))
             )}

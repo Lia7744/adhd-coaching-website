@@ -84,11 +84,11 @@ export default function CoachDashboard({ initialClients }: { initialClients: Cli
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F5F2]">
+    <div className="min-h-screen bg-[#F9F7F3]">
       {/* Header */}
-      <div className="bg-brand-charcoal text-white px-6 py-5 flex items-center justify-between">
+      <div className="bg-[#1A1A1A] text-white px-6 py-5 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-serif font-black text-brand-gold">Coach Dashboard</h1>
+          <h1 className="text-2xl font-serif font-black text-[#F9F7F3]">Coach Dashboard</h1>
           <p className="text-white/60 text-sm mt-0.5">{clients.length} active client{clients.length !== 1 ? "s" : ""}</p>
         </div>
         <button
@@ -125,7 +125,7 @@ export default function CoachDashboard({ initialClients }: { initialClients: Cli
         <div className="bg-white rounded-2xl border-2 border-brand-border p-6 mb-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-brand-charcoal flex items-center gap-2">
-              <Users className="w-5 h-5 text-brand-gold" /> Add New Client
+              <Users className="w-5 h-5 text-brand-sage" /> Add New Client
             </h2>
             <button
               onClick={() => setAddingClient(!addingClient)}
@@ -187,14 +187,14 @@ export default function CoachDashboard({ initialClients }: { initialClients: Cli
                         value={editName}
                         onChange={(e) => setEditName(e.target.value)}
                         placeholder="Client name"
-                        className="flex-1 bg-brand-cream border-2 border-brand-border rounded-xl px-4 py-2 outline-none focus:border-brand-gold text-sm font-medium"
+                        className="flex-1 bg-brand-cream border-2 border-brand-border rounded-xl px-4 py-2 outline-none focus:border-brand-sage text-sm font-medium"
                       />
                       <input
                         type="email"
                         value={editEmail}
                         onChange={(e) => setEditEmail(e.target.value)}
                         placeholder="Email address"
-                        className="flex-1 bg-brand-cream border-2 border-brand-border rounded-xl px-4 py-2 outline-none focus:border-brand-gold text-sm font-medium"
+                        className="flex-1 bg-brand-cream border-2 border-brand-border rounded-xl px-4 py-2 outline-none focus:border-brand-sage text-sm font-medium"
                       />
                     </div>
                     {editError && <p className="text-[#D25D48] text-xs font-bold">{editError}</p>}
@@ -208,7 +208,7 @@ export default function CoachDashboard({ initialClients }: { initialClients: Cli
                       <button
                         onClick={() => handleSaveEdit(client.id)}
                         disabled={editSaving}
-                        className="flex items-center gap-1.5 text-sm font-bold bg-brand-gold text-white rounded-xl px-4 py-2 hover:brightness-90 disabled:opacity-50"
+                        className="flex items-center gap-1.5 text-sm font-bold bg-[#483428] text-white rounded-xl px-4 py-2 hover:brightness-90 disabled:opacity-50"
                       >
                         <Check className="w-4 h-4" /> {editSaving ? "Saving..." : "Save"}
                       </button>
@@ -218,7 +218,7 @@ export default function CoachDashboard({ initialClients }: { initialClients: Cli
                   // ── Normal View ──
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-4 min-w-0">
-                      <div className="w-10 h-10 rounded-full bg-brand-gold/15 flex items-center justify-center font-bold text-brand-gold text-lg flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-[#483428]/10 flex items-center justify-center font-bold text-[#483428] text-lg flex-shrink-0">
                         {client.client_name?.charAt(0).toUpperCase()}
                       </div>
                       <div className="min-w-0">

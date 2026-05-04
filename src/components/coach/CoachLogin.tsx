@@ -38,11 +38,11 @@ export default function CoachLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-cream flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border-2 border-brand-border p-10">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6">
+      <div className="w-full max-w-md bg-[#F9F7F3] rounded-[2.5rem] shadow-xl border border-brand-sage/10 p-10 relative overflow-hidden">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-brand-gold/10 rounded-2xl flex items-center justify-center mb-4">
-            <Lock className="w-8 h-8 text-brand-gold" />
+          <div className="w-16 h-16 bg-brand-sage/10 rounded-2xl flex items-center justify-center mb-4">
+            <Lock className="w-8 h-8 text-brand-sage" />
           </div>
           <h1 className="text-3xl font-serif font-black text-brand-charcoal">Coach Portal</h1>
           <p className="text-brand-warm-gray text-sm mt-2 text-center">
@@ -59,7 +59,7 @@ export default function CoachLogin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your coach email..."
-                className="w-full bg-brand-cream border-2 border-brand-border rounded-xl pl-12 pr-4 py-3 outline-none focus:border-brand-gold transition-colors font-medium"
+                className="w-full bg-white border-2 border-brand-border rounded-xl pl-12 pr-4 py-3 outline-none focus:border-brand-sage transition-colors font-medium"
                 required
               />
             </div>
@@ -67,7 +67,7 @@ export default function CoachLogin() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-brand-gold hover:brightness-90 text-white rounded-xl py-3 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+              className="w-full bg-brand-sage hover:bg-brand-sage-hover text-white rounded-full h-14 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50 shadow-md active:scale-95 mt-2"
             >
               {isLoading ? "Sending..." : "Send Login Code"} <ArrowRight className="w-4 h-4" />
             </button>
@@ -82,7 +82,7 @@ export default function CoachLogin() {
               value={otpCode}
               onChange={(e) => setOtpCode(e.target.value)}
               placeholder="Enter login code..."
-              className="w-full bg-brand-cream border-2 border-brand-border rounded-xl px-4 py-3 outline-none focus:border-brand-gold transition-colors font-medium text-center text-2xl tracking-widest"
+              className="w-full bg-white border-2 border-brand-border rounded-xl px-4 py-3 outline-none focus:border-brand-sage transition-colors font-medium text-center text-2xl tracking-widest"
               maxLength={8}
               required
             />
@@ -90,7 +90,7 @@ export default function CoachLogin() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-brand-gold hover:brightness-90 text-white rounded-xl py-3 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+              className="w-full bg-brand-sage hover:bg-brand-sage-hover text-white rounded-full h-14 font-bold flex items-center justify-center gap-2 transition-all disabled:opacity-50 shadow-md active:scale-95 mt-2"
             >
               {isLoading ? "Verifying..." : "Access Dashboard"} <ArrowRight className="w-4 h-4" />
             </button>
