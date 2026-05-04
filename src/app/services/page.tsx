@@ -11,11 +11,11 @@ const BOOKING_URL = "https://calendar.app.google/Nwa6i4WGsMysUzvu8";
 // --- Pricing (Whop URLs) ---
 const PRICING = {
   audit:    { USD: { amount: "$139", label: "USD / One-Time",  cta: "Book Your Audit",           href: "https://whop.com/checkout/plan_GWuskTOLF28Tv" },
-               CAD: { amount: "$189", label: "CAD / One-Time",  cta: "Book Your Audit",           href: "https://whop.com/checkout/plan_73yVAHaLGvgUx" } },
+               CAD: { amount: "$159", label: "CAD / One-Time",  cta: "Book Your Audit",           href: "https://whop.com/checkout/plan_73yVAHaLGvgUx" } },
   weekly:   { USD: { amount: "$499", label: "USD / month",     cta: "Sign up",                    href: "https://whop.com/checkout/plan_DrnOxv8PCNWJ8" },
-               CAD: { amount: "$679", label: "CAD / month",     cta: "Sign up",                    href: "https://whop.com/checkout/plan_TTSt5gdDkI6mN" } },
+               CAD: { amount: "$549", label: "CAD / month",     cta: "Sign up",                    href: "https://whop.com/checkout/plan_TTSt5gdDkI6mN" } },
   student:  { USD: { amount: "$249", label: "USD / month",     cta: "Start with an Audit",        href: "https://whop.com/checkout/plan_GWuskTOLF28Tv" },
-               CAD: { amount: "$339", label: "CAD / month",     cta: "Start with an Audit",        href: "https://whop.com/checkout/plan_73yVAHaLGvgUx" } },
+               CAD: { amount: "$299", label: "CAD / month",     cta: "Start with an Audit",        href: "https://whop.com/checkout/plan_73yVAHaLGvgUx" } },
 };
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -150,7 +150,7 @@ export default function ServicesPage() {
 
                 <a
                   href={currencyLoaded ? PRICING.audit[c].href : BOOKING_URL}
-                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Audit Session", currency: c, value: c === "CAD" ? 189 : 139 })}
+                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Audit Session", currency: c, value: c === "CAD" ? 159 : 139 })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-auto inline-flex items-center justify-center gap-2 h-14 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
@@ -207,7 +207,7 @@ export default function ServicesPage() {
 
                 <a
                   href={currencyLoaded ? PRICING.weekly[c].href : BOOKING_URL}
-                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Weekly Momentum Plan", currency: c, value: c === "CAD" ? 679 : 499 })}
+                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Weekly Momentum Plan", currency: c, value: c === "CAD" ? 549 : 499 })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-auto inline-flex items-center justify-center gap-2 h-14 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
@@ -282,7 +282,7 @@ export default function ServicesPage() {
 
                     <a
                       href={currencyLoaded ? PRICING.student[c].href : BOOKING_URL}
-                      onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Semester Survival Plan", currency: c, value: c === "CAD" ? 339 : 249 })}
+                      onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Semester Survival Plan", currency: c, value: c === "CAD" ? 299 : 249 })}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 h-14 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-charcoal hover:bg-black text-white"
