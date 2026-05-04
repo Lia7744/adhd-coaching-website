@@ -48,7 +48,7 @@ export default function ShopPage() {
                 <div className="relative group perspective-1000 w-full">
                   <div className="relative transform transition-transform duration-700 group-hover:rotate-y-6">
                     <Image 
-                      src="/workbook-cover-final.png"
+                      src="/workbook_cover_final.png"
                       alt="Manipulating Myself to Do Stuff Workbook Cover" 
                       width={600} 
                       height={800} 
