@@ -71,7 +71,7 @@ function ResultsContent() {
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-cream">
-      <main className="flex-grow flex items-center justify-center pt-48 pb-16 px-4 sm:px-6 lg:px-8">
+      <main className="flex-grow flex items-center justify-center pt-64 mt-16 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto space-y-10 text-center">
 
           {/* Icon */}
@@ -133,7 +133,7 @@ function ResultsContent() {
               href="https://calendar.app.google/Nwa6i4WGsMysUzvu8"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-brand-sage hover:bg-brand-sage-hover text-white font-bold px-8 h-14 rounded-full shadow-md transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 bg-brand-sage-light hover:bg-brand-sage/20 text-brand-sage font-bold px-8 h-14 rounded-full shadow-md transition-all hover:scale-105"
             >
               Book a free consultation <ArrowRight className="w-4 h-4" />
             </a>
