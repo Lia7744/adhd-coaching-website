@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, CheckCircle2, ShieldCheck, Download, BookOpen, Sparkles, Brain, Lock, Plus, Minus } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, Download, BookOpen, Sparkles, Brain, Lock, Plus, Minus } from "lucide-react";
 import Image from "next/image";
 import { sendGAEvent } from "@next/third-parties/google";
 
@@ -58,7 +58,7 @@ export default function WorkbookOfferPage() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-cream selection:bg-brand-sage/30 font-sans">
+    <div className="min-h-screen bg-white selection:bg-brand-sage/30 font-sans">
       
       {/* ═══ MINIMAL NAVIGATION (No Distractions) ═══ */}
       <nav className="pt-6 pb-2">
@@ -68,7 +68,7 @@ export default function WorkbookOfferPage() {
       </nav>
 
       {/* ═══ HERO / HOOK ═══ */}
-      <section className="pt-8 pb-16 px-6 relative overflow-hidden">
+      <section className="pt-20 pb-16 px-6 relative overflow-hidden">
         <div className="absolute top-0 right-10 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl -z-10" />
         <div className="max-w-3xl mx-auto text-center space-y-8">
           
@@ -89,35 +89,35 @@ export default function WorkbookOfferPage() {
 
       {/* ═══ AGITATION & EMPATHY ═══ */}
       <section className="pb-20 px-6">
-        <div className="max-w-4xl mx-auto bg-[#524636] rounded-[2.5rem] p-8 sm:p-16 shadow-2xl relative overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-brand-sage/20 border border-brand-sage/30 rounded-[2.5rem] p-8 sm:p-16 shadow-lg relative overflow-hidden text-brand-charcoal">
           {/* Decorative Background Elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-sage/20 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/30 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
           
           <div className="relative z-10 space-y-8">
-            <h2 className="text-3xl sm:text-4xl font-serif font-black text-brand-cream leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif font-black text-brand-charcoal leading-tight">
               Here's what nobody tells you about ADHD:
             </h2>
             
-            <p className="text-xl text-brand-cream/80 leading-relaxed">
+            <p className="text-xl text-brand-charcoal/80 leading-relaxed">
               Your brain doesn't run on "importance." It doesn't care that the email needs to be sent, or the laundry needs to be folded, or the deadline is tomorrow. 
             </p>
             
-            <p className="text-xl text-brand-cream/80 leading-relaxed">
+            <p className="text-xl text-brand-charcoal/80 leading-relaxed">
               If a task isn't interesting, novel, challenging, or urgently on fire... your brain literally will not produce the dopamine required to engage with it. 
             </p>
             
-            <div className="my-10 p-8 bg-white/5 backdrop-blur-sm rounded-2xl border-l-4 border-brand-sage relative">
-              <Sparkles className="absolute -top-4 -left-4 w-8 h-8 text-brand-sage bg-[#524636] rounded-full p-1" />
-              <p className="italic text-brand-cream font-serif text-2xl leading-snug">
+            <div className="my-10 p-8 bg-white/50 backdrop-blur-sm rounded-2xl border-l-4 border-brand-sage relative shadow-sm">
+              <Sparkles className="absolute -top-4 -left-4 w-8 h-8 text-brand-sage bg-white rounded-full p-1 border border-brand-sage/20" />
+              <p className="italic text-brand-charcoal font-serif text-2xl leading-snug">
                 "You aren't lazy. You're trying to start a car with the wrong kind of fuel."
               </p>
             </div>
             
-            <p className="text-xl text-brand-cream/80 leading-relaxed font-bold">
+            <p className="text-xl text-brand-charcoal/80 leading-relaxed font-bold">
               The solution isn't another daily planner. The solution is learning how to outsmart your own neurology.
             </p>
-            <p className="text-xl text-brand-cream/80 leading-relaxed">
+            <p className="text-xl text-brand-charcoal/80 leading-relaxed">
               You have to rig the game so your brain cooperates—not because it wants to, but because you gave it no good reason not to.
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function WorkbookOfferPage() {
       </section>
 
       {/* ═══ THE SOLUTION ═══ */}
-      <section className="py-16 px-6 bg-[#524636] text-brand-cream relative">
+      <section className="py-16 px-6 bg-[#2A2421] text-brand-cream relative">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           
           <div className="relative group perspective-1000 order-2 md:order-1">
@@ -158,7 +158,7 @@ export default function WorkbookOfferPage() {
                 "20+ fill-in-the-blank tactical exercises."
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-brand-sage shrink-0 mt-0.5" />
+                  <Check className="w-6 h-6 text-brand-sage shrink-0 mt-0.5" />
                   <span className="text-brand-cream font-medium">{item}</span>
                 </li>
               ))}
@@ -169,7 +169,7 @@ export default function WorkbookOfferPage() {
               <a 
                 href={checkoutUrl}
                 onClick={handleCheckout}
-                className="block w-full bg-brand-sage hover:bg-[#4a7255] text-white text-center py-5 rounded-full text-xl font-bold shadow-[0_0_30px_-5px_var(--color-brand-sage)] transition-all transform hover:scale-[1.02]"
+                className="block w-full bg-brand-sage hover:bg-brand-sage-hover text-white text-center py-5 rounded-full text-xl font-bold transition-all transform hover:scale-[1.02]"
               >
                 {isLoading ? "Loading..." : `Download Instantly — ${price}`}
               </a>
@@ -184,7 +184,7 @@ export default function WorkbookOfferPage() {
       </section>
 
       {/* ═══ AUTHORITY / CLOSING ═══ */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-brand-cream">
         <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-10">
           <div className="w-48 h-48 rounded-full overflow-hidden shrink-0 border-8 border-white shadow-xl relative">
             <Image src="/headshot-v2.jpg" alt="Liana Groombridge" fill className="object-cover" />
@@ -197,14 +197,14 @@ export default function WorkbookOfferPage() {
               ICF-Certified ADHD Coach
             </p>
             <p className="text-brand-warm-gray leading-relaxed">
-              I built this workbook because I was sick of neurotypical productivity advice that doesn't work for us. No "eat the frog." No "just set an alarm." This is the exact system I use with my private clients to stop fighting their brains and start getting things done.
+              I built this workbook because I was sick of neurotypical productivity advice that doesn't work for us. No "eat the frog." No "just set an alarm." This is the exact system I use with myself and my clients to stop fighting our brains and start getting things done.
             </p>
           </div>
         </div>
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section className="py-20 px-6 relative">
+      <section className="py-20 px-6 bg-brand-cream relative">
         <div className="max-w-3xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-3xl sm:text-4xl font-serif font-black text-brand-charcoal">
