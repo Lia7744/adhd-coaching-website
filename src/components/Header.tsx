@@ -66,9 +66,9 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
             {/* Right - Nav Links */}
             <div className="flex-1 flex justify-end items-center">
               <div className="hidden md:flex items-center gap-8">
-                <a href="/" className="text-sm font-bold text-brand-charcoal hover:text-brand-gold transition-colors">Home</a>
-                <a href="/services" className="text-sm font-bold text-brand-charcoal hover:text-brand-gold transition-colors">Services</a>
-                <a href="/shop" className="text-sm font-bold text-brand-charcoal hover:text-brand-gold transition-colors">Shop</a>
+                <a href="/" className="text-sm font-bold text-brand-charcoal hover:text-brand-sage transition-colors">Home</a>
+                <a href="/services" className="text-sm font-bold text-brand-charcoal hover:text-brand-sage transition-colors">Services</a>
+                <a href="/shop" className="text-sm font-bold text-brand-charcoal hover:text-brand-sage transition-colors">Shop</a>
                 <a href="/tracker" className="flex items-center gap-2 text-brand-charcoal font-bold text-sm bg-white px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all border border-brand-border/10"><Lock className="w-4 h-4" /> Client Portal</a>
               </div>
               

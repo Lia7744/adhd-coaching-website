@@ -39,7 +39,7 @@ export default function ShopPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               
               {/* Left: Product Image */}
-              <div className="flex flex-col items-center gap-6 max-w-[520px] mx-auto w-full">
+              <div className="order-2 lg:order-1 flex flex-col items-center gap-6 max-w-[520px] mx-auto w-full">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage font-bold text-xs uppercase tracking-widest border border-brand-sage/20">
                   <Sparkles className="w-3 h-3" />
                   Digital Download
@@ -60,7 +60,7 @@ export default function ShopPage() {
               </div>
 
             {/* Right: Sales Copy */}
-            <div className="space-y-8">
+            <div className="order-1 lg:order-2 space-y-8">
               
               <h1 className="text-4xl sm:text-5xl font-serif font-black text-brand-charcoal leading-tight">
                 Because willpower is a scam and your brain needs

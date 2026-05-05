@@ -10,7 +10,7 @@ export default function WorkbookThankYouPage() {
       <main className="pt-48 pb-20 px-6 sm:px-12 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-40 left-10 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-brand-gold/20 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-brand-sage/20 rounded-full blur-3xl -z-10" />
 
         <div className="max-w-3xl mx-auto">
           {/* Header */}

@@ -56,7 +56,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <main>
         {/* ═══ HERO ═══ */}
-        <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-white" style={{ backgroundColor: 'white' }}>
+        <section className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-40 pb-20 overflow-hidden bg-white" style={{ backgroundColor: 'white' }}>
           
           {/* Coffee - Placed to the left of the text */}
           <div className="absolute top-1/2 left-0 z-0 select-none pointer-events-none hidden sm:block transform -translate-x-[25%] -translate-y-1/2">
@@ -101,7 +101,7 @@ export default function Home() {
                   href="https://calendar.app.google/Nwa6i4WGsMysUzvu8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-brand-charcoal hover:text-brand-gold transition-colors mt-2"
+                  className="text-sm font-medium text-brand-charcoal hover:text-brand-sage transition-colors mt-2"
                 >
                   or book a free consultation →
                 </a>
@@ -115,7 +115,7 @@ export default function Home() {
               transition={{ delay: 1.2 }}
               className="pt-12"
             >
-              <a href="#about" className="inline-flex flex-col items-center gap-2 text-brand-gold hover:text-brand-gold-hover transition-colors">
+              <a href="#about" className="inline-flex flex-col items-center gap-2 text-brand-sage hover:text-brand-sage-hover transition-colors">
                 <span className="text-sm font-medium uppercase tracking-widest">SCROLL</span>
                 <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
                   <ChevronDown className="w-6 h-6" />
@@ -132,7 +132,7 @@ export default function Home() {
               {/* Photo */}
               <Reveal className="lg:col-span-2">
                 <div className="relative max-w-sm mx-auto">
-                  <div className="absolute -inset-3 bg-gradient-to-br from-brand-sage/20 to-brand-gold/20 rounded-[2rem] blur-xl" />
+                  <div className="absolute -inset-3 bg-gradient-to-br from-brand-sage/20 to-brand-sage/10 rounded-[2rem] blur-xl" />
                   <div className="relative overflow-hidden rounded-[2rem] shadow-2xl border-2 border-white/50">
                     <Image
                       src="/headshot-v2.jpg"
@@ -185,7 +185,7 @@ export default function Home() {
         {/* ═══ QUALIFICATIONS & PHILOSOPHY ═══ */}
         <section id="qualifications" className="py-28 bg-[#1A1A1A] text-white relative noise overflow-hidden">
           <div className="absolute top-0 left-[20%] w-96 h-96 bg-brand-sage/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-[10%] w-80 h-80 bg-brand-gold/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-[10%] w-80 h-80 bg-brand-sage/5 rounded-full blur-3xl" />
           
           <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid md:grid-cols-2 gap-8">
@@ -270,7 +270,7 @@ export default function Home() {
 
         {/* ═══ CTA BANNER ═══ */}
         <section className="relative py-14 overflow-hidden bg-white">
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-sage/5 via-transparent to-brand-gold/5" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-sage/5 via-transparent to-brand-sage/5" />
           <div className="max-w-3xl mx-auto px-6 lg:px-8 relative z-10 text-center space-y-8">
             <Reveal>
               <h2 className="text-4xl sm:text-5xl font-serif font-black text-brand-charcoal">
