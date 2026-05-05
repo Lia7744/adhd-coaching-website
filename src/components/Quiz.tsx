@@ -147,7 +147,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
   const progress = (currentQuestion / questions.length) * 100;
 
   return (
-    <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-6 sm:p-10 max-w-2xl w-full shadow-2xl relative overflow-hidden">
+    <div className="bg-white border-2 border-brand-border rounded-3xl p-6 sm:p-10 max-w-2xl w-full shadow-2xl relative overflow-hidden">
       {onClose && (
         <button 
           onClick={onClose}
@@ -166,10 +166,10 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
             exit={{ opacity: 0, y: -20 }}
             className="space-y-6 text-center"
           >
-            <div className="inline-block p-4 bg-brand-white rounded-full border-2 border-brand-gold relative">
-              <HelpCircle className="w-10 h-10 text-brand-gold" />
+            <div className="inline-block p-4 bg-brand-white rounded-full border-2 border-brand-sage relative">
+              <HelpCircle className="w-10 h-10 text-brand-sage" />
             </div>
-            <h2 className="text-3xl font-serif font-black italic text-brand-charcoal leading-tight">
+            <h2 className="text-3xl font-serif font-black text-brand-charcoal leading-tight">
               Why Can't I Just Do the Thing?
             </h2>
             <div className="space-y-4 text-brand-warm-gray text-lg leading-relaxed">
@@ -183,7 +183,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
                 sendGAEvent("event", "quiz_start");
                 setStep("questions");
               }}
-              className="w-full bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-14 rounded-full text-lg font-bold shadow-md flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
+              className="w-full bg-brand-sage hover:bg-brand-sage-hover text-white h-14 rounded-full text-lg font-bold shadow-md flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
             >
               Start the Quiz <ArrowRight className="w-5 h-5" />
             </button>
@@ -250,7 +250,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
             className="space-y-8 text-center"
           >
             <div className="space-y-4">
-              <h2 className="text-4xl font-serif font-black italic text-brand-charcoal">Your Results are Ready!</h2>
+              <h2 className="text-4xl font-serif font-black text-brand-charcoal">Your Results are Ready!</h2>
               <p className="text-lg text-brand-warm-gray">
                 Enter your email to see your top ADHD productivity blocker — plus a free strategy sheet tailored to your result.
               </p>
@@ -280,7 +280,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
               </div>
               <button
                 type="submit"
-                className="w-full bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-14 rounded-full text-lg font-bold shadow-md flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
+                className="w-full bg-brand-sage hover:bg-brand-sage-hover text-white h-14 rounded-full text-lg font-bold shadow-md flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
               >
                 Show me my result <ArrowRight className="w-5 h-5" />
               </button>
@@ -299,7 +299,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
             className="py-12 space-y-6 text-center"
           >
             <div className="w-16 h-16 border-4 border-brand-sage border-t-transparent rounded-full animate-spin mx-auto" />
-            <p className="text-xl font-serif font-bold italic text-brand-sage italic">
+            <p className="text-xl font-serif font-bold text-brand-sage">
               Calculating your blockers...
             </p>
           </motion.div>
