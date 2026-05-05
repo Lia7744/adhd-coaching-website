@@ -89,10 +89,10 @@ export default function WorkbookOfferPage() {
 
       {/* ═══ AGITATION & EMPATHY ═══ */}
       <section className="pb-20 px-6">
-        <div className="max-w-4xl mx-auto bg-brand-charcoal rounded-[2.5rem] p-8 sm:p-16 shadow-2xl relative overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-[#524636] rounded-[2.5rem] p-8 sm:p-16 shadow-2xl relative overflow-hidden">
           {/* Decorative Background Elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-sage/20 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
           
           <div className="relative z-10 space-y-8">
             <h2 className="text-3xl sm:text-4xl font-serif font-black text-brand-cream leading-tight">
@@ -107,8 +107,8 @@ export default function WorkbookOfferPage() {
               If a task isn't interesting, novel, challenging, or urgently on fire... your brain literally will not produce the dopamine required to engage with it. 
             </p>
             
-            <div className="my-10 p-8 bg-white/5 backdrop-blur-sm rounded-2xl border-l-4 border-brand-gold relative">
-              <Sparkles className="absolute -top-4 -left-4 w-8 h-8 text-brand-gold bg-brand-charcoal rounded-full p-1" />
+            <div className="my-10 p-8 bg-white/5 backdrop-blur-sm rounded-2xl border-l-4 border-brand-sage relative">
+              <Sparkles className="absolute -top-4 -left-4 w-8 h-8 text-brand-sage bg-[#524636] rounded-full p-1" />
               <p className="italic text-brand-cream font-serif text-2xl leading-snug">
                 "You aren't lazy. You're trying to start a car with the wrong kind of fuel."
               </p>
@@ -125,13 +125,13 @@ export default function WorkbookOfferPage() {
       </section>
 
       {/* ═══ THE SOLUTION ═══ */}
-      <section className="py-16 px-6 bg-brand-charcoal text-brand-cream relative">
+      <section className="py-16 px-6 bg-[#524636] text-brand-cream relative">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           
           <div className="relative group perspective-1000 order-2 md:order-1">
-            <div className="absolute -inset-4 bg-gradient-to-tr from-brand-gold/40 to-brand-sage/40 rounded-[3rem] blur-2xl opacity-40 group-hover:opacity-80 transition-opacity duration-700" />
+            <div className="absolute -inset-4 bg-gradient-to-tr from-brand-sage/40 to-white/20 rounded-[3rem] blur-2xl opacity-40 group-hover:opacity-80 transition-opacity duration-700" />
             <Image 
-              src="/workbook-cover-final.png"
+              src="/workbook_cover_final.png"
               alt="Manipulating Myself to Do Stuff Workbook Cover" 
               width={500} 
               height={700} 
@@ -158,7 +158,7 @@ export default function WorkbookOfferPage() {
                 "20+ fill-in-the-blank tactical exercises."
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-brand-gold shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-6 h-6 text-brand-sage shrink-0 mt-0.5" />
                   <span className="text-brand-cream font-medium">{item}</span>
                 </li>
               ))}
@@ -241,7 +241,7 @@ export default function WorkbookOfferPage() {
           <a 
             href={checkoutUrl}
             onClick={handleCheckout}
-            className="inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-[#c49a46] text-brand-charcoal h-16 px-10 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 bg-brand-sage hover:bg-brand-sage-hover text-white h-16 px-10 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-105"
           >
             {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
             <ArrowRight className="w-5 h-5" />
