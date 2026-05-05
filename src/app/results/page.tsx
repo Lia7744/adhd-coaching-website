@@ -71,7 +71,7 @@ function ResultsContent() {
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-cream">
-      <main className="flex-grow flex items-center justify-center pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <main className="flex-grow flex items-center justify-center pt-48 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto space-y-10 text-center">
 
           {/* Icon */}
@@ -99,28 +99,28 @@ function ResultsContent() {
           <div className="border-t border-brand-border" />
 
           {/* Workbook Upsell */}
-          <div className="bg-white border-2 border-brand-border text-brand-charcoal rounded-3xl p-10 shadow-xl relative overflow-hidden group text-left">
-            <div className="absolute top-0 right-0 p-8 opacity-[0.03] transform rotate-12 group-hover:rotate-0 transition-transform duration-700">
-               <BookOpen className="w-32 h-32 text-brand-charcoal" />
+          <div className="bg-brand-sage text-white rounded-3xl p-10 shadow-2xl relative overflow-hidden group text-left">
+            <div className="absolute top-0 right-0 p-8 opacity-10 transform rotate-12 group-hover:rotate-0 transition-transform duration-700">
+               <BookOpen className="w-32 h-32 text-white" />
             </div>
             <div className="relative z-10 space-y-6">
-              <div className="inline-block px-3 py-1 bg-brand-sage text-white text-xs font-black uppercase tracking-widest rounded-md">
+              <div className="inline-block px-3 py-1 bg-white text-brand-sage text-xs font-black uppercase tracking-widest rounded-md">
                 Full System
               </div>
               <h2 className="text-3xl font-serif font-bold leading-tight">
                 Want to go deeper?
               </h2>
-              <p className="text-lg text-brand-warm-gray leading-relaxed">
+              <p className="text-lg text-white/90 leading-relaxed">
                 <strong>Manipulating Myself to Do Stuff</strong> is a 9-chapter ADHD workbook with strategies for <em>every</em> blocker type — not just your top one.
               </p>
-              <div className="bg-brand-sage/5 p-4 rounded-xl border border-brand-sage/20">
-                <p className="text-sm font-medium italic text-brand-charcoal">
+              <div className="bg-white/10 p-4 rounded-xl border border-white/20">
+                <p className="text-sm font-medium italic text-white">
                   "Built by an ADHD coach with ADHD who was done with relying on last-minute panic as a productivity system. No 'just try harder.' Just stuff that actually works."
                 </p>
               </div>
               <button 
                 onClick={() => window.location.href = "/workbook-offer"}
-                className="bg-brand-sage hover:bg-brand-sage-hover text-white h-16 px-10 rounded-full text-xl font-bold shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto transition-all transform hover:scale-105"
+                className="bg-white hover:bg-brand-sage-light text-brand-sage h-16 px-10 rounded-full text-xl font-bold shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto transition-all transform hover:scale-105"
               >
                 {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
               </button>
