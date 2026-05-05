@@ -38,8 +38,8 @@ export default function ShopPage() {
           <div className="max-w-5xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               
-              {/* Left: Product Image */}
-              <div className="order-2 lg:order-1 flex flex-col items-center gap-6 max-w-[520px] mx-auto w-full">
+              {/* Left: Product Image (Desktop Only) */}
+              <div className="order-2 lg:order-1 flex-col items-center gap-6 max-w-[520px] mx-auto w-full hidden lg:flex">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage font-bold text-xs uppercase tracking-widest border border-brand-sage/20">
                   <Sparkles className="w-3 h-3" />
                   Digital Download
@@ -76,11 +76,32 @@ export default function ShopPage() {
                 <p className="font-bold text-brand-sage">This workbook is the other option.</p>
               </div>
 
+              {/* Mobile Product Image (Renders right after text on mobile) */}
+              <div className="flex lg:hidden flex-col items-center gap-6 max-w-[520px] mx-auto w-full pt-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage font-bold text-xs uppercase tracking-widest border border-brand-sage/20">
+                  <Sparkles className="w-3 h-3" />
+                  Digital Download
+                </div>
+
+                <div className="relative group perspective-1000 w-full">
+                  <div className="relative transform transition-transform duration-700 group-hover:rotate-y-6">
+                    <Image 
+                      src="/workbook_cover_final.png"
+                      alt="Manipulating Myself to Do Stuff Workbook Cover" 
+                      width={600} 
+                      height={800} 
+                      className="w-full h-auto rounded-xl shadow-2xl border border-brand-sage/10 object-contain relative z-10"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <a 
                   href={checkoutUrl}
                   onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-14 px-10 rounded-full font-bold text-base shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-14 px-4 sm:px-10 rounded-full font-bold text-sm sm:text-base whitespace-nowrap shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
                 >
                   {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
                   <ArrowRight className="w-4 h-4" />
