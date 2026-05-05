@@ -71,7 +71,7 @@ function ResultsContent() {
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-cream">
-      <main className="flex-grow flex items-center justify-center pt-64 mt-16 pb-16 px-4 sm:px-6 lg:px-8">
+      <main className="flex-grow flex items-center justify-center pt-48 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto space-y-10 text-center">
 
           {/* Icon */}
