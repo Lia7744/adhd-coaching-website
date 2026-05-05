@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Download, Calendar, ArrowRight, Lock } from "lucide-react";
+import { Check, Download, Calendar, ArrowRight, Lock } from "lucide-react";
 import Image from "next/image";
 
 export default function WorkbookThankYouPage() {
@@ -15,8 +15,8 @@ export default function WorkbookThankYouPage() {
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="text-center space-y-6 mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-sage/20 rounded-full mb-4">
-              <CheckCircle2 className="w-10 h-10 text-brand-sage" />
+            <div className="flex flex-col items-center justify-center gap-2 mb-6">
+              <Check className="w-16 h-16 text-brand-sage" strokeWidth={1.5} />
             </div>
             <h1 className="text-4xl sm:text-5xl font-serif font-black text-brand-charcoal leading-tight">
               You are officially in.
