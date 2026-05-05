@@ -5,30 +5,9 @@ import Image from "next/image";
 
 export default function WorkbookThankYouPage() {
   return (
-    <div className="min-h-screen bg-brand-cream selection:bg-brand-sage/30">
-      {/* ═══ NAVIGATION ═══ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <a href="/" className="flex items-center gap-3">
-              <Image src="/logo-transparent.png" alt="LG ADHD Coaching" width={80} height={80} />
-              <span className="text-xl sm:text-2xl font-serif font-black text-brand-charcoal tracking-tight">
-                Liana Groombridge <span className="text-brand-warm-gray font-normal hidden sm:inline">| ADHD Coaching</span>
-              </span>
-            </a>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="/?quiz=true" className="px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest bg-brand-gold text-brand-cream hover:bg-brand-gold-hover transition-colors">Take the Quiz</a>
-              <a href="/" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Home</a>
-              <a href="/services" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Services</a>
-              <a href="/shop" className="text-sm font-medium text-brand-warm-gray hover:text-brand-charcoal transition-colors animated-underline">Shop</a>
-              <a href="/tracker" className="flex items-center gap-2 text-brand-sage font-bold text-sm bg-brand-sage/10 px-3 py-1.5 rounded-full"><Lock className="w-3.5 h-3.5" /> Client Portal</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-white selection:bg-brand-sage/30">
       {/* ═══ THANK YOU CONTENT ═══ */}
-      <main className="pt-32 pb-20 px-6 sm:px-12 relative overflow-hidden">
+      <main className="pt-48 pb-20 px-6 sm:px-12 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-40 left-10 w-64 h-64 bg-brand-sage/10 rounded-full blur-3xl -z-10" />
         <div className="absolute bottom-20 right-10 w-72 h-72 bg-brand-gold/20 rounded-full blur-3xl -z-10" />
@@ -47,7 +26,7 @@ export default function WorkbookThankYouPage() {
             </p>
           </div>
 
-          <div className="bg-brand-white border-2 border-brand-border rounded-3xl p-8 sm:p-12 shadow-xl space-y-12">
+          <div className="bg-brand-cream border-2 border-brand-border rounded-3xl p-8 sm:p-12 shadow-xl space-y-12">
             
             {/* Download Section */}
             <div className="text-center space-y-6">
@@ -75,10 +54,10 @@ export default function WorkbookThankYouPage() {
             <div className="w-full h-px bg-brand-border"></div>
 
             {/* Upsell to Coaching Section */}
-            <div className="bg-brand-cream border-2 border-brand-gold/30 rounded-2xl p-8 sm:p-10 text-center space-y-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2" />
+            <div className="bg-brand-sage/20 border border-brand-sage/30 rounded-2xl p-8 sm:p-10 text-center space-y-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/40 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2" />
               
-              <Calendar className="w-10 h-10 text-brand-gold mx-auto mb-2" />
+              <Calendar className="w-10 h-10 text-brand-sage mx-auto mb-2" />
               <h2 className="text-2xl font-serif font-black italic text-brand-charcoal">
                 Need help putting this into practice?
               </h2>
@@ -90,7 +69,7 @@ export default function WorkbookThankYouPage() {
                 href="https://calendar.app.google/dfat4MyGmVmAGByDA" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex bg-brand-gold hover:bg-brand-gold-hover text-brand-charcoal h-14 px-8 rounded-full font-bold items-center justify-center gap-2 transition-all"
+                className="w-full sm:w-auto inline-flex bg-brand-charcoal hover:bg-black text-white h-14 px-8 rounded-full font-bold items-center justify-center gap-2 transition-all"
               >
                 Book a Free Discovery Call <ArrowRight className="w-4 h-4" />
               </a>
