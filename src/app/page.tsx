@@ -58,10 +58,7 @@ export default function Home() {
         {/* ═══ HERO ═══ */}
         <section className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-40 pb-20 overflow-hidden bg-white" style={{ backgroundColor: 'white' }}>
           
-          {/* Coffee - Placed to the left of the text */}
-          <div className="absolute top-1/2 left-0 z-0 select-none pointer-events-none hidden sm:block transform -translate-x-[25%] -translate-y-1/2">
-            <Image src="/coffee-final.png" alt="" width={600} height={600} className="w-56 md:w-[350px] object-contain drop-shadow-2xl" />
-          </div>
+
           
           <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center space-y-6">
             <Reveal>
@@ -76,7 +73,7 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.15}>
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] text-brand-charcoal tracking-tight mb-8">
-                Why can't I just<br />
+                Why can't you just<br />
                 do the thing?
               </h1>
             </Reveal>
@@ -157,14 +154,29 @@ export default function Home() {
                 <Reveal delay={0.1}>
                   <div className="space-y-5 text-brand-warm-gray text-lg leading-relaxed">
                     <p>
-                      I'm Liana. I've spent over 8 years in the social services and mental health trenches, working with everyone from overwhelmed students to seniors. I began coaching adults in 2021, and by 2023, I decided to work exclusively with ADHDers—because I got tired of watching brilliant people try to force themselves into neurotypical boxes.
+                      I'm an ICF-certified ADHD coach (ACC, CACP), and I've been working in mental health and social services since 2017. I started coaching adults in 2021, and by 2023, I'd shifted to working exclusively with ADHDers, because it's the first kind of work I've done where the passion never faded. I'm endlessly curious about how people work, and I believe ADHDers have a lot to offer that the world rarely gets to see. Coaching is how I help bring those strengths out from behind the noise.
                     </p>
                     <p>
-                      I work with a wide range of adults. I help employees, business owners, and university/college students build functional systems so they don't have to rely on last-minute adrenaline to get things done. I also help late-diagnosed adults take that "well, that explains the last 30 years" realization and turn it into actual strategy. You can't change a pattern you can't identify, so we figure out how your specific brain operates. That way, you can start making informed decisions instead of just wondering why you keep repeating the same cycles.
+                      I also have ADHD, which is part of why I ended up doing this work. It means I understand the experience from the inside, including the lost keys, the abandoned planners, the &quot;I'll start tomorrow&quot; loops, and the inexplicable inability to start a task you know is important. It doesn't mean I have all the answers. It means we work from a place of shared understanding instead of explanation.
+                    </p>
+                    <div className="pt-2">
+                      <h3 className="font-bold text-brand-charcoal mb-2">Who I work with:</h3>
+                      <p>
+                        I coach adults across all kinds of life stages and situations. Employees who are tired of running on last-minute adrenaline. Business owners trying to build a company that doesn't burn them out. University and college students figuring out how to actually finish their degrees without burning themselves to the ground. And late-diagnosed adults turning that &quot;oh, that's what's been going on for 30 years&quot; realization into actual strategy.
+                      </p>
+                    </div>
+                    <p>
+                      You can't change a pattern you can't identify. So we start by understanding how your specific brain works, what's been getting in the way, and where your existing strengths are. Then we build systems that fit how you actually operate.
                     </p>
                     <p>
-                      I also help folks navigate messy life transitions without burning everything down. Thanks to my background in mental health, I understand the complexities of ADHD and how it plays with its frequent plus-ones: anxiety and depression. I'm not here to "fix" you. I'm here to help you work with the brain you have.
+                      Because of my background in mental health, I also understand how ADHD interacts with its frequent plus-ones: anxiety, depression, RSD, and burnout. I'm not here to fix you. I'm here to help you stop fighting your brain and start working with it.
                     </p>
+                    <div className="pt-2">
+                      <a href="https://calendar.app.google/Nwa6i4WGsMysUzvu8" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 text-brand-sage font-bold hover:text-brand-sage-hover transition-colors">
+                        Book a free consultation
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </div>
                   </div>
                 </Reveal>
                 <Reveal delay={0.2}>

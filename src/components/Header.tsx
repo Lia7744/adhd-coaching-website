@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Menu, X, Lock } from "lucide-react";
+import { Menu, X, Lock, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Quiz from "@/components/Quiz";
 
@@ -53,7 +53,7 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
           <div className="flex justify-between h-24 md:h-32 items-center relative w-full">
             {/* Left - Take the Quiz */}
             <div className="flex-1 flex justify-start z-50">
-              <button onClick={() => setIsQuizOpen(true)} className="px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide border-2 border-brand-sage text-brand-sage hover:bg-brand-sage hover:text-white transition-colors shadow-sm">TAKE THE QUIZ</button>
+              <a href="https://calendar.app.google/Nwa6i4WGsMysUzvu8" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide bg-brand-sage/20 text-brand-sage hover:bg-brand-sage hover:text-white transition-colors shadow-sm">Book a free consultation <ArrowRight className="w-3 h-3 md:w-4 md:h-4" /></a>
             </div>
 
             {/* Absolute Center - Logo */}
@@ -97,7 +97,7 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
                 <a href="/services" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
                 <a href="/shop" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Shop</a>
                 <a href="/tracker" className="text-base font-medium text-brand-sage py-2 border-b border-brand-border/50 flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}><Lock className="w-4 h-4" /> Client Portal</a>
-                <button onClick={() => { setIsQuizOpen(true); setIsMobileMenuOpen(false); }} className="mt-2 w-full py-3 rounded-full text-sm font-black uppercase tracking-widest bg-brand-sage text-white text-center">Take the Quiz</button>
+                <a href="https://calendar.app.google/Nwa6i4WGsMysUzvu8" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-2 w-full py-3 rounded-full text-sm font-black uppercase tracking-widest bg-brand-sage/20 text-brand-sage hover:bg-brand-sage hover:text-white transition-colors flex items-center justify-center gap-2">Book a free consultation <ArrowRight className="w-4 h-4" /></a>
               </div>
             </motion.div>
           )}
