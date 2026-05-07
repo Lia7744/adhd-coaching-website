@@ -73,15 +73,14 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.15}>
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] text-brand-charcoal tracking-tight mb-8">
-                Why can't you just<br />
-                do the thing?
+                What kind of stuck<br />
+                are you?
               </h1>
             </Reveal>
             <Reveal delay={0.3}>
               <p className="max-w-2xl mx-auto text-lg sm:text-xl text-brand-charcoal leading-relaxed font-medium mb-12">
-                Take a 2-minute quiz to discover your #1 ADHD productivity<br className="hidden sm:block" />
-                blocker — and get a personalized strategy that actually works<br className="hidden sm:block" />
-                for your brain.
+                Take a 2-minute quiz to discover your #1 ADHD blocker type.<br className="hidden sm:block" />
+                Get a personalized strategy that actually works for your brain.
               </p>
             </Reveal>
             <Reveal delay={0.45}>
