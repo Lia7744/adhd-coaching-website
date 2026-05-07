@@ -53,7 +53,7 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
           <div className="flex justify-between h-24 md:h-32 items-center relative w-full">
             {/* Left - Take the Quiz */}
             <div className="flex-1 flex justify-start z-50">
-              <a href="https://calendar.app.google/Nwa6i4WGsMysUzvu8" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide bg-brand-sage/20 text-brand-sage hover:bg-brand-sage hover:text-white transition-colors shadow-sm">Book a free consultation <ArrowRight className="w-3 h-3 md:w-4 md:h-4" /></a>
+              <a href="https://calendar.app.google/Nwa6i4WGsMysUzvu8" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 px-3 py-2 md:px-6 md:py-2.5 rounded-full text-[10px] md:text-sm font-bold tracking-wide bg-brand-sage/20 text-brand-sage hover:bg-brand-sage hover:text-white transition-colors shadow-sm whitespace-nowrap"><span className="hidden sm:inline">Book a free consultation</span><span className="sm:hidden">Book a consult</span> <ArrowRight className="w-3 h-3 md:w-4 md:h-4" /></a>
             </div>
 
             {/* Absolute Center - Logo */}
