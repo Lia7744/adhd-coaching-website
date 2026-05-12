@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { ArrowRight, Camera, CheckCircle2, ChevronDown, Coffee, ExternalLink, Link2, Mail, MessageCircle, Sparkles, X, Lock, Menu } from "lucide-react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import Testimonials from "@/components/Testimonials";
 
 /* ─── Animated section wrapper ─── */
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -306,6 +307,9 @@ export default function Home() {
             </Reveal>
           </div>
         </section>
+
+        {/* ═══ TESTIMONIALS ═══ */}
+        <Testimonials className="pt-24 pb-12 bg-[#F9F7F3]" />
 
         {/* ═══ FAQ ═══ */}
         <section id="faq" className="py-24 relative bg-[#F9F7F3] overflow-hidden">

@@ -5,6 +5,7 @@ import { ArrowRight, Check, Zap, Repeat2, GraduationCap, Lock } from "lucide-rea
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { sendGAEvent } from "@next/third-parties/google";
+import Testimonials from "@/components/Testimonials";
 
 const BOOKING_URL = "https://calendar.app.google/Nwa6i4WGsMysUzvu8";
 
@@ -305,6 +306,9 @@ export default function ServicesPage() {
             </Reveal>
           </div>
         </section>
+
+        {/* ── TESTIMONIALS ── */}
+        <Testimonials className="pt-20 pb-12 bg-white" />
 
         {/* ── BOOK A CONSULT ── */}
         <section className="py-24 px-6 lg:px-8 bg-white">
