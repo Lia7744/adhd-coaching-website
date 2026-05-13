@@ -187,7 +187,7 @@ export default function WorkbookOfferPage() {
       <section className="py-20 px-6 bg-brand-cream">
         <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-10">
           <div className="w-48 h-48 rounded-full overflow-hidden shrink-0 border-8 border-white shadow-xl relative">
-            <Image src="/headshot-v2.jpg" alt="Liana Groombridge" fill className="object-cover" />
+            <Image src="/Liana Groombridge2 copy.jpg" alt="Liana Groombridge" fill className="object-cover" style={{ objectPosition: 'center 40%' }} />
           </div>
           <div>
             <h3 className="text-2xl font-serif font-black text-brand-charcoal mb-2">
@@ -197,7 +197,7 @@ export default function WorkbookOfferPage() {
               ICF-Certified ADHD Coach
             </p>
             <p className="text-brand-warm-gray leading-relaxed">
-              I built this workbook because I was sick of neurotypical productivity advice that doesn't work for us. No "eat the frog." No "just set an alarm." This is the exact system I use with myself and my clients to stop fighting our brains and start getting things done.
+              I built this workbook after years of following productivity advice that just wouldn't stick. Once I learned how differently the ADHD brain is actually wired, it finally clicked. It's like pumping regular fuel into a diesel engine. You're doing exactly what you're supposed to do, and the car still won't run. The engine isn't broken. You've just been using the wrong fuel.
             </p>
           </div>
         </div>
@@ -226,7 +226,7 @@ export default function WorkbookOfferPage() {
             />
             <FaqItem 
               q="I've tried planners and other ADHD books before. How is this different?" 
-              a="Most advice focuses on willpower and doing the 'hard thing first.' This workbook is built on the reality that the ADHD brain operates off an interest-based nervous system. We don't activate just because something is important; we activate when things are interesting. We focus on outsmarting your brain using bribes, trap-setting, and pattern interruption, rather than relying on discipline." 
+              a="Planners and books are completely different tools — and so is this. Planners help you stay organized. Books deliver information. This workbook does something in between: it gives you small, research-backed explanations for why your ADHD brain works the way it does, paired with actual worksheets to put that understanding into action. Think of it as the precursor to your planner — it helps you figure out how to work with your brain first, so that the systems you try (yes, including planners) actually have a fighting chance. Or it helps you make peace with the fact that traditional planners may never be your thing — and that's completely fine too. This workbook is built on the reality that the ADHD brain operates off an interest-based nervous system. We don't activate just because something is important; we activate when things are interesting. So instead of telling you to try harder, it teaches you to outsmart your own brain using bribes, trap-setting, and pattern interruption." 
             />
           </div>
         </div>
