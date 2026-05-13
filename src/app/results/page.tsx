@@ -119,7 +119,7 @@ function ResultsContent() {
                 </p>
               </div>
               <button 
-                onClick={() => window.location.href = "/workbook-offer"}
+                onClick={() => window.location.href = "/MMTDS-workbook"}
                 className="bg-brand-charcoal hover:bg-black text-white h-16 px-10 rounded-full text-xl font-bold shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto transition-all transform hover:scale-105"
               >
                 {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
