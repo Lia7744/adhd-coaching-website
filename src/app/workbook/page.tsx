@@ -184,69 +184,12 @@ export default function WorkbookPage() {
       <div className="max-w-[800px] mx-auto bg-white print:bg-transparent shadow-2xl print:shadow-none pb-20">
         
         {/* --- PAGE 1: COVER --- */}
-        <section className="cover-page min-h-[970px] relative flex flex-col overflow-hidden" style={{ backgroundColor: C.cream }}>
-          
-          {/* Outer framing border */}
-          <div className="absolute inset-6 border-[8px] z-10 pointer-events-none" style={{ borderColor: C.sage }}></div>
-
-          {/* Inner content — justify-between so sections fill the page top-to-bottom */}
-          <div className="flex flex-col h-full min-h-[970px] px-14 pt-20 pb-14 z-20 justify-between">
-
-            {/* Top label */}
-            <div className="text-center border-b-[3px] pb-6 relative z-0" style={{ borderColor: C.gold }}>
-              <h2 className={`${radley.className} text-[34px] tracking-[0.2em] uppercase font-bold`} style={{ color: C.sage }}>
-                The ADHD Workbook
-              </h2>
-              <p className="text-[16px] tracking-[0.4em] uppercase mt-1 font-black opacity-70" style={{ color: C.charcoal }}>
-                For Getting Unstuck
-              </p>
-            </div>
-
-            {/* Title block — fills middle space */}
-            <div className="flex flex-col items-center justify-center flex-grow py-6" style={{ gap: 0 }}>
-              {/* Curved "Manipulating" */}
-              <svg width="100%" height="100%" viewBox="0 0 760 180" className="overflow-visible relative z-10 max-w-[650px] mx-auto" style={{ marginTop: '0px', marginBottom: '-80px' }}>
-                <path id="titleCurve" d="M 20,160 Q 380,0 740,160" fill="transparent" />
-                <text style={{ fontFamily: caveat.style.fontFamily, fontSize: '165px', fill: C.charcoal }}>
-                  <textPath href="#titleCurve" startOffset="50%" textAnchor="middle">
-                    Manipulating
-                  </textPath>
-                </text>
-              </svg>
-
-              <span className={`${caveat.className} block text-center`} style={{ color: C.sage, fontSize: '125px', lineHeight: 0.9 }}>Myself to</span>
-              <span className={`${caveat.className} block text-center relative`} style={{ fontSize: '150px', lineHeight: 0.95, color: C.charcoal }}>
-                Do Stuff
-                <svg className="absolute -bottom-5 left-0 w-full h-8" viewBox="0 0 200 16" fill="none">
-                  <path d="M5 12 Q 50 3, 100 10 T 195 3" stroke={C.gold} strokeWidth="5" strokeLinecap="round" />
-                </svg>
-              </span>
-            </div>
-
-            {/* Bottom row: description pill + photo + name — pinned to bottom */}
-            <div className="flex items-end gap-8">
-              
-              {/* Left: compact description */}
-              <div className="flex-1 rounded-3xl p-7 border-l-[8px]" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
-                <p className="text-[16px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: C.sage }}>What&apos;s inside:</p>
-                <p className="text-[19px] font-bold leading-snug" style={{ color: C.charcoal }}>
-                  The art of bribing yourself, the 7 Commandments of ADHD systems &amp; other research-informed ways to trick yourself into doing stuff.
-                </p>
-              </div>
-
-              {/* Right: Photo + name badge */}
-              <div className="flex flex-col items-center gap-4" style={{ width: '310px', flexShrink: 0 }}>
-                <div className="w-[280px] h-[280px] rounded-t-[140px] rounded-b-xl shadow-xl border-[10px] bg-white relative overflow-hidden" style={{ borderColor: C.sageLight }}>
-                  <img src="/headshot-v2.jpg" className="w-full h-full object-cover absolute inset-0" alt="Liana Groombridge" onError={(e) => e.currentTarget.style.display = 'none'} />
-                </div>
-                <div className="bg-white px-6 py-4 shadow-xl rounded-2xl text-center border-b-[6px] w-full" style={{ borderColor: C.sage }}>
-                  <p className={`${radley.className} font-bold text-[26px] leading-tight`} style={{ color: C.charcoal }}>Liana Groombridge</p>
-                  <p className="font-black tracking-[0.2em] uppercase text-[13px] mt-1" style={{ color: C.gold }}>ACC, CACP</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
+        <section className="cover-page relative flex flex-col items-center justify-center overflow-hidden bg-white" style={{ minHeight: '100vh' }}>
+          <img 
+            src="/workbook_cover_final.png" 
+            alt="Manipulating Myself to Do Stuff Workbook Cover" 
+            className="w-full h-auto max-h-[1050px] object-contain mx-auto"
+          />
         </section>
 
 
@@ -1047,9 +990,9 @@ export default function WorkbookPage() {
         <section className="content-section relative px-20 pt-12 bg-white pb-10">
           <div className="space-y-4 text-[17px] leading-[1.6]">
             <h2 className={`${radley.className} text-[35px] mb-6 border-b-4 inline-block font-bold`} style={{ color: C.sage, borderColor: C.sage }}>THE BIT</h2>
-            <p>Tell me if this sounds familiar…I will sit on the couch for 45 minutes thinking about a task that takes 5 minutes. And I'm not thinking about the task in a productive way. I'm not planning. I'm not strategizing. I'm just... aware of it. It's sitting there. I'm sitting here. We're both very still. Neither of us is making the first move.</p>
+            <p>Tell me if this sounds familiar... You will sit on the couch for 45 minutes thinking about a task that takes 5 minutes. And you're not thinking about the task in a productive way. You're not planning. You're not strategizing. You're just... aware of it. It's sitting there. You're sitting here. You're both very still. Neither of you is making the first move.</p>
             
-            <p>It’s the world’s most ridiculous standoff.</p>
+            <p>It's the world's most pathetic standoff.</p>
             
             <div className="my-4 p-4 rounded-2xl border-l-[6px] inline-block" style={{ backgroundColor: C.goldLight, borderColor: C.gold }}>
               <p className="font-bold text-[20px] leading-snug" style={{ color: C.charcoal }}>
@@ -1059,7 +1002,7 @@ export default function WorkbookPage() {
             
             <p>...and before you ask, no, that’s not a clinical term. It’s just what I started calling it after dealing with it so many times that I literally felt like a frozen block of ice sitting on my couch. You’re not avoiding the task. You’re not distracted. You’re frozen in front of it.</p>
             
-            <p>And the whole time, there’s a running narration in my head that goes something like: "I should start that. I'm going to start that. I'll start that in a minute. Okay, after this episode. Okay, after I refill my water. Okay, after I check one thing on my phone." And then it's 10pm and the task is still sitting there and now it's too late, which honestly feels like a relief, because at least I don't have to think about starting it anymore. I can just feel guilty about it instead.</p>
+            <p>And the whole time, there's a running narration in your head that goes something like: "I should start that. I'm going to start that. I'll start that in a minute. Okay, after this episode. Okay, after I refill my water. Okay, after I check one thing on my phone." And then it's 10pm and the task is still sitting there and now it's too late, which honestly feels like a relief, because at least you don't have to think about starting it anymore. You can just feel guilty about it instead.</p>
 
             <div className="my-3 p-4 rounded-3xl text-center border-[3px]" style={{ backgroundColor: '#ebf2ed', borderColor: C.sageLight }}>
               <p className={`${radley.className} font-bold text-[26px] leading-relaxed`} style={{ color: C.charcoal }}>
@@ -1075,7 +1018,7 @@ export default function WorkbookPage() {
         <section className="content-section relative px-20 pt-20 pb-32" style={{ backgroundColor: C.cream }}>
           <div className="space-y-4 text-[17px] leading-[1.6]">
             <h2 className={`${radley.className} text-[35px] mb-10 border-b-4 inline-block font-bold`} style={{ color: C.sage, borderColor: C.sage }}>THE REAL TALK</h2>
-            <p>So here's what's going on when you're glued to the couch staring at the thing you need to do. Your brain isn't being lazy. It's stuck. And not in a "I don't feel like it" way. In a "my body will not move and I don't know why" way. If you've ever wanted to do something, known exactly how to do it, had the time to do it, and still just... not done it, you know what I'm talking about.</p>
+            <p>In my coaching practice, this is one of the most common things clients bring to me. They're not struggling because they don't care. They're struggling because the starting part is faulty. The keeping-going part is usually fine. It's the getting-going part that feels impossible.</p>
 
             <p>The research backs this up.</p>
 

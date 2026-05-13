@@ -12,8 +12,8 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Hide the global header on portal/tracker routes so it doesn't overlap dashboard UIs
-  if (!forceShow && (pathname?.startsWith("/tracker") || pathname?.startsWith("/coachlg"))) {
+  // Hide the global header on portal/tracker/workbook routes so it doesn't overlap printable or dashboard UIs
+  if (!forceShow && (pathname?.startsWith("/tracker") || pathname?.startsWith("/coachlg") || pathname?.startsWith("/workbook"))) {
     return null;
   }
 
