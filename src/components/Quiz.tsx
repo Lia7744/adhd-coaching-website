@@ -20,12 +20,12 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
-    text: "You have a task due tomorrow that you've known about for two weeks. What's most likely happening right now?",
+    text: "The deadline is tomorrow. You've had two weeks. What's happening right now?",
     options: [
-      { text: "I know what to do. I have the time. My body just won't cooperate.", type: "Frozen Starter" },
-      { text: "My brain is running a meeting I didn't schedule — replaying, planning, spiraling.", type: "Overthinking Looper" },
-      { text: "The guilt of not starting sooner is now bigger than the task itself.", type: "Shame Spiraler" },
-      { text: "It's boring. My brain does not care that it's important.", type: "Boredom Blackout" },
+      { text: "I know exactly what to do. My body just refuses to cooperate.", type: "Frozen Starter" },
+      { text: "My brain is running a meeting I didn't schedule — planning, replaying, and spiraling.", type: "Overthinking Looper" },
+      { text: "I'm completely paralyzed by the guilt of not starting sooner.", type: "Shame Spiraler" },
+      { text: "I'm finally working on it. The task was too boring to touch until the panic kicked in.", type: "Boredom Blackout" },
     ],
   },
   {
@@ -34,7 +34,7 @@ const questions: Question[] = [
     options: [
       { text: "I tried 3 different approaches. Set it all up. Then just stopped using it.", type: "System Hopper" },
       { text: "I couldn't stop thinking long enough to actually do anything.", type: "Overthinking Looper" },
-      { text: "Because I'm apparently someone who can't follow through. (Cue the spiral.)", type: "Shame Spiraler" },
+      { text: "Because I'm someone who can never follow through", type: "Shame Spiraler" },
       { text: "I sat down. I stared. I couldn't start. I don't fully understand it either.", type: "Frozen Starter" },
     ],
   },
@@ -60,7 +60,7 @@ const questions: Question[] = [
   },
   {
     id: 5,
-    text: "You actually managed to start something. 20 minutes in, you stop. What happened?",
+    text: "You started the task, 20-minutes in, you stopped. What happened?",
     options: [
       { text: "I hit an uncertain part and couldn't decide how to proceed — so I stalled.", type: "Frozen Starter" },
       { text: "The novelty wore off. My brain is already looking for something else.", type: "Boredom Blackout" },
@@ -85,7 +85,7 @@ const questions: Question[] = [
       { text: "What is wrong with me? Everyone else can just do things.", type: "Shame Spiraler" },
       { text: "They probably found one system and stuck with it. I've tried 12 since January.", type: "System Hopper" },
       { text: "What app are they using? What's their routine? I need to know.", type: "System Hopper" },
-      { text: "I literally tried that today. Sat there. Nothing happened. It's not that I won't — I can't.", type: "Frozen Starter" },
+      { text: "I literally tried that today. Sat there. Nothing happened. It's not that I won't. I can't.", type: "Frozen Starter" },
     ],
   },
 ];
