@@ -24,7 +24,7 @@ export default function ShopPage() {
       });
   }, []);
 
-  const price = isCanada ? "$34.99 CAD" : "$24.99 USD";
+  const price = isCanada ? "$27.99 CAD" : "$19.99 USD";
   const checkoutUrl = isCanada 
     ? "https://whop.com/checkout/plan_2HOVSKaQCmGm2" 
     : "https://whop.com/checkout/plan_0XKFQdLkmshAq";
@@ -100,7 +100,7 @@ export default function ShopPage() {
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                 <a 
                   href={checkoutUrl}
-                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
+                  onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 27.99 : 19.99 })}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-14 px-4 sm:px-10 rounded-full font-bold text-sm sm:text-base whitespace-nowrap shadow-md transition-all hover:scale-105 active:scale-95 bg-brand-sage hover:bg-brand-sage-hover text-white"
                 >
                   {isLoading ? "Loading..." : `Get the Workbook — ${price}`}
@@ -270,7 +270,7 @@ export default function ShopPage() {
           </p>
           <a
             href={checkoutUrl}
-            onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 34.99 : 24.99 })}
+            onClick={() => sendGAEvent("event", "begin_checkout", { item_name: "Manipulating Myself Workbook", currency: isCanada ? "CAD" : "USD", value: isCanada ? 27.99 : 19.99 })}
             className="inline-flex bg-white hover:bg-gray-200 text-brand-charcoal h-14 px-10 rounded-full font-bold text-base shadow-md items-center justify-center gap-2 transition-all transform hover:scale-105 active:scale-95"
           >
             {isLoading ? "Loading..." : `Download Now for ${price}`} <ArrowRight className="w-4 h-4 ml-1" />

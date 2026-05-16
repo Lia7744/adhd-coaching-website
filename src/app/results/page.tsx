@@ -67,7 +67,7 @@ function ResultsContent() {
       });
   }, []);
 
-  const price = isCanada ? "$34.99 CAD" : "$24.99 USD";
+  const price = isCanada ? "$27.99 CAD" : "$19.99 USD";
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-cream">

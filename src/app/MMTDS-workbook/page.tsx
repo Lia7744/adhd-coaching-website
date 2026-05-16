@@ -43,16 +43,17 @@ export default function WorkbookOfferPage() {
       });
   }, []);
 
-  const price = isCanada ? "$34.99 CAD" : "$24.99 USD";
+  const price = isCanada ? "$27.99 CAD" : "$19.99 USD";
   const checkoutUrl = isCanada 
     ? "https://whop.com/checkout/plan_2HOVSKaQCmGm2" 
     : "https://whop.com/checkout/plan_0XKFQdLkmshAq";
 
   const handleCheckout = () => {
+    setIsLoading(true);
     sendGAEvent("event", "begin_checkout", { 
       item_name: "Manipulating Myself Workbook", 
       currency: isCanada ? "CAD" : "USD", 
-      value: isCanada ? 34.99 : 24.99,
+      value: isCanada ? 27.99 : 19.99,
       source: "email_sequence_offer"
     });
   };
