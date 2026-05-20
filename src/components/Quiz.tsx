@@ -148,14 +148,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
 
   return (
     <div className="bg-white border-2 border-brand-border rounded-3xl p-6 sm:p-10 max-w-2xl w-full shadow-2xl relative overflow-hidden">
-      {onClose && (
-        <button 
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-brand-warm-gray hover:text-brand-charcoal transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
-      )}
+
 
       <AnimatePresence mode="wait">
         {step === "intro" && (
@@ -250,9 +243,9 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
             className="space-y-8 text-center"
           >
             <div className="space-y-4">
-              <h2 className="text-4xl font-serif font-black text-brand-charcoal">Your Results are Ready!</h2>
+              <h2 className="text-4xl font-serif font-black text-brand-charcoal">Your results are ready.</h2>
               <p className="text-lg text-brand-warm-gray">
-                Enter your email to see your top ADHD productivity blocker — plus a free strategy sheet tailored to your result.
+                Enter your email to unlock your ADHD blocker type + a personalized strategy that works for your brain wiring.
               </p>
             </div>
 
@@ -285,7 +278,7 @@ export default function Quiz({ onClose }: { onClose?: () => void }) {
                 Show me my result <ArrowRight className="w-5 h-5" />
               </button>
               <p className="text-xs text-brand-warm-gray">
-                Get your results & join the newsletter. Unsubscribe at any time.
+                Unsubscribe anytime.
               </p>
             </form>
           </motion.div>
