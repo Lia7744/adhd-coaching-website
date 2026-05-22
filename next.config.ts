@@ -17,6 +17,25 @@ const cspHeader = `
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/mmtds-workbook',
+        destination: '/MMTDS-workbook',
+        permanent: true,
+      },
+      {
+        source: '/MMTDS-Workbook',
+        destination: '/MMTDS-workbook',
+        permanent: true,
+      },
+      {
+        source: '/workbook-offer',
+        destination: '/MMTDS-workbook',
+        permanent: true,
+      }
+    ];
+  },
   async headers() {
     return [
       {
