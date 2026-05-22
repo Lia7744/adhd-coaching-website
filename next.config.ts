@@ -20,16 +20,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/mmtds-workbook',
-        destination: '/MMTDS-workbook',
-        permanent: true,
-      },
-      {
-        source: '/MMTDS-Workbook',
-        destination: '/MMTDS-workbook',
-        permanent: true,
-      },
-      {
         source: '/workbook-offer',
         destination: '/MMTDS-workbook',
         permanent: true,
