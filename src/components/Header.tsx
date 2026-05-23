@@ -13,7 +13,7 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Hide the global header on portal/tracker/workbook/quiz routes so it doesn't overlap printable, dashboard, or squeeze page UIs
-  if (!forceShow && (pathname?.startsWith("/tracker") || pathname?.startsWith("/coachlg") || pathname?.startsWith("/workbook") || pathname?.startsWith("/quiz") || pathname?.startsWith("/MMTDS-workbook"))) {
+  if (!forceShow && (pathname?.startsWith("/tracker") || pathname?.startsWith("/coachlg") || pathname?.startsWith("/workbook") || pathname?.startsWith("/quiz") || pathname?.startsWith("/MMTDS-workbook") || pathname?.startsWith("/7-commandments"))) {
     return null;
   }
 
