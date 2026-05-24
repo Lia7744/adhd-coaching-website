@@ -2,14 +2,19 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
-    const { email, name, resultType } = await req.json();
+    const { email, name, resultType, source } = await req.json();
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
     const apiKey = process.env.BREVO_API_KEY;
-    const listId = process.env.BREVO_LIST_ID;
+    let listId = process.env.BREVO_LIST_ID;
+    
+    // If this is the 7 commandments funnel, use its specific list ID if it exists
+    if (source === '7_commandments' && process.env.BREVO_LIST_ID_7_COMMANDMENTS) {
+      listId = process.env.BREVO_LIST_ID_7_COMMANDMENTS;
+    }
 
     if (!apiKey) {
       // If no API key is set yet, we just log and pretend it worked so the testing isn't blocked.
@@ -31,7 +36,7 @@ export async function POST(req: Request) {
         email: email,
         attributes: {
           FIRSTNAME: name ? name : undefined,
-          ADHD_QUIZ_RESULT: resultType.toLowerCase().replace(/ /g, '_'),
+          ...(resultType ? { ADHD_QUIZ_RESULT: resultType.toLowerCase().replace(/ /g, '_') } : {})
         },
         listIds: listId ? [parseInt(listId)] : [],
         updateEnabled: true
