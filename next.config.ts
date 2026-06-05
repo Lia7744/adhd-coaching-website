@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         source: '/workbook-offer',
         destination: '/MMTDS-workbook',
         permanent: true,
+      },
+      {
+        source: '/thank-you/workbook',
+        destination: '/thank-you/dl-success-xq9s2m',
+        permanent: true,
       }
     ];
   },
