@@ -234,32 +234,18 @@ export async function saveClientData(slug: string, currentData: any) {
 
     for (let i = 0; i < currentData.goals.length; i++) {
       const goal = currentData.goals[i];
-      const isNew = typeof goal.id === "number";
-      let goalId: string;
+      let goalId = goal.id;
 
-      if (isNew) {
-        const { data: inserted } = await supabase.from("goals").insert({
-          client_id: currentData.clientId,
-          title: goal.title || "",
-          why: goal.why || "",
-          challenges: goal.challenges || "",
-          notes: goal.notes || "",
-          completed: goal.completed || false,
-          sort_order: i,
-        }).select("id").single();
-        goalId = (inserted as any).id;
-        goal.id = goalId;
-      } else {
-        goalId = goal.id;
-        await supabase.from("goals").update({
-          title: goal.title || "",
-          why: goal.why || "",
-          challenges: goal.challenges || "",
-          notes: goal.notes || "",
-          completed: goal.completed || false,
-          sort_order: i,
-        }).eq("id", goalId);
-      }
+      await supabase.from("goals").upsert({
+        id: goalId,
+        client_id: currentData.clientId,
+        title: goal.title || "",
+        why: goal.why || "",
+        challenges: goal.challenges || "",
+        notes: goal.notes || "",
+        completed: goal.completed || false,
+        sort_order: i,
+      });
 
       // Replace all actions for this goal safely
       const existingActionIds = goal.actions
