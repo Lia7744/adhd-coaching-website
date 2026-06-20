@@ -261,20 +261,39 @@ export async function saveClientData(slug: string, currentData: any) {
         }).eq("id", goalId);
       }
 
-      // Replace all actions for this goal
-      await supabase.from("actions").delete().eq("goal_id", goalId);
+      // Replace all actions for this goal safely
+      const existingActionIds = goal.actions
+        .filter((a: any) => typeof a.id === "string" && a.id.includes("-"))
+        .map((a: any) => a.id);
+
+      if (existingActionIds.length > 0) {
+        await supabase.from("actions").delete()
+          .eq("goal_id", goalId)
+          .not("id", "in", `(${existingActionIds.join(",")})`);
+      } else {
+        await supabase.from("actions").delete().eq("goal_id", goalId);
+      }
+
       if (goal.actions.length > 0) {
-        await supabase.from("actions").insert(
-          goal.actions.map((a: any, j: number) => ({
-            ...(typeof a.id === "string" && a.id.includes("-") ? { id: a.id } : {}),
-            goal_id: goalId,
-            text: a.text || "",
-            done: a.done || false,
-            due_date: a.dueDate || "",
-            status: a.status || "todo",
-            sort_order: j,
-          }))
-        );
+        const actionRecords = goal.actions.map((a: any, j: number) => ({
+          ...(typeof a.id === "string" && a.id.includes("-") ? { id: a.id } : {}),
+          goal_id: goalId,
+          text: a.text || "",
+          done: a.done || false,
+          due_date: a.dueDate || null,
+          status: a.status || "todo",
+          sort_order: j,
+        }));
+
+        const toUpdate = actionRecords.filter((r: any) => r.id);
+        const toInsert = actionRecords.filter((r: any) => !r.id);
+
+        if (toUpdate.length > 0) {
+          await supabase.from("actions").upsert(toUpdate);
+        }
+        if (toInsert.length > 0) {
+          await supabase.from("actions").insert(toInsert);
+        }
       }
     }
 
@@ -292,14 +311,21 @@ export async function saveClientData(slug: string, currentData: any) {
     }
 
     if (currentData.strengths.length > 0) {
-      await supabase.from("strengths").upsert(
-        currentData.strengths.map((s: any, i: number) => ({
-          ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
-          client_id: currentData.clientId,
-          text: s.text || "",
-          sort_order: i,
-        }))
-      );
+      const strengthRecords = currentData.strengths.map((s: any, i: number) => ({
+        ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
+        client_id: currentData.clientId,
+        text: s.text || "",
+        sort_order: i,
+      }));
+      const toUpdate = strengthRecords.filter((r: any) => r.id);
+      const toInsert = strengthRecords.filter((r: any) => !r.id);
+
+      if (toUpdate.length > 0) {
+        await supabase.from("strengths").upsert(toUpdate);
+      }
+      if (toInsert.length > 0) {
+        await supabase.from("strengths").insert(toInsert);
+      }
     }
 
     // Replace strategies safely
@@ -316,14 +342,21 @@ export async function saveClientData(slug: string, currentData: any) {
     }
 
     if (currentData.strategies.length > 0) {
-      await supabase.from("strategies").upsert(
-        currentData.strategies.map((s: any, i: number) => ({
-          ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
-          client_id: currentData.clientId,
-          text: s.text || "",
-          sort_order: i,
-        }))
-      );
+      const strategyRecords = currentData.strategies.map((s: any, i: number) => ({
+        ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
+        client_id: currentData.clientId,
+        text: s.text || "",
+        sort_order: i,
+      }));
+      const toUpdate = strategyRecords.filter((r: any) => r.id);
+      const toInsert = strategyRecords.filter((r: any) => !r.id);
+
+      if (toUpdate.length > 0) {
+        await supabase.from("strategies").upsert(toUpdate);
+      }
+      if (toInsert.length > 0) {
+        await supabase.from("strategies").insert(toInsert);
+      }
     }
 
     // Replace sessions safely
@@ -340,18 +373,27 @@ export async function saveClientData(slug: string, currentData: any) {
     }
 
     if (currentData.sessions.length > 0) {
-      const { error: sessionErr } = await supabase.from("sessions").upsert(
-        currentData.sessions.map((s: any, i: number) => ({
-          ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
-          client_id: currentData.clientId,
-          date: s.date || new Date().toISOString().split('T')[0],
-          title: s.title || "",
-          takeaways: s.takeaways || "",
-          next_steps: s.nextSteps || "",
-          sort_order: i,
-        }))
-      );
-      if (sessionErr) console.error("Session insert error:", sessionErr);
+      const sessionRecords = currentData.sessions.map((s: any, i: number) => ({
+        ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
+        client_id: currentData.clientId,
+        date: s.date || new Date().toISOString().split('T')[0],
+        title: s.title || "",
+        takeaways: s.takeaways || "",
+        next_steps: s.nextSteps || "",
+        sort_order: i,
+      }));
+      
+      const toUpdate = sessionRecords.filter((r: any) => r.id);
+      const toInsert = sessionRecords.filter((r: any) => !r.id);
+
+      if (toUpdate.length > 0) {
+        const { error } = await supabase.from("sessions").upsert(toUpdate);
+        if (error) console.error("Session upsert error:", error);
+      }
+      if (toInsert.length > 0) {
+        const { error } = await supabase.from("sessions").insert(toInsert);
+        if (error) console.error("Session insert error:", error);
+      }
     }
 
     return { success: true };

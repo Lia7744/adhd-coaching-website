@@ -166,9 +166,10 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
   const percentage = totalActions === 0 ? 0 : (doneActions / totalActions) * 100;
 
   const addAction = () => {
+    const today = new Date().toISOString().split("T")[0];
     onUpdate({
       ...goal,
-      actions: [...goal.actions, { id: Date.now(), text: "", done: false, dueDate: "", status: "todo" }],
+      actions: [...goal.actions, { id: Date.now(), text: "", done: false, dueDate: today, status: "todo" }],
     });
   };
 
