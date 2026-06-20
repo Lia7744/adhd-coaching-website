@@ -169,7 +169,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
     const today = new Date().toISOString().split("T")[0];
     onUpdate({
       ...goal,
-      actions: [...goal.actions, { id: Date.now(), text: "", done: false, dueDate: today, status: "todo" }],
+      actions: [...goal.actions, { id: generateId(), text: "", done: false, dueDate: today, status: "todo" }],
     });
   };
 
@@ -542,13 +542,10 @@ const SectionHeader = ({ icon, title, action, collapsed, onToggle, count }) => (
     </div>
   </div>
 );
-
 // ============================================================
 // MAIN APP
 // ============================================================
 export default function CoachingTracker({ data, onUpdate }) {
-  const update = (field, value) => onUpdate({ ...data, [field]: value });
-
   const [collapsed, setCollapsed] = useState({
     goals: false,
     completedGoals: true,
@@ -556,13 +553,24 @@ export default function CoachingTracker({ data, onUpdate }) {
     strategies: false,
     sessions: false,
   });
+
+  const generateId = () => {
+    return typeof crypto !== 'undefined' && crypto.randomUUID
+      ? crypto.randomUUID()
+      : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+          const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+  };
+
+  const update = (field, value) => onUpdate({ ...data, [field]: value });
   const toggleSection = (section) => setCollapsed(prev => ({ ...prev, [section]: !prev[section] }));
 
   // Goals
   const addGoal = () => {
     update("goals", [
       ...data.goals,
-      { id: Date.now(), title: "", why: "", challenges: "", notes: "", actions: [], completed: false },
+      { id: generateId(), title: "", why: "", challenges: "", notes: "", actions: [], completed: false },
     ]);
   };
 
@@ -575,19 +583,19 @@ export default function CoachingTracker({ data, onUpdate }) {
   const deleteGoal = (idx) => update("goals", data.goals.filter((_, i) => i !== idx));
 
   // Strengths
-  const addStrength = () => update("strengths", [...data.strengths, { id: Date.now(), text: "" }]);
+  const addStrength = () => update("strengths", [...data.strengths, { id: generateId(), text: "" }]);
   const updateStrength = (idx, updated) => { const s = [...data.strengths]; s[idx] = updated; update("strengths", s); };
   const deleteStrength = (idx) => update("strengths", data.strengths.filter((_, i) => i !== idx));
 
   // Strategies
-  const addStrategy = () => update("strategies", [...data.strategies, { id: Date.now(), text: "" }]);
+  const addStrategy = () => update("strategies", [...data.strategies, { id: generateId(), text: "" }]);
   const updateStrategy = (idx, updated) => { const s = [...data.strategies]; s[idx] = updated; update("strategies", s); };
   const deleteStrategy = (idx) => update("strategies", data.strategies.filter((_, i) => i !== idx));
 
   // Sessions
   const addSession = () => {
     const today = new Date().toISOString().split("T")[0];
-    update("sessions", [{ id: Date.now(), date: today, title: "", takeaways: "", nextSteps: "" }, ...data.sessions]);
+    update("sessions", [{ id: generateId(), date: today, title: "", takeaways: "", nextSteps: "" }, ...data.sessions]);
   };
   const updateSession = (idx, updated) => { const s = [...data.sessions]; s[idx] = updated; update("sessions", s); };
   const deleteSession = (idx) => update("sessions", data.sessions.filter((_, i) => i !== idx));
