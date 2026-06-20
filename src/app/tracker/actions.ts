@@ -307,17 +307,18 @@ export async function saveClientData(slug: string, currentData: any) {
     // Replace sessions
     await supabase.from("sessions").delete().eq("client_id", currentData.clientId);
     if (currentData.sessions.length > 0) {
-      await supabase.from("sessions").insert(
+      const { error: sessionErr } = await supabase.from("sessions").insert(
         currentData.sessions.map((s: any, i: number) => ({
           ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
           client_id: currentData.clientId,
-          date: s.date || "",
+          date: s.date || null,
           title: s.title || "",
           takeaways: s.takeaways || "",
           next_steps: s.nextSteps || "",
           sort_order: i,
         }))
       );
+      if (sessionErr) console.error("Session insert error:", sessionErr);
     }
 
     return { success: true };
