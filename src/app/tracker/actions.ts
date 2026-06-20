@@ -143,7 +143,7 @@ export async function loadClientData(slug: string) {
     supabase.from("goals").select("*").eq("client_id", client.id).order("sort_order"),
     supabase.from("strengths").select("*").eq("client_id", client.id).order("sort_order"),
     supabase.from("strategies").select("*").eq("client_id", client.id).order("sort_order"),
-    supabase.from("sessions").select("*").eq("client_id", client.id).order("sort_order", { ascending: false }),
+    supabase.from("sessions").select("*").eq("client_id", client.id).order("sort_order"),
   ]);
 
   const goalIds = (goalsRes.data || []).map((g: any) => g.id);

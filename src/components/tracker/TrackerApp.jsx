@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const SYMBOLS = ["🌱", "🔥", "⭐", "🦋", "🌊", "🧠", "💎", "🌙", "🎯", "🦅", "🌻", "⚡"];
 
@@ -44,19 +44,31 @@ const DonutChart = ({ percentage, size = 90, strokeWidth = 10 }) => {
 // ============================================================
 // EDITABLE TEXT COMPONENT
 // ============================================================
-const EditableText = ({ value, onChange, placeholder, style = {}, multiline = false }) => {
-  const Tag = multiline ? "textarea" : "input";
+const EditableText = ({ value, onChange, placeholder, style = {}, multiline = false, autoResize = false }) => {
+  const Tag = multiline || autoResize ? "textarea" : "input";
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (autoResize && textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [value, autoResize]);
+
   return (
     <Tag
+      ref={textareaRef}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
+      rows={autoResize ? 1 : undefined}
       style={{
         background: "transparent", border: "none", outline: "none", width: "100%",
         fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#1A1A1A",
-        resize: multiline ? "vertical" : "none",
-        minHeight: multiline ? 60 : "auto",
+        resize: multiline && !autoResize ? "vertical" : "none",
+        minHeight: multiline && !autoResize ? 60 : "auto",
         padding: "4px 0",
+        overflow: autoResize ? "hidden" : "auto",
         ...style,
       }}
     />
@@ -93,6 +105,7 @@ const ActionItem = ({ action, onUpdate, onDelete }) => {
             value={action.text}
             onChange={(text) => onUpdate({ ...action, text })}
             placeholder="Action step..."
+            autoResize={true}
             style={{
               textDecoration: action.done ? "line-through" : "none",
               color: action.done ? "#A89F91" : "#1A1A1A",
@@ -233,6 +246,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
                 value={goal.title}
                 onChange={(title) => onUpdate({ ...goal, title })}
                 placeholder="What's the goal?"
+                autoResize
                 style={{ fontSize: 15, fontWeight: 600 }}
               />
             </div>
@@ -244,7 +258,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
                 value={goal.why}
                 onChange={(why) => onUpdate({ ...goal, why })}
                 placeholder="Connect it to the North Star..."
-                multiline
+                autoResize
                 style={{ fontSize: 14 }}
               />
             </div>
@@ -259,7 +273,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
               value={goal.challenges}
               onChange={(challenges) => onUpdate({ ...goal, challenges })}
               placeholder="What obstacles are in the way?"
-              multiline
+              autoResize
               style={{ fontSize: 14 }}
             />
           </div>
