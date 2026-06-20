@@ -69,17 +69,16 @@ const EditableText = ({ value, onChange, placeholder, style = {}, multiline = fa
 const ActionItem = ({ action, onUpdate, onDelete }) => {
   return (
     <div style={{
-      padding: "12px 0",
+      padding: "10px 0",
       borderBottom: "1px solid #E8E5E0",
     }}>
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
         <button
           onClick={() => onUpdate({ ...action, done: !action.done })}
           style={{
             width: 22, height: 22, borderRadius: 6, border: `2px solid ${action.done ? "#5E8C6A" : "#6B6B6B"}`,
             background: action.done ? "#5E8C6A" : "transparent", cursor: "pointer",
             display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: 0,
-            marginTop: 2,
           }}
         >
           {action.done && (
@@ -88,7 +87,8 @@ const ActionItem = ({ action, onUpdate, onDelete }) => {
             </svg>
           )}
         </button>
-        <div style={{ flex: 1, minWidth: 0 }}>
+        
+        <div style={{ flex: 1, minWidth: 200 }}>
           <EditableText
             value={action.text}
             onChange={(text) => onUpdate({ ...action, text })}
@@ -99,33 +99,35 @@ const ActionItem = ({ action, onUpdate, onDelete }) => {
               width: "100%",
             }}
           />
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
-            <input
-              type="date"
-              value={action.dueDate || ""}
-              onChange={(e) => onUpdate({ ...action, dueDate: e.target.value })}
-              style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#6B6B6B",
-                border: "1px solid #E8E5E0", borderRadius: 6, padding: "3px 6px",
-                background: "#FDFCFA", width: 120,
-              }}
-            />
-            <select
-              value={action.status || "todo"}
-              onChange={(e) => onUpdate({ ...action, status: e.target.value })}
-              style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: 12,
-                border: "1px solid #E8E5E0", borderRadius: 6, padding: "3px 8px",
-                background: action.status === "done" ? "#E8F5E8" : action.status === "in-progress" ? "#FFF3E0" : "#FDFCFA",
-                color: "#1A1A1A", width: 100,
-              }}
-            >
-              <option value="todo">To Do</option>
-              <option value="in-progress">In Progress</option>
-              <option value="done">Done</option>
-            </select>
-          </div>
         </div>
+        
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <input
+            type="date"
+            value={action.dueDate || ""}
+            onChange={(e) => onUpdate({ ...action, dueDate: e.target.value })}
+            style={{
+              fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#6B6B6B",
+              border: "1px solid #E8E5E0", borderRadius: 6, padding: "3px 6px",
+              background: "#FDFCFA", width: 110,
+            }}
+          />
+          <select
+            value={action.status || "todo"}
+            onChange={(e) => onUpdate({ ...action, status: e.target.value })}
+            style={{
+              fontFamily: "'DM Sans', sans-serif", fontSize: 12,
+              border: "1px solid #E8E5E0", borderRadius: 6, padding: "3px 8px",
+              background: action.status === "done" ? "#E8F5E8" : action.status === "in-progress" ? "#FFF3E0" : "#FDFCFA",
+              color: "#1A1A1A", width: 95,
+            }}
+          >
+            <option value="todo">To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+
         <button
           onClick={onDelete}
           style={{
@@ -144,6 +146,7 @@ const ActionItem = ({ action, onUpdate, onDelete }) => {
 // ============================================================
 const GoalCard = ({ goal, onUpdate, onDelete }) => {
   const [expanded, setExpanded] = useState(false);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const totalActions = goal.actions.length;
   const doneActions = goal.actions.filter((a) => a.done).length;
@@ -241,6 +244,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
                 value={goal.why}
                 onChange={(why) => onUpdate({ ...goal, why })}
                 placeholder="Connect it to the North Star..."
+                multiline
                 style={{ fontSize: 14 }}
               />
             </div>
@@ -255,6 +259,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
               value={goal.challenges}
               onChange={(challenges) => onUpdate({ ...goal, challenges })}
               placeholder="What obstacles are in the way?"
+              multiline
               style={{ fontSize: 14 }}
             />
           </div>
@@ -281,14 +286,50 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
                 No action steps yet. Click "+ Add Step" to get started.
               </div>
             ) : (
-              goal.actions.map((action, idx) => (
-                <ActionItem
-                  key={action.id}
-                  action={action}
-                  onUpdate={(updated) => updateAction(idx, updated)}
-                  onDelete={() => deleteAction(idx)}
-                />
-              ))
+              <>
+                {goal.actions.map((action, idx) => ({ action, idx })).filter(item => !item.action.done).map(({ action, idx }) => (
+                  <ActionItem
+                    key={action.id}
+                    action={action}
+                    onUpdate={(updated) => updateAction(idx, updated)}
+                    onDelete={() => deleteAction(idx)}
+                  />
+                ))}
+                
+                {goal.actions.some(a => a.done) && (
+                  <div style={{ marginTop: 12 }}>
+                    <button
+                      onClick={() => setShowCompleted(!showCompleted)}
+                      style={{
+                        background: "none", border: "none", padding: "8px 0", cursor: "pointer",
+                        display: "flex", alignItems: "center", gap: 6,
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600, color: "#6B6B6B",
+                      }}
+                    >
+                      <svg
+                        width="12" height="12" viewBox="0 0 20 20" fill="none"
+                        style={{ transform: showCompleted ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s ease" }}
+                      >
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#6B6B6B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      {showCompleted ? "Hide" : "Show"} Completed Action Steps ({goal.actions.filter(a => a.done).length})
+                    </button>
+                    
+                    {showCompleted && (
+                      <div style={{ marginTop: 8, opacity: 0.8 }}>
+                        {goal.actions.map((action, idx) => ({ action, idx })).filter(item => item.action.done).map(({ action, idx }) => (
+                          <ActionItem
+                            key={action.id}
+                            action={action}
+                            onUpdate={(updated) => updateAction(idx, updated)}
+                            onDelete={() => deleteAction(idx)}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
             )}
           </div>
 

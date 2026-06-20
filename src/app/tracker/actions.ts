@@ -266,6 +266,7 @@ export async function saveClientData(slug: string, currentData: any) {
       if (goal.actions.length > 0) {
         await supabase.from("actions").insert(
           goal.actions.map((a: any, j: number) => ({
+            ...(typeof a.id === "string" && a.id.includes("-") ? { id: a.id } : {}),
             goal_id: goalId,
             text: a.text || "",
             done: a.done || false,
@@ -282,6 +283,7 @@ export async function saveClientData(slug: string, currentData: any) {
     if (currentData.strengths.length > 0) {
       await supabase.from("strengths").insert(
         currentData.strengths.map((s: any, i: number) => ({
+          ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
           client_id: currentData.clientId,
           text: s.text || "",
           sort_order: i,
@@ -294,6 +296,7 @@ export async function saveClientData(slug: string, currentData: any) {
     if (currentData.strategies.length > 0) {
       await supabase.from("strategies").insert(
         currentData.strategies.map((s: any, i: number) => ({
+          ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
           client_id: currentData.clientId,
           text: s.text || "",
           sort_order: i,
@@ -306,6 +309,7 @@ export async function saveClientData(slug: string, currentData: any) {
     if (currentData.sessions.length > 0) {
       await supabase.from("sessions").insert(
         currentData.sessions.map((s: any, i: number) => ({
+          ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
           client_id: currentData.clientId,
           date: s.date || "",
           title: s.title || "",
