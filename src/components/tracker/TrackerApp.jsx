@@ -584,7 +584,10 @@ export default function CoachingTracker({ data, onUpdate }) {
   const deleteStrategy = (idx) => update("strategies", data.strategies.filter((_, i) => i !== idx));
 
   // Sessions
-  const addSession = () => update("sessions", [{ id: Date.now(), date: "", title: "", takeaways: "", nextSteps: "" }, ...data.sessions]);
+  const addSession = () => {
+    const today = new Date().toISOString().split("T")[0];
+    update("sessions", [{ id: Date.now(), date: today, title: "", takeaways: "", nextSteps: "" }, ...data.sessions]);
+  };
   const updateSession = (idx, updated) => { const s = [...data.sessions]; s[idx] = updated; update("sessions", s); };
   const deleteSession = (idx) => update("sessions", data.sessions.filter((_, i) => i !== idx));
 

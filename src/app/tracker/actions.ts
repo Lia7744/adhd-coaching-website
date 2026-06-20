@@ -278,10 +278,21 @@ export async function saveClientData(slug: string, currentData: any) {
       }
     }
 
-    // Replace strengths
-    await supabase.from("strengths").delete().eq("client_id", currentData.clientId);
+    // Replace strengths safely
+    const existingStrengthIds = currentData.strengths
+      .filter((s: any) => typeof s.id === "string" && s.id.includes("-"))
+      .map((s: any) => s.id);
+
+    if (existingStrengthIds.length > 0) {
+      await supabase.from("strengths").delete()
+        .eq("client_id", currentData.clientId)
+        .not("id", "in", `(${existingStrengthIds.join(",")})`);
+    } else {
+      await supabase.from("strengths").delete().eq("client_id", currentData.clientId);
+    }
+
     if (currentData.strengths.length > 0) {
-      await supabase.from("strengths").insert(
+      await supabase.from("strengths").upsert(
         currentData.strengths.map((s: any, i: number) => ({
           ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
           client_id: currentData.clientId,
@@ -291,10 +302,21 @@ export async function saveClientData(slug: string, currentData: any) {
       );
     }
 
-    // Replace strategies
-    await supabase.from("strategies").delete().eq("client_id", currentData.clientId);
+    // Replace strategies safely
+    const existingStrategyIds = currentData.strategies
+      .filter((s: any) => typeof s.id === "string" && s.id.includes("-"))
+      .map((s: any) => s.id);
+
+    if (existingStrategyIds.length > 0) {
+      await supabase.from("strategies").delete()
+        .eq("client_id", currentData.clientId)
+        .not("id", "in", `(${existingStrategyIds.join(",")})`);
+    } else {
+      await supabase.from("strategies").delete().eq("client_id", currentData.clientId);
+    }
+
     if (currentData.strategies.length > 0) {
-      await supabase.from("strategies").insert(
+      await supabase.from("strategies").upsert(
         currentData.strategies.map((s: any, i: number) => ({
           ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
           client_id: currentData.clientId,
@@ -304,14 +326,25 @@ export async function saveClientData(slug: string, currentData: any) {
       );
     }
 
-    // Replace sessions
-    await supabase.from("sessions").delete().eq("client_id", currentData.clientId);
+    // Replace sessions safely
+    const existingSessionIds = currentData.sessions
+      .filter((s: any) => typeof s.id === "string" && s.id.includes("-"))
+      .map((s: any) => s.id);
+
+    if (existingSessionIds.length > 0) {
+      await supabase.from("sessions").delete()
+        .eq("client_id", currentData.clientId)
+        .not("id", "in", `(${existingSessionIds.join(",")})`);
+    } else {
+      await supabase.from("sessions").delete().eq("client_id", currentData.clientId);
+    }
+
     if (currentData.sessions.length > 0) {
-      const { error: sessionErr } = await supabase.from("sessions").insert(
+      const { error: sessionErr } = await supabase.from("sessions").upsert(
         currentData.sessions.map((s: any, i: number) => ({
           ...(typeof s.id === "string" && s.id.includes("-") ? { id: s.id } : {}),
           client_id: currentData.clientId,
-          date: s.date || null,
+          date: s.date || new Date().toISOString().split('T')[0],
           title: s.title || "",
           takeaways: s.takeaways || "",
           next_steps: s.nextSteps || "",
