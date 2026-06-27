@@ -55,6 +55,9 @@ export default function TrackerContainer({ slug }: { slug: string }) {
       const result = await loadClientData(slug);
       if (cancelled) return;
       
+      // Post-fetch check: if the user edited something while the fetch was in flight, discard the stale server data
+      if (Date.now() - lastEdited.current < 4000) return;
+      
       if (!result.success && result.error === "Unauthorized") {
         setSessionExpired(true);
         return;

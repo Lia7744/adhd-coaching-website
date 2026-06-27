@@ -416,7 +416,7 @@ const StrengthItem = ({ strength, onUpdate, onDelete }) => {
         placeholder="A strength, skill, or quality you bring to the table..."
         style={{ flex: 1, fontSize: 14, lineHeight: 1.5 }}
       />
-      <button onClick={onDelete} style={{ background: "none", border: "none", cursor: "pointer", color: "#6B6B6B", fontSize: 14, padding: 2, flexShrink: 0 }}>×</button>
+      <button type="button" onClick={onDelete} style={{ background: "none", border: "none", cursor: "pointer", color: "#6B6B6B", fontSize: 14, padding: 2, flexShrink: 0 }}>×</button>
     </div>
   );
 };
@@ -437,7 +437,7 @@ const StrategyItem = ({ strategy, onUpdate, onDelete }) => {
         placeholder="Add a strategy or technique that's been helpful..."
         style={{ flex: 1, fontSize: 14, lineHeight: 1.5 }}
       />
-      <button onClick={onDelete} style={{ background: "none", border: "none", cursor: "pointer", color: "#6B6B6B", fontSize: 14, padding: 2, flexShrink: 0 }}>×</button>
+      <button type="button" onClick={onDelete} style={{ background: "none", border: "none", cursor: "pointer", color: "#6B6B6B", fontSize: 14, padding: 2, flexShrink: 0 }}>×</button>
     </div>
   );
 };
@@ -516,7 +516,7 @@ const SessionNote = ({ session, onUpdate, onDelete }) => {
             />
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <button onClick={onDelete} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#483428", background: "none", border: "1px solid #E8E5E0", borderRadius: 8, padding: "4px 12px", cursor: "pointer" }}>
+            <button type="button" onClick={onDelete} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#483428", background: "none", border: "1px solid #E8E5E0", borderRadius: 8, padding: "4px 12px", cursor: "pointer" }}>
               Remove Session
             </button>
           </div>
@@ -563,12 +563,7 @@ export default function CoachingTracker({ data, onUpdate }) {
   });
 
   const generateId = () => {
-    return typeof crypto !== 'undefined' && crypto.randomUUID
-      ? crypto.randomUUID()
-      : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-          const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-          return v.toString(16);
-        });
+    return Date.now() + Math.random();
   };
 
   const update = (field, value) => onUpdate({ ...data, [field]: value });
@@ -760,7 +755,7 @@ export default function CoachingTracker({ data, onUpdate }) {
                 onToggle={() => toggleSection('goals')}
                 count={activeGoals.length}
                 action={
-                  <button onClick={addGoal} style={{
+                  <button type="button" onClick={addGoal} style={{
                     fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
                     color: "white", background: "#5E8C6A", border: "none", borderRadius: 10,
                     padding: "8px 18px", cursor: "pointer",
@@ -831,7 +826,7 @@ export default function CoachingTracker({ data, onUpdate }) {
           onToggle={() => toggleSection('sessions')}
           count={data.sessions.length}
           action={
-            <button onClick={addSession} style={{
+            <button type="button" onClick={addSession} style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
               color: "white", background: "#5E8C6A", border: "none", borderRadius: 10,
               padding: "8px 18px", cursor: "pointer",
@@ -870,7 +865,7 @@ export default function CoachingTracker({ data, onUpdate }) {
           onToggle={() => toggleSection('strategies')}
           count={data.strategies.length}
           action={
-            <button onClick={addStrategy} style={{
+            <button type="button" onClick={addStrategy} style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
               color: "white", background: "#5E8C6A", border: "none", borderRadius: 10,
               padding: "8px 18px", cursor: "pointer",
@@ -909,7 +904,7 @@ export default function CoachingTracker({ data, onUpdate }) {
           onToggle={() => toggleSection('strengths')}
           count={data.strengths.length}
           action={
-            <button onClick={addStrength} style={{
+            <button type="button" onClick={addStrength} style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
               color: "white", background: "#5E8C6A", border: "none", borderRadius: 10,
               padding: "8px 18px", cursor: "pointer",
