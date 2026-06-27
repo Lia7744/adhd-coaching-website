@@ -165,20 +165,23 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
   const [expanded, setExpanded] = useState(false);
   const [showCompleted, setShowCompleted] = useState(false);
 
-  const totalActions = goal.actions.length;
-  const doneActions = goal.actions.filter((a) => a.done).length;
+  const actionsList = goal.actions || [];
+  const totalActions = actionsList.length;
+  const doneActions = actionsList.filter((a) => a.done).length;
   const percentage = totalActions === 0 ? 0 : (doneActions / totalActions) * 100;
 
-  const addAction = () => {
+  const addAction = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const today = new Date().toISOString().split("T")[0];
     onUpdate({
       ...goal,
-      actions: [...goal.actions, { id: generateId(), text: "", done: false, dueDate: today, status: "todo" }],
+      actions: [...(goal.actions || []), { id: generateId(), text: "", done: false, dueDate: today, status: "todo" }],
     });
   };
 
   const updateAction = (idx, updated) => {
-    const newActions = [...goal.actions];
+    const newActions = [...(goal.actions || [])];
     newActions[idx] = updated;
     if (updated.done) updated.status = "done";
     if (!updated.done && updated.status === "done") updated.status = "in-progress";
@@ -290,6 +293,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
                 Action Steps
               </label>
               <button
+                type="button"
                 onClick={addAction}
                 style={{
                   fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600,
@@ -300,7 +304,7 @@ const GoalCard = ({ goal, onUpdate, onDelete }) => {
                 + Add Step
               </button>
             </div>
-            {goal.actions.length === 0 ? (
+            {!(goal.actions && goal.actions.length > 0) ? (
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#6B6B6B", padding: "12px 0", fontStyle: "italic" }}>
                 No action steps yet. Click "+ Add Step" to get started.
               </div>
@@ -605,8 +609,8 @@ export default function CoachingTracker({ data, onUpdate }) {
   const deleteSession = (idx) => update("sessions", data.sessions.filter((_, i) => i !== idx));
 
   // Overall progress
-  const totalActions = data.goals.reduce((sum, g) => sum + g.actions.length, 0);
-  const doneActions = data.goals.reduce((sum, g) => sum + g.actions.filter((a) => a.done).length, 0);
+  const totalActions = data.goals.reduce((sum, g) => sum + (g.actions || []).length, 0);
+  const doneActions = data.goals.reduce((sum, g) => sum + (g.actions || []).filter((a) => a.done).length, 0);
   const overallPct = totalActions === 0 ? 0 : (doneActions / totalActions) * 100;
 
   return (
