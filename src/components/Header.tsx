@@ -69,6 +69,7 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
                 <a href="/" className="text-sm font-bold text-brand-charcoal hover:text-brand-sage transition-colors">Home</a>
                 <a href="/services" className="text-sm font-bold text-brand-charcoal hover:text-brand-sage transition-colors">Services</a>
                 <a href="/shop" className="text-sm font-bold text-brand-charcoal hover:text-brand-sage transition-colors">Shop</a>
+                <a href="/blog" className="text-sm font-bold text-brand-charcoal hover:text-brand-sage transition-colors">Blog</a>
                 <a href="/tracker" className="flex items-center gap-2 text-brand-charcoal font-bold text-sm bg-white px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all border border-brand-border/10"><Lock className="w-4 h-4" /> Client Portal</a>
               </div>
               
@@ -96,6 +97,7 @@ export default function Header({ forceShow = false }: { forceShow?: boolean } = 
                 <a href="/" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
                 <a href="/services" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
                 <a href="/shop" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Shop</a>
+                <a href="/blog" className="text-base font-medium text-brand-charcoal py-2 border-b border-brand-border/50" onClick={() => setIsMobileMenuOpen(false)}>Blog</a>
                 <a href="/tracker" className="text-base font-medium text-brand-sage py-2 border-b border-brand-border/50 flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}><Lock className="w-4 h-4" /> Client Portal</a>
                 <a href="https://calendar.app.google/Nwa6i4WGsMysUzvu8" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-2 w-full py-3 rounded-full text-sm font-black uppercase tracking-widest bg-brand-sage/20 text-brand-sage hover:bg-brand-sage hover:text-white transition-colors flex items-center justify-center gap-2">Book a free consultation <ArrowRight className="w-4 h-4" /></a>
               </div>
