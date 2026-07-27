@@ -85,7 +85,7 @@ export default function Home() {
                 </p>
               </Reveal>
               <Reveal delay={0.45}>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
+                <div className="flex flex-col items-start gap-8 pt-4">
                   <a
                     href="https://calendar.app.google/Nwa6i4WGsMysUzvu8"
                     target="_blank"
@@ -95,21 +95,18 @@ export default function Home() {
                     Book a Free Consultation
                     <ArrowRight className="w-5 h-5 text-white" />
                   </a>
-                  <div className="relative w-full sm:w-auto">
+                  
+                  <div className="space-y-4 max-w-xl border-t border-brand-sage/20 pt-6">
+                    <p className="text-brand-charcoal text-base leading-relaxed">
+                      <span className="font-bold">Feeling stuck?</span>{" "}
+                      Take the free 2-minute quiz to see what's currently blocking you &amp; get a strategy to help get you unstuck.
+                    </p>
                     <button
                       onClick={() => window.dispatchEvent(new Event("open-quiz"))}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full border-2 border-brand-charcoal text-brand-charcoal hover:bg-brand-cream/50 font-bold text-base shadow-sm hover:scale-105 active:scale-95 transition-all"
                     >
-                      <MessageCircle className="w-5 h-5" />
-                      Take the Blocker Quiz
+                      Take the Quiz
                     </button>
-                    <div className="absolute top-full right-4 sm:left-1/2 sm:right-auto sm:-translate-x-[20%] mt-2 flex items-start text-brand-sage pointer-events-none">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="-translate-y-2 translate-x-2 rotate-[15deg]">
-                        <path d="M10 4 L4 9 L10 14" />
-                        <path d="M4 9 Q 14 9, 18 20" />
-                      </svg>
-                      <span className="font-handwriting text-3xl whitespace-nowrap -rotate-[8deg] mt-3">Feeling stuck?</span>
-                    </div>
                   </div>
                 </div>
               </Reveal>
