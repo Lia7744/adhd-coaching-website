@@ -146,7 +146,7 @@ export default function WorkbookOfferPage() {
                 Manipulating Myself to Do Stuff
               </h2>
               <p className="text-lg text-brand-cream/80">
-                A 9-chapter, actionable digital workbook designed by an ADHD coach (who has ADHD) to get you completely unstuck.
+                A 9-chapter, actionable digital workbook designed by an ADHD coach (who has ADHD) to get you unstuck.
               </p>
             </div>
 
