@@ -240,38 +240,48 @@ export default function BlogPortal() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-brand-dark text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center gap-8"
+              className="bg-brand-dark text-white rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-brand-sage/20 via-transparent to-brand-gold/10 pointer-events-none" />
-              <div className="flex-grow space-y-4 relative z-10 text-center md:text-left">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-brand-sage/30 text-brand-sage-light border border-brand-sage/20 mb-6">
+              <div className="max-w-xl space-y-4 relative z-10 text-center md:text-left flex flex-col justify-center items-center md:items-start">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-brand-sage/30 text-brand-sage-light border border-brand-sage/20 mb-1 self-center md:self-start">
                   Workbook
                 </span>
-                <h3 className="text-3xl font-serif font-bold leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-serif font-bold leading-tight">
                   Struggling to make yourself start?
                 </h3>
-                <p className="text-white/70 max-w-lg leading-relaxed">
-                  Willpower is a scam for an ADHD brain. Check out my workbook, <em className="text-brand-gold">Manipulating Myself to Do Stuff</em>, loaded with 9 chapters of ADHD-proof strategies.
+                <p className="text-white/70 max-w-lg leading-relaxed text-sm sm:text-base mb-2">
+                  Stop relying on willpower to get you unstuck. Check out my workbook, <em className="text-brand-gold">Manipulating Myself to Do Stuff</em>, loaded with 9 chapters of ADHD-proof strategies.
                 </p>
+                <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-2">
+                  <Link
+                    href="/shop"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-brand-sage text-white font-bold text-sm shadow-md hover:bg-brand-sage-hover hover:scale-105 active:scale-95 transition-all"
+                  >
+                    <BookOpen className="w-4 h-4" />
+                    View Workbook
+                  </Link>
+                  <a
+                    href="https://calendar.app.google/Nwa6i4WGsMysUzvu8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-white text-brand-charcoal hover:bg-brand-cream font-bold text-sm shadow-md hover:scale-105 active:scale-95 transition-all"
+                  >
+                    Book free call
+                    <ArrowRight className="w-4 h-4 text-brand-charcoal" />
+                  </a>
+                </div>
               </div>
 
-              <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 shrink-0">
-                <Link
-                  href="/shop"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-brand-sage text-white font-bold text-base shadow-md hover:bg-brand-sage-hover hover:scale-105 active:scale-95 transition-all"
-                >
-                  <BookOpen className="w-5 h-5" />
-                  View Workbook
-                </Link>
-                <a
-                  href="https://calendar.app.google/Nwa6i4WGsMysUzvu8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-white text-brand-charcoal hover:bg-brand-cream font-bold text-base shadow-md hover:scale-105 active:scale-95 transition-all"
-                >
-                  Book free call
-                  <ArrowRight className="w-4 h-4 text-brand-charcoal" />
-                </a>
+              <div className="relative z-10 flex items-center justify-center shrink-0">
+                <div className="relative w-32 h-40 sm:w-40 sm:h-52 md:w-44 md:h-56 shadow-2xl rounded-md overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-300 border border-white/20">
+                  <Image
+                    src="/workbook_cover_final.png"
+                    alt="Manipulating Myself to Do Stuff Workbook"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </motion.div>
 

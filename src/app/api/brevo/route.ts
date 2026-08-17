@@ -16,6 +16,11 @@ export async function POST(req: Request) {
       listId = process.env.BREVO_LIST_ID_7_COMMANDMENTS;
     }
 
+    // If this is the INCUP worksheet funnel
+    if (source === 'incup_worksheet' && process.env.BREVO_LIST_ID_INCUP) {
+      listId = process.env.BREVO_LIST_ID_INCUP;
+    }
+
     if (!apiKey) {
       // If no API key is set yet, we just log and pretend it worked so the testing isn't blocked.
       console.warn("Brevo API key missing from .env.local. Logging lead in test mode.");

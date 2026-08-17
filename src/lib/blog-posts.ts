@@ -8,6 +8,11 @@ export interface BlogPost {
   coverImage?: string; // Optional custom cover image
   content: string; // HTML string containing the post body
   references?: string[]; // Academic/scientific citations
+  emailCapture?: {
+    source: string;
+    fileDownloadUrl: string;
+    ctaText: string;
+  };
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -100,5 +105,98 @@ export const BLOG_POSTS: BlogPost[] = [
       "Field, S., Parker, D. R., Sawilowsky, S., & Rolands, L. (2013). Assessing the impact of ADHD coaching services on university students' learning skills, self-regulation, and well-being. Journal of Postsecondary Education and Disability, 26(1), 67–81.",
       "Prevatt, F., & Yelland, S. (2015). An empirical evaluation of ADHD coaching in college students. Journal of Attention Disorders, 19(8), 666–677."
     ]
+  },
+  {
+    slug: "why-just-do-it-doesnt-work-adhd-incup",
+    title: "Why \"just do it\" doesn't work for ADHD brains",
+    description: "You know the task matters. You know the deadline is real. You still can't make yourself start. Let's talk about the interest-based nervous system and the INCUP framework.",
+    date: "August 17, 2026",
+    readTime: "5 min read",
+    category: "ADHD Basics",
+    coverImage: "/blog/incup-cover.jpg",
+    emailCapture: {
+      source: "incup_worksheet",
+      fileDownloadUrl: "/blog/INCUP_Worksheet.pdf",
+      ctaText: "Want a printable version of this framework to keep on hand? Download the free INCUP guide and I'll send it straight to your inbox."
+    },
+    content: `
+      <p>You know the task matters. You know the deadline is real. You still can't make yourself start. Meanwhile you'll happily lose 6 hours to a hobby nobody's paying you for.</p>
+      <p>If that sounds familiar, you're not alone. Your brain runs on a different motivation system than a neurotypical brain does. Let's talk about what that system actually is, and how to work with it instead of fighting it.</p>
+
+      <h2>First, let's talk dopamine</h2>
+      <p>ADHD gets described a lot as "low dopamine," but that's not quite the full picture. Research points to differences in how dopamine is regulated, not simply having less of it. In practice, that often means there's less dopamine available in the moment to fuel motivation, especially for tasks that don't already feel exciting or stimulating.</p>
+      <p>Dopamine plays a huge role in motivation, reward, and working memory. When a task doesn't generate enough of a dopamine signal, your brain doesn't get the "go ahead" to activate, even when you know, logically, that the task matters. That's not a willpower problem. That's neurology.</p>
+      <p>This is where Dr. William Dodson's work comes in.</p>
+
+      <h2>You have an interest-based nervous system</h2>
+      <p>Dr. William Dodson is a psychiatrist who's spent decades working with adults with ADHD, and he coined a term that reframed how a lot of us think about ADHD motivation: the interest-based nervous system.</p>
+      <p>Here's the idea. Neurotypical brains tend to run on what Dodson calls an importance-based nervous system. If something is important, has consequences, or has a deadline attached, that's usually enough to get a neurotypical brain moving.</p>
+      <p>ADHD brains don't run on importance. Knowing something matters isn't enough to reliably create action. Instead, ADHD brains are wired to respond to interest. If something is interesting, novel, challenging, urgent, or tied to something you're passionate about, your brain engages. If it's none of those things, even if it's genuinely important, your brain can struggle to start, no matter how much you want it to.</p>
+
+      <h2>What does this look like in action?</h2>
+      <p>Almost every ADHDer knows this pattern:</p>
+      <ul>
+        <li>You can hyperfocus on a hobby for hours, but can't start the report that's due in two days, even though, logically, you know it's important.</li>
+        <li>A deadline feels non-existent, until it becomes urgent, and then somehow you finish the whole project the night before.</li>
+        <li>You'll deep clean the entire house right before someone comes over, but can't, for the life of you, do the dishes on a regular Tuesday.</li>
+        <li>You'll happily help a friend with any task, but can't get yourself to run your own errands or do your own tasks.</li>
+      </ul>
+      <p>None of this is about caring less. It's about what your nervous system is actually responding to.</p>
+
+      <h2>The INCUP framework: how to use it</h2>
+      <p>This is often referred to as the INCUP, or PINCH framework, built out of Dodson's ideas about what activates the ADHD brain: Interest, Novelty, Challenge, Urgency, and Passion. These are the five drivers that reliably get an ADHD brain moving. When a task feels impossible, the fix usually isn't more willpower, it's finding a way to add one or more of these five ingredients.</p>
+
+      <h3>Interest</h3>
+      <p>If something isn't naturally interesting, you can often build interest into it.</p>
+      <ul>
+        <li>Tie the task to something that matters to you. Hate laundry but love an organized closet? Focus on the outcome you actually want.</li>
+        <li>Get clear on your "why." Not your boss's why, not society's why, yours.</li>
+        <li>Pair a boring task with something you already enjoy, like a favorite podcast or a call with a friend while you fold laundry.</li>
+        <li>Turn it into a question you're curious about: "How fast can I actually get through this stack of mail?"</li>
+      </ul>
+
+      <h3>Novelty</h3>
+      <p>Novelty tricks your brain into treating something familiar as new again. New = exciting and therefore, interesting.</p>
+      <ul>
+        <li>Change your environment: a coffee shop, a different room, outside.</li>
+        <li>Add a new sensory element: light a candle, switch up your lighting, play new sounds or music, try a new scent.</li>
+        <li>Use new tools: a new notebook, a new pen, a new app.</li>
+        <li>Do the task in a different order or a different way than you normally would.</li>
+      </ul>
+
+      <h3>Challenge</h3>
+      <p>Turn the task into a game and your brain gets a reason to show up.</p>
+      <ul>
+        <li>Race against a clock: how much of this list can you get done in one hour?</li>
+        <li>Compete against yourself: try to beat your own time from last time.</li>
+        <li>Bring in a body double or a friendly competitor.</li>
+        <li>Set a weird constraint just to make it more interesting, like only using one hand or racing a song to see if you can finish before it ends.</li>
+      </ul>
+
+      <h3>Urgency</h3>
+      <p>This isn't a place we want to live 100% of the time, but let's be honest: it's hella effective. Think about the last time you waited until the absolute last minute and suddenly had a fire lit under you. That's urgency in action.</p>
+      <p>Fake, self-imposed deadlines rarely work on their own. What does work is bringing someone else into it. Tell a colleague or friend, "I'm going to get X done by the end of the day, can you check in with me later?" That kind of external accountability creates real urgency, even without a built-in deadline.</p>
+      <ul>
+        <li>Loop someone else in and ask them to check on your progress.</li>
+        <li>Use a visible countdown timer instead of a vague sense of time passing.</li>
+        <li>Attach the task to something with a real, external deadline, like prepping for a meeting that's already on the calendar.</li>
+      </ul>
+
+      <h3>Passion</h3>
+      <p>Is this something you're actually passionate about? If not, the goal is to borrow passion from somewhere else and connect it to the task.</p>
+      <ul>
+        <li>Tie the task to a bigger goal or value you care about. Ask yourself, "if I finish this, what does it let me do next?"</li>
+        <li>Connect it to the person it impacts. Who benefits when this gets done?</li>
+        <li>Visualize how you'll feel once it's finished, not just that it's finished.</li>
+        <li>If the task itself has zero passion attached, pair it with a project or person you do feel passionate about, so some of that energy carries over. For example, you might not be passionate about cleaning the bathrooms BUT you may be passionate about teaching your children how to maintain cleanliness in a home.</li>
+      </ul>
+
+      <h2>You don't need all five at once</h2>
+      <p>You don't need to stack all five motivators every time. Often, adding just one is enough to shift a task from "impossible" to "doable." The more familiar you get with INCUP, the faster you'll be able to notice, in the moment, which driver is missing and which one to pull.</p>
+
+      <hr />
+      <h2>Need more personalized support?</h2>
+      <p>If you're looking for help applying these frameworks to your specific life, <a href="https://calendar.app.google/MFSVFkCLgbNfhPNo9" target="_blank" rel="noopener noreferrer">book a free consultation with me</a> to explore how ADHD coaching can get you unstuck.</p>
+    `
   }
 ];
